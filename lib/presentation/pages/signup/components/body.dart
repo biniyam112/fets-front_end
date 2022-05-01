@@ -11,10 +11,7 @@ class Body extends StatelessWidget {
         Image.asset('assets/images/handshake.jpg'),
         Text(
           'Sign up',
-          style: Theme.of(context)
-              .textTheme
-              .headline4!
-              .copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 30),
         ),
         TextFormField(
           decoration: InputDecoration(
