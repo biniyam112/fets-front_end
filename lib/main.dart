@@ -1,6 +1,9 @@
 import 'package:fets_mobile/presentation/pages/signup/signup.dart';
 import 'package:fets_mobile/services/services.dart';
+import 'package:fets_mobile/theme/text%20style.dart';
 import 'package:flutter/material.dart';
+
+import 'theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'FETS',
+      showSemanticsDebugger: false,
+      theme: lightTheme,
       routes: route,
       initialRoute: SignUpScreen.route,
     );
