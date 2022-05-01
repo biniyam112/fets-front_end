@@ -1,4 +1,4 @@
-import 'package:fets_mobile/screens/signup/signup.dart';
+import 'package:fets_mobile/presentation/pages/signup/signup.dart';
 import 'package:fets_mobile/services/services.dart';
 import 'package:flutter/material.dart';
 
