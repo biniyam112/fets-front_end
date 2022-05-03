@@ -6,3 +6,4 @@ export 'forgot_password/forgot_password.dart';
 export 'reset_password/reset_password.dart';
 export 'transactions/transactions.dart';
 export 'my_donations/my_donations.dart';
+export 'terms_and_conditions/terms_and_conditions.dart';

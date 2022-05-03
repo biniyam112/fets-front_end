@@ -13,9 +13,10 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40.sp,
-      width: 40.sp,
+    return Container(
+      padding: const EdgeInsets.all(8),
+      height: 34.sp,
+      width: 34.sp,
       child: ElevatedButton(
         child: const Icon(
           CupertinoIcons.back,

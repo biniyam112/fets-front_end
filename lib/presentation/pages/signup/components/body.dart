@@ -1,4 +1,5 @@
 import 'package:fets_mobile/presentation/pages/login/login_screen.dart';
+import 'package:fets_mobile/presentation/pages/terms_and_conditions/terms_and_conditions.dart';
 import 'package:fets_mobile/services/size_config.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/gestures.dart';
@@ -85,9 +86,10 @@ class _BodyState extends State<Body> {
                     ),
                     editingController: nameController,
                   ),
-                  verticalSpacing(20.sp),
+                  verticalSpacing(12.sp),
                   RichText(
                     text: TextSpan(
+                      style: TextStyle(height: 1.5.sp),
                       children: [
                         TextSpan(
                           text: 'By signing up you agree to our',
@@ -98,7 +100,11 @@ class _BodyState extends State<Body> {
                         ),
                         TextSpan(
                           text: ' terms and conditions',
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                  context, TermsAndConditions.route);
+                            },
                           style:
                               Theme.of(context).textTheme.headline5!.copyWith(
                                     color: primaryColor,
@@ -121,15 +127,16 @@ class _BodyState extends State<Body> {
                         },
                         child: Text(
                           'Login',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5!
-                              .copyWith(fontWeight: FontWeight.bold),
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryColor,
+                                  ),
                         ),
                       ),
                     ],
                   ),
-                  verticalSpacing(20.sp),
+                  verticalSpacing(10.sp),
                   SizedBox(
                     height: 50.sp,
                     width: double.infinity,
@@ -140,7 +147,7 @@ class _BodyState extends State<Body> {
                             MaterialStateProperty.all(primaryColor),
                       ),
                       child: Text(
-                        'Continue',
+                        'Sign up',
                         style: Theme.of(context)
                             .textTheme
                             .headline4!

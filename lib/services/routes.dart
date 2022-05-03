@@ -10,4 +10,5 @@ Map<String, Widget Function(BuildContext context)> route = {
   ResetPassword.route: (context) => const ResetPassword(),
   TransactionsScreen.route: (context) => const TransactionsScreen(),
   MyDonationsScreen.route: (context) => const MyDonationsScreen(),
+  TermsAndConditions.route: (context) => const TermsAndConditions(),
 };
