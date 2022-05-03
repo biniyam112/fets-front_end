@@ -6,6 +6,8 @@ import 'components/body.dart';
 class ResetPassword extends StatelessWidget {
   const ResetPassword({Key? key}) : super(key: key);
 
+  static const route = 'reset-password';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,10 +1,8 @@
-import 'package:fets_mobile/presentation/pages/forgot_password/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../services/services.dart';
 import '../../../../theme/theme.dart';
-import '../../components/components.dart';
 import '../../pages.dart';
 
 class Body extends StatefulWidget {
