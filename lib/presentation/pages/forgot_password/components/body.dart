@@ -75,7 +75,9 @@ class _BodyState extends State<Body> {
                     height: 50.sp,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, ResetPassword.route);
+                      },
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(primaryColor),

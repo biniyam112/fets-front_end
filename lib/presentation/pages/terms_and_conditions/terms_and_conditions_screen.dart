@@ -10,13 +10,10 @@ class TermsAndConditions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: CustomBackButton(
-          onPress: () {
-            Navigator.pop(context);
-          },
-        ),
+      appBar: customAppBar(
+        context,
+        title: 'Terms and conditions',
+        background: Colors.white,
       ),
       body: const Body(),
     );

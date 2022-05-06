@@ -119,7 +119,10 @@ class _BodyState extends State<Body> {
                     children: [
                       Text(
                         'Already have account?',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5!
+                            .copyWith(color: lightTextColor),
                       ),
                       TextButton(
                         onPressed: () {
@@ -136,7 +139,7 @@ class _BodyState extends State<Body> {
                       ),
                     ],
                   ),
-                  verticalSpacing(10.sp),
+                  verticalSpacing(6.sp),
                   SizedBox(
                     height: 50.sp,
                     width: double.infinity,

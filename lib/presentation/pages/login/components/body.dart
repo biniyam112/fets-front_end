@@ -69,7 +69,7 @@ class _BodyState extends State<Body> {
                     editingController: passwordController,
                     isVisible: false,
                   ),
-                  verticalSpacing(20.sp),
+                  verticalSpacing(10.sp),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -78,16 +78,21 @@ class _BodyState extends State<Body> {
                       },
                       child: Text(
                         'Forgot password?',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: primaryColor,
+                            ),
                       ),
                     ),
                   ),
-                  verticalSpacing(30.sp),
+                  verticalSpacing(40.sp),
                   SizedBox(
                     height: 50.sp,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, OtpScreen.route);
+                      },
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(primaryColor),
@@ -101,7 +106,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                   ),
-                  verticalSpacing(10.sp),
+                  verticalSpacing(4.sp),
                   Row(
                     children: [
                       Text(
@@ -114,10 +119,11 @@ class _BodyState extends State<Body> {
                         },
                         child: Text(
                           'Sign up',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5!
-                              .copyWith(fontWeight: FontWeight.bold),
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryColor,
+                                  ),
                         ),
                       ),
                     ],

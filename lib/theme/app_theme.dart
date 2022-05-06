@@ -5,7 +5,9 @@ import 'theme.dart';
 ThemeData lightTheme = ThemeData(
   backgroundColor: backgroundColor,
   appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.transparent,
+    backgroundColor: backgroundColor,
+    elevation: 0,
+    centerTitle: true,
   ),
   fontFamily: GoogleFonts.montserrat().fontFamily,
   textTheme: TextTheme(

@@ -14,7 +14,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(4),
       height: 34.sp,
       width: 34.sp,
       child: ElevatedButton(
