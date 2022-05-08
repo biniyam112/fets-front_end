@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../project-detail/project_detail.dart';
+
 class ProjectCard extends StatelessWidget {
   const ProjectCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: (){
+        Navigator.pushNamed(context, ProjectDetailScreen.route);
+      },
       child: Stack(children: [
         Container(
           margin: EdgeInsets.only(top: 24.h,right: 12.w),
