@@ -34,6 +34,8 @@ dependencies:
   flutter_clean_architecture: ^5.0.2
   flutter_screenutil: ^5.4.0+1
   google_fonts: ^2.3.2
+  persistent_bottom_nav_bar: ^4.0.2
+  syncfusion_flutter_gauges: ^20.1.52
 
 dev_dependencies:
   flutter_lints: ^1.0.0
