@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 PreferredSize customAppBar(
   BuildContext context, {
-  required String title,
+  String title = '',
+  bool noTitle = false,
   Color background = backgroundColor,
 }) {
   return PreferredSize(
@@ -15,14 +16,16 @@ PreferredSize customAppBar(
     ),
     child: AppBar(
       elevation: 0,
-      backgroundColor: backgroundColor,
+      backgroundColor: background,
       leading: CustomBackButton(
         onPress: () => Navigator.pop(context),
       ),
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.headline4,
-      ),
+      title: noTitle
+          ? const SizedBox()
+          : Text(
+              title,
+              style: Theme.of(context).textTheme.headline4,
+            ),
       centerTitle: true,
     ),
   );

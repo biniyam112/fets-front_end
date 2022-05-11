@@ -7,3 +7,5 @@ export 'reset_password/reset_password.dart';
 export 'transactions/transactions.dart';
 export 'my_donations/my_donations.dart';
 export 'terms_and_conditions/terms_and_conditions.dart';
+export 'send_donation/send_donation.dart';
+export 'project_details/project_details.dart';

@@ -24,6 +24,7 @@ class CustomBackButton extends StatelessWidget {
         ),
         onPressed: onPress,
         style: ButtonStyle(
+          shadowColor: MaterialStateProperty.all(shadowColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

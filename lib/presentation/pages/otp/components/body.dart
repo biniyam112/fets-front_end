@@ -1,4 +1,4 @@
-import 'package:fets_mobile/presentation/pages/components/custom_input_field.dart';
+import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,39 +32,44 @@ class Body extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  verticalSpacing(20),
                   Text(
-                    'Reset\nPassword',
+                    'Verification Code',
                     style: Theme.of(context)
                         .textTheme
                         .headline3!
                         .copyWith(fontSize: 30),
                   ),
-                  verticalSpacing(20.sp),
+                  verticalSpacing(10.sp),
                   RichText(
                     text: TextSpan(
+                      style: const TextStyle(height: 1.5),
                       children: [
                         TextSpan(
-                          text: 'A 4 digit code has been sent to ',
+                          text: 'A 4 digit code has been sent to \n',
                           style: Theme.of(context)
                               .textTheme
                               .headline5!
                               .copyWith(color: lightTextColor),
                         ),
                         TextSpan(
-                          text: '+123456789',
-                          style: Theme.of(context).textTheme.headline5,
+                          text: '+1234567893',
+                          style: Theme.of(context).textTheme.headline4,
                         ),
                       ],
                     ),
                   ),
                   verticalSpacing(30.sp),
-                  CustomOtpField(),
+                  const CustomOtpField(),
                   verticalSpacing(30.sp),
                   SizedBox(
                     height: 50.sp,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.popAndPushNamed(
+                            context, MyDonationsScreen.route);
+                      },
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(primaryColor),

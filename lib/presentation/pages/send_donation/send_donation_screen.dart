@@ -1,21 +1,21 @@
 import 'package:fets_mobile/presentation/pages/pages.dart';
+import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+class SendDonation extends StatelessWidget {
+  const SendDonation({Key? key}) : super(key: key);
 
-  static const route = 'reset-password';
+  static const route = 'send-donation';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: customAppBar(
         context,
-        noTitle: true,
-        background: Colors.white,
+        title: 'Send donation',
+        background: backgroundColor,
       ),
       body: const Body(),
     );

@@ -60,16 +60,17 @@ class _BodyState extends State<Body> {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   verticalSpacing(30.sp),
-                  CustomInputField(
-                    placeHolder: 'Email',
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.all(18),
-                      child: Icon(
-                        Icons.alternate_email_rounded,
-                      ),
-                    ),
-                    editingController: emailController,
-                  ),
+                  // CustomTextField(
+                  //   placeHolder: 'Email',
+                  //   inputType: TextInputType.emailAddress,
+                  //   prefixIcon: const Padding(
+                  //     padding: EdgeInsets.all(18),
+                  //     child: Icon(
+                  //       Icons.alternate_email_rounded,
+                  //     ),
+                  //   ),
+                  //   editingController: emailController,
+                  // ),
                   verticalSpacing(30.sp),
                   SizedBox(
                     height: 50.sp,

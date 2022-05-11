@@ -30,7 +30,7 @@ class _BodyState extends State<Body> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 1.sw,
+              height: .7.sw,
               width: 1.sw,
               child: Image.asset(
                 'assets/images/reset password.jpg',
@@ -43,6 +43,7 @@ class _BodyState extends State<Body> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  verticalSpacing(10.sp),
                   Text(
                     'Reset\nPassword',
                     style: Theme.of(context)
@@ -63,12 +64,22 @@ class _BodyState extends State<Body> {
                     placeHolder: 'new password',
                     editingController: password1Controller,
                     isVisible: isVisible1,
+                    changeVisibility: () {
+                      setState(() {
+                        isVisible1 = !isVisible1;
+                      });
+                    },
                   ),
                   verticalSpacing(20.sp),
                   CustomPasswordField(
                     placeHolder: 'comfirm password',
                     editingController: password2Controller,
                     isVisible: isVisible2,
+                    changeVisibility: () {
+                      setState(() {
+                        isVisible2 = !isVisible2;
+                      });
+                    },
                   ),
                   verticalSpacing(40.sp),
                   SizedBox(
