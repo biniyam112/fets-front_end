@@ -19,6 +19,10 @@ class _BodyState extends State<Body> {
   TextEditingController password2Controller = TextEditingController();
   bool isVisible1 = false;
   bool isVisible2 = false;
+  String password = '';
+  String confirmPassword = '';
+  List<String> errors = [];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -61,6 +65,34 @@ class _BodyState extends State<Body> {
                   ),
                   verticalSpacing(30.sp),
                   CustomPasswordField(
+                    onSaved: (value) {
+                      password = value!;
+                    },
+                    onChanged: (value) {
+                      if (value.isNotEmpty && errors.contains(kPassNullError)) {
+                        setState(() {
+                          errors.remove(kPassNullError);
+                        });
+                        return '';
+                      }
+                      setState(() {
+                        password = value;
+                      });
+
+                      return null;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty && !errors.contains(kPassNullError)) {
+                        setState(() {
+                          errors.add(kPassNullError);
+                        });
+                        return '';
+                      } else if (value.isEmpty &&
+                          errors.contains(kPassNullError)) {
+                        return '';
+                      }
+                      return null;
+                    },
                     placeHolder: 'new password',
                     editingController: password1Controller,
                     isVisible: isVisible1,
@@ -72,6 +104,37 @@ class _BodyState extends State<Body> {
                   ),
                   verticalSpacing(20.sp),
                   CustomPasswordField(
+                    onSaved: (value) {
+                      setState(() {
+                        confirmPassword = value!;
+                      });
+                    },
+                    onChanged: (value) {
+                      if (confirmPassword == password &&
+                          errors.contains(kMatchPassError)) {
+                        setState(() {
+                          errors.remove(kMatchPassError);
+                        });
+                        return '';
+                      }
+                      setState(() {
+                        confirmPassword = value;
+                      });
+                      return null;
+                    },
+                    validator: (value) {
+                      if (confirmPassword != password &&
+                          !errors.contains(kMatchPassError)) {
+                        setState(() {
+                          errors.add(kMatchPassError);
+                        });
+                        return '';
+                      } else if (confirmPassword != password &&
+                          errors.contains(kMatchPassError)) {
+                        return '';
+                      }
+                      return null;
+                    },
                     placeHolder: 'comfirm password',
                     editingController: password2Controller,
                     isVisible: isVisible2,

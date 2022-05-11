@@ -118,6 +118,36 @@ class _BodyState extends State<Body> {
                         ),
                         verticalSpacing(12.sp),
                         CustomPasswordField(
+                          onSaved: (value) {
+                            password = value!;
+                          },
+                          onChanged: (value) {
+                            if (value.isNotEmpty &&
+                                errors.contains(kPassNullError)) {
+                              setState(() {
+                                errors.remove(kPassNullError);
+                              });
+                              return '';
+                            }
+                            setState(() {
+                              password = value;
+                            });
+
+                            return null;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty &&
+                                !errors.contains(kPassNullError)) {
+                              setState(() {
+                                errors.add(kPassNullError);
+                              });
+                              return '';
+                            } else if (value.isEmpty &&
+                                errors.contains(kPassNullError)) {
+                              return '';
+                            }
+                            return null;
+                          },
                           placeHolder: 'password',
                           editingController: passwordController,
                           isVisible: isVisible,
@@ -147,7 +177,7 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                   FormFieldErrors(errors: errors),
-                  verticalSpacing(40.sp),
+                  verticalSpacing(30.sp),
                   SizedBox(
                     height: 50.sp,
                     width: double.infinity,
@@ -176,7 +206,10 @@ class _BodyState extends State<Body> {
                     children: [
                       Text(
                         'Don\'t have account?',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5!
+                            .copyWith(color: lightTextColor),
                       ),
                       TextButton(
                         onPressed: () {

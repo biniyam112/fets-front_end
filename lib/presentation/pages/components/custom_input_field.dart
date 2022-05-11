@@ -65,11 +65,17 @@ class CustomPasswordField extends StatelessWidget {
     required this.editingController,
     required this.isVisible,
     required this.changeVisibility,
+    required this.onSaved,
+    required this.onChanged,
+    required this.validator,
   }) : super(key: key);
   final String placeHolder;
   final TextEditingController editingController;
   final bool isVisible;
   final GestureTapCallback changeVisibility;
+  final Function(String? value) onSaved;
+  final Function(String value) onChanged;
+  final String? Function(String? value) validator;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +89,10 @@ class CustomPasswordField extends StatelessWidget {
       child: TextFormField(
         keyboardType: TextInputType.visiblePassword,
         controller: editingController,
-        expands: false,
+        onChanged: onChanged,
+        validator: validator,
+        onSaved: onSaved,
+        obscureText: isVisible,
         decoration: InputDecoration(
           errorStyle: const TextStyle(height: 0),
           border: OutlineInputBorder(

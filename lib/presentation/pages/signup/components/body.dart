@@ -32,9 +32,7 @@ class _BodyState extends State<Body> {
       height: 1.sh,
       width: 1.sw,
       child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
+        physics: const BouncingScrollPhysics(),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,7 +254,7 @@ class _BodyState extends State<Body> {
                       ],
                     ),
                     FormFieldErrors(errors: errors),
-                    verticalSpacing(20),
+                    verticalSpacing(24.sp),
                     SizedBox(
                       height: 50.sp,
                       width: double.infinity,
