@@ -129,7 +129,14 @@ class CustomPasswordField extends StatelessWidget {
 }
 
 class CustomOtpField extends StatelessWidget {
-  const CustomOtpField({Key? key}) : super(key: key);
+  const CustomOtpField({
+    Key? key,
+    required this.pin1,
+    required this.pin2,
+    required this.pin3,
+    required this.pin4,
+  }) : super(key: key);
+  final Function(String) pin1, pin2, pin3, pin4;
 
   @override
   Widget build(BuildContext context) {
@@ -145,13 +152,16 @@ class CustomOtpField extends StatelessWidget {
             ),
             expands: false,
             onChanged: (value) {
+              pin1(value);
               if (value.length == 1) {
                 FocusScope.of(context).nextFocus();
               } else {
                 FocusScope.of(context).previousFocus();
               }
             },
-            onSaved: (pin) {},
+            onSaved: (value) {
+              pin1(value!);
+            },
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline4!.copyWith(
                   fontWeight: FontWeight.bold,
@@ -169,40 +179,16 @@ class CustomOtpField extends StatelessWidget {
           width: 50.sp,
           child: TextFormField(
             onChanged: (value) {
+              pin2(value);
               if (value.length == 1) {
                 FocusScope.of(context).nextFocus();
               } else {
                 FocusScope.of(context).previousFocus();
               }
             },
-            onSaved: (pin) {},
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.sp,
-                ),
-            decoration: const InputDecoration(
-              errorStyle: TextStyle(height: 0),
-            ),
-            keyboardType: TextInputType.number,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(1),
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 50.sp,
-          width: 50.sp,
-          child: TextFormField(
-            onChanged: (value) {
-              if (value.length == 1) {
-                FocusScope.of(context).nextFocus();
-              } else {
-                FocusScope.of(context).previousFocus();
-              }
+            onSaved: (value) {
+              pin2(value!);
             },
-            onSaved: (pin) {},
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline4!.copyWith(
                   fontWeight: FontWeight.bold,
@@ -223,13 +209,47 @@ class CustomOtpField extends StatelessWidget {
           width: 50.sp,
           child: TextFormField(
             onChanged: (value) {
+              pin3(value);
+
               if (value.length == 1) {
                 FocusScope.of(context).nextFocus();
               } else {
                 FocusScope.of(context).previousFocus();
               }
             },
-            onSaved: (pin) {},
+            onSaved: (value) {
+              pin3(value!);
+            },
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline4!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.sp,
+                ),
+            decoration: const InputDecoration(
+              errorStyle: TextStyle(height: 0),
+            ),
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(1),
+              FilteringTextInputFormatter.digitsOnly,
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 50.sp,
+          width: 50.sp,
+          child: TextFormField(
+            onChanged: (value) {
+              pin4(value);
+              if (value.length == 1) {
+                FocusScope.of(context).nextFocus();
+              } else {
+                FocusScope.of(context).previousFocus();
+              }
+            },
+            onSaved: (value) {
+              pin4(value!);
+            },
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline4!.copyWith(
                   fontWeight: FontWeight.bold,

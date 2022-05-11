@@ -5,10 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../services/services.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  List<String> errors = [];
+  String pin1 = '';
+  String pin2 = '';
+  String pin3 = '';
+  String pin4 = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +71,72 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   verticalSpacing(30.sp),
-                  const CustomOtpField(),
+                  CustomOtpField(
+                    pin1: (value) {
+                      pin1 = value;
+                      if (pin1.isNotEmpty &
+                          pin2.isNotEmpty &
+                          pin3.isNotEmpty &
+                          pin4.isNotEmpty) {
+                        setState(() {
+                          errors.remove(kInvalidotpError);
+                        });
+                      }
+                    },
+                    pin2: (value) {
+                      pin2 = value;
+                      if (pin1.isNotEmpty &
+                          pin2.isNotEmpty &
+                          pin3.isNotEmpty &
+                          pin4.isNotEmpty) {
+                        setState(() {
+                          errors.remove(kInvalidotpError);
+                        });
+                      }
+                    },
+                    pin3: (value) {
+                      pin3 = value;
+                      if (pin1.isNotEmpty &
+                          pin2.isNotEmpty &
+                          pin3.isNotEmpty &
+                          pin4.isNotEmpty) {
+                        setState(() {
+                          errors.remove(kInvalidotpError);
+                        });
+                      }
+                    },
+                    pin4: (value) {
+                      pin4 = value;
+                      if (pin1.isNotEmpty &
+                          pin2.isNotEmpty &
+                          pin3.isNotEmpty &
+                          pin4.isNotEmpty) {
+                        setState(() {
+                          errors.remove(kInvalidotpError);
+                        });
+                      }
+                    },
+                  ),
+                  FormFieldErrors(errors: errors),
                   verticalSpacing(30.sp),
                   SizedBox(
                     height: 50.sp,
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.popAndPushNamed(
-                            context, MyDonationsScreen.route);
+                        if (pin1.isEmpty ||
+                            pin2.isEmpty ||
+                            pin3.isEmpty ||
+                            pin4.isEmpty) {
+                          if (!errors.contains(kInvalidotpError)) {
+                            setState(() {
+                              errors.add(kInvalidotpError);
+                            });
+                          }
+                        } else {
+                          Navigator.popAndPushNamed(
+                              context, MyDonationsScreen.route);
+                        }
                       },
                       style: ButtonStyle(
                         backgroundColor:
