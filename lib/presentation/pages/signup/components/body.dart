@@ -1,6 +1,5 @@
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

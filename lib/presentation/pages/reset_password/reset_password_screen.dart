@@ -14,7 +14,7 @@ class ResetPassword extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: customAppBar(
         context,
-        noTitle: true,
+        title: 'Reset Password',
         background: Colors.white,
       ),
       body: const Body(),

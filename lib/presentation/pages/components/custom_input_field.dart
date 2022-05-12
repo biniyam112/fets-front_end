@@ -92,7 +92,12 @@ class CustomPasswordField extends StatelessWidget {
         onChanged: onChanged,
         validator: validator,
         onSaved: onSaved,
-        obscureText: isVisible,
+        obscureText: !isVisible,
+        style: Theme.of(context).textTheme.headline5!.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: .4,
+              color: Colors.black.withOpacity(.7),
+            ),
         decoration: InputDecoration(
           errorStyle: const TextStyle(height: 0),
           border: OutlineInputBorder(
@@ -104,9 +109,7 @@ class CustomPasswordField extends StatelessWidget {
             child: SvgPicture.asset('assets/icons/Lock.svg'),
           ),
           suffixIcon: IconButton(
-            onPressed: () {
-              changeVisibility;
-            },
+            onPressed: changeVisibility,
             splashRadius: 1,
             icon: !isVisible
                 ? const Icon(
