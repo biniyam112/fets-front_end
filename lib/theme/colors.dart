@@ -7,3 +7,5 @@ const secondaryColor = Color(0xff129113);
 const errorColor = Color(0xffDA2B2B);
 const filterBackgroundColor = Color(0xff6F6262);
 const lightBlueBackround = Color(0xffF6F9FE);
+const textfieldBackground = Color(0xffF4F4F4);
+const shadowColor = Color(0xffEBEBEB);

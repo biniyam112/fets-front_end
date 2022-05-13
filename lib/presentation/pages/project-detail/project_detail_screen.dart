@@ -2,6 +2,8 @@ import 'package:fets_mobile/presentation/pages/components/components.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'components/components.dart';
+
 class ProjectDetailScreen extends StatelessWidget {
   const ProjectDetailScreen({Key? key}) : super(key: key);
 
@@ -20,13 +22,15 @@ class ProjectDetailScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        // elevation: 0,
-        // backgroundColor: backgroundColor,
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: backgroundColor,
         title: Text(
           'Electricity supply in Kototo',
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
+      body: const Body(),
     );
   }
 }
