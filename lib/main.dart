@@ -18,12 +18,11 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       minTextAdapt: true,
       builder: (_) => MaterialApp(
-        title: 'FETS',
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        routes: route,
-        initialRoute:DashboardScreen.route
-      ),
+          title: 'FETS',
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme,
+          routes: route,
+          initialRoute: DashboardScreen.route),
     );
   }
 }

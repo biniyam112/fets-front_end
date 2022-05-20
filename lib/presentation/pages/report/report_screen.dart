@@ -1,15 +1,13 @@
 import 'package:fets_mobile/presentation/pages/components/components.dart';
-import 'package:fets_mobile/theme/theme.dart';
+import 'package:fets_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'components/components.dart';
+import 'report.dart';
 
-class ProjectDetailScreen extends StatelessWidget {
-  const ProjectDetailScreen({Key? key}) : super(key: key);
+class ReportScreen extends StatelessWidget {
+  const ReportScreen({Key? key}) : super(key: key);
 
-  static const route = "project-detail";
-  // final String title;
-
+  static const route = "report";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +22,7 @@ class ProjectDetailScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: backgroundColor,
         title: Text(
-          'Electricity supply in Kototo',
+          'Report',
           style: Theme.of(context).textTheme.headline4,
         ),
       ),

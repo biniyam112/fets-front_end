@@ -2,7 +2,7 @@ import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-
+import '../feeds/feeds_screen.dart';
 import 'components/components.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -18,14 +18,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
         backgroundColor: backgroundColor,
         body: IndexedStack(
           index: _selectedIndex,
-          children: const [DashboardBody(), SearchScreen()],
+          children: const [DashboardBody(), SearchScreen(), FeedsScreen()],
         ),
         bottomNavigationBar: BottomNavbar(
-          
           currentIndex: _selectedIndex,
           onItemSelected: (int val) {
             setState(() {

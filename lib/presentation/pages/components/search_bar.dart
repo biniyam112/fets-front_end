@@ -1,3 +1,4 @@
+import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,7 +15,9 @@ class SearchBar extends StatelessWidget {
         child: Stack(alignment: Alignment.centerRight, children: [
           TextField(
             readOnly: true,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, SearchScreen.route);
+            },
             style: TextStyle(
               decoration: TextDecoration.none,
               fontSize: 20.sp,

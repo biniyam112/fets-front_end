@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProjectOverview extends StatelessWidget {
@@ -19,10 +20,23 @@ class ProjectOverview extends StatelessWidget {
 the population, Ethiopia can lift itself out of poverty by 
 ensuring children have access to quality education... 
                ''',
-               
               textAlign: TextAlign.justify,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.grey.shade400
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.grey.shade400)),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size.zero,
+                  padding:
+                      EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+                  primary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.sp))),
+              onPressed: () {},
+              child: Text(
+                "read all",
+                style: TextStyle(color: Colors.black, fontSize: 11.sp),
               ))
         ],
       ),

@@ -1,2 +1,2 @@
-export 'search_screen.dart';
+export 'feed_detail_screen.dart';
 export 'components/components.dart';

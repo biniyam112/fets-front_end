@@ -1,13 +1,12 @@
-
-
 import 'package:fets_mobile/presentation/pages/dashboard/dashboard.dart';
-
+import 'package:fets_mobile/presentation/pages/search/search.dart';
 
 import 'package:flutter/cupertino.dart';
 
 import 'package:fets_mobile/presentation/pages/pages.dart';
 
 import '../presentation/pages/project-detail/project_detail.dart';
+import '../presentation/pages/report/report.dart';
 
 Map<String, Widget Function(BuildContext context)> route = {
   SignUpScreen.route: (context) => const SignUpScreen(),
@@ -18,5 +17,8 @@ Map<String, Widget Function(BuildContext context)> route = {
   TransactionsScreen.route: (context) => const TransactionsScreen(),
   MyDonationsScreen.route: (context) => const MyDonationsScreen(),
   DashboardScreen.route: (context) => const DashboardScreen(),
-  ProjectDetailScreen.route: (context) => const ProjectDetailScreen()
+  ProjectDetailScreen.route: (context) => const ProjectDetailScreen(),
+  ReportScreen.route: (context) => const ReportScreen(),
+  SearchScreen.route: (context) => const SearchScreen(),
+  FeedDetailScreen.route: (context) => const FeedDetailScreen()
 };
