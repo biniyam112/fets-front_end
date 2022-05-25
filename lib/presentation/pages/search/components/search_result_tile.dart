@@ -44,7 +44,7 @@ class SearchResultTile extends StatelessWidget {
                             vertical: -4,
                           ),
                           dense: true,
-                          contentPadding: EdgeInsets.symmetric(vertical: 0),
+                          contentPadding: EdgeInsets.zero,
                           title: Text("Starving children in Kototo",
                               style: TextStyle(
                                   fontSize: 12.sp,

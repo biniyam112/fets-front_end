@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class FeedTile extends StatelessWidget {
   const FeedTile({Key? key}) : super(key: key);
-  static const IconData arrow_forward =
+  static const arrowforward =
       IconData(0xe15e, fontFamily: 'MaterialIcons', matchTextDirection: true);
   @override
   Widget build(BuildContext context) {

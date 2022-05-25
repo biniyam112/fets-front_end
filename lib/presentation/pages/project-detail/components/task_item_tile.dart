@@ -10,7 +10,7 @@ class TaskItemTile extends StatelessWidget {
       // padding: EdgeInsets.zero,
       margin: EdgeInsets.symmetric(vertical: 3.h),
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.all(Radius.circular(10.w))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class TaskItemTile extends StatelessWidget {
                     "Mar 20,2020",
                     style: TextStyle(fontSize: 10.sp),
                   )),
-              leading: Icon(Icons.check_box_outlined),
+              leading: const Icon(Icons.check_box_outlined),
             ),
           ),
           Padding(

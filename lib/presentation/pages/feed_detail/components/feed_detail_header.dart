@@ -1,4 +1,3 @@
-import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,9 +30,9 @@ class FeedDetailHeader extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 4.w),
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
             decoration: BoxDecoration(
-                color: Color(0xFFDADBE1),
+                color: const Color(0xFFDADBE1),
                 borderRadius: BorderRadius.all(Radius.circular(10.sp))),
-            child: Text(
+            child: const Text(
               "#forest",
               style: TextStyle(color: Color(0xFF687087)),
             ),

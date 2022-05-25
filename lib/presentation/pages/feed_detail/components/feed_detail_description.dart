@@ -37,7 +37,7 @@ class FeedDetailDescription extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.h)),
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "Go to project",
                 style: TextStyle(fontWeight: FontWeight.w700),
               )),

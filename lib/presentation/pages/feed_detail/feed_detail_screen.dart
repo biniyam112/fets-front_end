@@ -38,7 +38,7 @@ class FeedDetailScreen extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(10.sp))),
                   child: IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.bookmark_outline,
                       color: lightTextColor,
                     ),

@@ -19,11 +19,9 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 280.w,
       height: 35.h,
-      // padding: EdgeInsets.only(right: 20.w),
-
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.sp),
         child: TextField(
@@ -31,7 +29,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           autofocus: true,
           controller: _controller,
           keyboardType: TextInputType.text,
-          cursorColor: Color.fromARGB(255, 112, 112, 112),
+          cursorColor: const Color.fromARGB(255, 112, 112, 112),
           textAlignVertical: TextAlignVertical.center,
           onChanged: (value) {},
           style: TextStyle(

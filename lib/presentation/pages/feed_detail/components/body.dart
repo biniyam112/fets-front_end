@@ -11,7 +11,7 @@ class Body extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
       child: SingleChildScrollView(
         child: Column(
-          children: [FeedDetailHeader(), FeedDetailDescription()],
+          children: const [FeedDetailHeader(), FeedDetailDescription()],
         ),
       ),
     );

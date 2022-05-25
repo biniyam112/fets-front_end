@@ -1,6 +1,3 @@
-import 'package:fets_mobile/presentation/pages/login/login_screen.dart';
-import 'package:fets_mobile/presentation/pages/pages.dart';
-import 'package:fets_mobile/services/size_config.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/gestures.dart';
