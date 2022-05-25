@@ -1,6 +1,7 @@
-import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'components.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({Key? key}) : super(key: key);

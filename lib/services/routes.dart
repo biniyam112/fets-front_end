@@ -1,16 +1,8 @@
-import 'package:fets_mobile/presentation/pages/dashboard/dashboard.dart';
-import 'package:fets_mobile/presentation/pages/search/search.dart';
-
-import 'package:flutter/cupertino.dart';
-
-import 'package:fets_mobile/presentation/pages/pages.dart';
-
-import '../presentation/pages/project-detail/project_detail.dart';
-import '../presentation/pages/report/report.dart';
 import 'package:flutter/material.dart';
 import '../presentation/pages/pages.dart';
 
 Map<String, Widget Function(BuildContext context)> route = {
+  OnboardingScreen.route: (context) => const OnboardingScreen(),
   SignUpScreen.route: (context) => const SignUpScreen(),
   LoginScreen.route: (context) => const LoginScreen(),
   ForogtPassword.route: (context) => const ForogtPassword(),

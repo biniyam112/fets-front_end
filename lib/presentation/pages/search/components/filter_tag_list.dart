@@ -1,6 +1,7 @@
-import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'filter_tag_widget.dart';
 
 class FilterTagList extends StatelessWidget {
   final bool isVisible;

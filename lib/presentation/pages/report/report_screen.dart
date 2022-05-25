@@ -2,7 +2,7 @@ import 'package:fets_mobile/presentation/pages/components/components.dart';
 import 'package:fets_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'report.dart';
+import 'components/body.dart';
 
 class ReportScreen extends StatelessWidget {
   const ReportScreen({Key? key}) : super(key: key);

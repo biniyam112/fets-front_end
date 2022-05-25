@@ -1,5 +1,6 @@
-import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:flutter/material.dart';
+
+import 'components.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.isVisible}) : super(key: key);
