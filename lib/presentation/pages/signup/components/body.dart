@@ -73,9 +73,7 @@ class _BodyState extends State<Body> {
                                 });
                                 return '';
                               }
-                              setState(() {
-                                fullName = value;
-                              });
+                              fullName = value;
                               return null;
                             },
                             validator: (value) {

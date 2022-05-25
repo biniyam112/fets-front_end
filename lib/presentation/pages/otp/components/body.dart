@@ -74,9 +74,9 @@ class _BodyState extends State<Body> {
                   CustomOtpField(
                     pin1: (value) {
                       pin1 = value;
-                      if (pin1.isNotEmpty &
-                          pin2.isNotEmpty &
-                          pin3.isNotEmpty &
+                      if (pin1.isNotEmpty &&
+                          pin2.isNotEmpty &&
+                          pin3.isNotEmpty &&
                           pin4.isNotEmpty) {
                         setState(() {
                           errors.remove(kInvalidotpError);
@@ -85,9 +85,9 @@ class _BodyState extends State<Body> {
                     },
                     pin2: (value) {
                       pin2 = value;
-                      if (pin1.isNotEmpty &
-                          pin2.isNotEmpty &
-                          pin3.isNotEmpty &
+                      if (pin1.isNotEmpty &&
+                          pin2.isNotEmpty &&
+                          pin3.isNotEmpty &&
                           pin4.isNotEmpty) {
                         setState(() {
                           errors.remove(kInvalidotpError);
@@ -96,9 +96,9 @@ class _BodyState extends State<Body> {
                     },
                     pin3: (value) {
                       pin3 = value;
-                      if (pin1.isNotEmpty &
-                          pin2.isNotEmpty &
-                          pin3.isNotEmpty &
+                      if (pin1.isNotEmpty &&
+                          pin2.isNotEmpty &&
+                          pin3.isNotEmpty &&
                           pin4.isNotEmpty) {
                         setState(() {
                           errors.remove(kInvalidotpError);
@@ -107,9 +107,9 @@ class _BodyState extends State<Body> {
                     },
                     pin4: (value) {
                       pin4 = value;
-                      if (pin1.isNotEmpty &
-                          pin2.isNotEmpty &
-                          pin3.isNotEmpty &
+                      if (pin1.isNotEmpty &&
+                          pin2.isNotEmpty &&
+                          pin3.isNotEmpty &&
                           pin4.isNotEmpty) {
                         setState(() {
                           errors.remove(kInvalidotpError);

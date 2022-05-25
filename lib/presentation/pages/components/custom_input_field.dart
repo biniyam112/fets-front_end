@@ -10,20 +10,23 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
     required this.placeHolder,
-    required this.prefixIcon,
+    this.prefixIcon,
+    this.suffixIcon,
     required this.editingController,
     required this.inputType,
     required this.onChanged,
     required this.onSaved,
     required this.validator,
+    this.contentPadding = EdgeInsets.zero,
   }) : super(key: key);
   final String placeHolder;
-  final Widget prefixIcon;
+  final Widget? prefixIcon, suffixIcon;
   final TextEditingController editingController;
   final TextInputType inputType;
   final Function(String? value) onSaved;
   final Function(String value) onChanged;
   final String? Function(String? value) validator;
+  final EdgeInsets contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +45,13 @@ class CustomTextField extends StatelessWidget {
         validator: validator,
         decoration: InputDecoration(
           errorStyle: const TextStyle(height: 0),
-          contentPadding: EdgeInsets.zero,
+          contentPadding: contentPadding,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
           ),
           prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
           hintText: placeHolder,
           hintStyle: Theme.of(context).textTheme.headline5!.copyWith(
                 color: lightTextColor,

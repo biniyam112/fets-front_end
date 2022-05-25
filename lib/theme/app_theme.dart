@@ -20,7 +20,7 @@ ThemeData lightTheme = ThemeData(
       fontSize: 18,
     ),
     headline5: TextStyle(
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
       fontFamily: GoogleFonts.poppins().fontFamily,
       fontSize: 16,
     ),

@@ -51,7 +51,7 @@ class _BodyState extends State<Body> {
                 children: [
                   verticalSpacing(10.sp),
                   Text(
-                    'Reset\nPassword',
+                    'Finish\n Sign up',
                     style: Theme.of(context)
                         .textTheme
                         .headline3!

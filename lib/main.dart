@@ -1,4 +1,4 @@
-import 'package:fets_mobile/presentation/pages/signup/signup.dart';
+import 'package:fets_mobile/presentation/pages/my_donations/my_donations_screen.dart';
 import 'package:fets_mobile/services/services.dart';
 import 'package:fets_mobile/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         routes: route,
-        initialRoute: SignUpScreen.route,
+        initialRoute: MyDonationsScreen.route,
       ),
     );
   }

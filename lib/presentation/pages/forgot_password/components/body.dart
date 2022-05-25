@@ -65,12 +65,12 @@ class _BodyState extends State<Body> {
                     key: _formkey,
                     child: CustomTextField(
                       onChanged: (value) {
-                        if (value.isNotEmpty &
+                        if (value.isNotEmpty &&
                             errors.contains(kEmailNullError)) {
                           setState(() {
                             errors.remove(kEmailNullError);
                           });
-                        } else if (emailValidatorRegExp.hasMatch(value) &
+                        } else if (emailValidatorRegExp.hasMatch(value) &&
                             errors.contains(kInvalidEmailError)) {
                           setState(() {
                             errors.remove(kInvalidEmailError);
@@ -79,13 +79,13 @@ class _BodyState extends State<Body> {
                         email = value;
                       },
                       validator: (value) {
-                        if (value!.isEmpty &
+                        if (value!.isEmpty &&
                             !errors.contains(kEmailNullError)) {
                           setState(() {
                             errors.add(kEmailNullError);
                           });
                           return '';
-                        } else if (!emailValidatorRegExp.hasMatch(value) &
+                        } else if (!emailValidatorRegExp.hasMatch(value) &&
                             !errors.contains(kInvalidEmailError)) {
                           setState(() {
                             errors.add(kInvalidEmailError);
