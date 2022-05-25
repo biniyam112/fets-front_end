@@ -20,7 +20,7 @@ class _FilterTagWidgetState extends State<FilterTagWidget> {
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
-              color: Color(0xFFDADBE1),
+              color: const Color(0xFFDADBE1),
               borderRadius: BorderRadius.all(Radius.circular(7.sp))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -32,14 +32,14 @@ class _FilterTagWidgetState extends State<FilterTagWidget> {
                 style: TextStyle(
                     fontSize: 11.sp,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF6F6262)),
+                    color: const Color(0xFF6F6262)),
                 textAlign: TextAlign.end,
               )),
               IconButton(
                   padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(),
+                  constraints: const BoxConstraints(),
                   alignment: Alignment.centerRight,
-                  color: Color(0xFF6F6262),
+                  color: const Color(0xFF6F6262),
                   onPressed: () {
                     setState(() {
                       _isVisible = !_isVisible;

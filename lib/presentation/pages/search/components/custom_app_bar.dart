@@ -27,13 +27,13 @@ class CustomAppBar extends StatelessWidget {
               width: 40.w,
               height: 32.h,
               decoration: BoxDecoration(
-                  color: isVisible ? Colors.blue : Color(0xFFDADBE1),
+                  color: isVisible ? Colors.blue : const Color(0xFFDADBE1),
                   borderRadius: BorderRadius.all(Radius.circular(7.sp))),
               margin: EdgeInsets.only(left: 10.w),
               padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 0.h),
               child: IconButton(
                   onPressed: onPressedCallback,
-                  icon: Icon(Icons.tune_outlined),
+                  icon: const Icon(Icons.tune_outlined),
                   color: isVisible ? Colors.white : Colors.black),
             )
           ],

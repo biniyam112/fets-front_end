@@ -1,7 +1,6 @@
 import 'package:fets_mobile/presentation/pages/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashboardBody extends StatelessWidget {
   const DashboardBody({Key? key}) : super(key: key);
@@ -9,7 +8,7 @@ class DashboardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 3.h),
+      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 3.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,7 +22,6 @@ class DashboardBody extends StatelessWidget {
                   SizedBox(height: 7.h),
                   const FeaturedProjects(),
                   const Education()
-                  
                 ],
               ),
             ),

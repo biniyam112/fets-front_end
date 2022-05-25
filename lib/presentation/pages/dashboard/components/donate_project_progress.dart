@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class DonateProjectProgress extends StatelessWidget {
   const DonateProjectProgress({Key? key}) : super(key: key);
