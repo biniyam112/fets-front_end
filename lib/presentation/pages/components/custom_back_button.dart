@@ -13,9 +13,10 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40.sp,
-      width: 40.sp,
+    return Container(
+      padding: const EdgeInsets.all(4),
+      height: 50.sp,
+      width: 52.sp,
       child: ElevatedButton(
         child: const Icon(
           CupertinoIcons.back,
@@ -23,6 +24,7 @@ class CustomBackButton extends StatelessWidget {
         ),
         onPressed: onPress,
         style: ButtonStyle(
+          shadowColor: MaterialStateProperty.all(shadowColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

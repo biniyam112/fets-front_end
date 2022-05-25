@@ -7,6 +7,8 @@ import 'package:fets_mobile/presentation/pages/pages.dart';
 
 import '../presentation/pages/project-detail/project_detail.dart';
 import '../presentation/pages/report/report.dart';
+import 'package:flutter/material.dart';
+import '../presentation/pages/pages.dart';
 
 Map<String, Widget Function(BuildContext context)> route = {
   SignUpScreen.route: (context) => const SignUpScreen(),
@@ -20,5 +22,8 @@ Map<String, Widget Function(BuildContext context)> route = {
   ProjectDetailScreen.route: (context) => const ProjectDetailScreen(),
   ReportScreen.route: (context) => const ReportScreen(),
   SearchScreen.route: (context) => const SearchScreen(),
-  FeedDetailScreen.route: (context) => const FeedDetailScreen()
+  FeedDetailScreen.route: (context) => const FeedDetailScreen(),
+  TermsAndConditions.route: (context) => const TermsAndConditions(),
+  SendDonation.route: (context) => const SendDonation(),
+  ProjectDetails.route: (context) => const ProjectDetails(),
 };

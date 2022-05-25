@@ -284,6 +284,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.6"
+<<<<<<< HEAD
   persistent_bottom_nav_bar:
     dependency: "direct main"
     description:
@@ -291,6 +292,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+=======
+>>>>>>> 85688c4c8f8ffbbb6145095a2c97d008801c253f
   petitparser:
     dependency: transitive
     description:

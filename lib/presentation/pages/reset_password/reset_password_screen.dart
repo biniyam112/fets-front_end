@@ -1,4 +1,4 @@
-import 'package:fets_mobile/presentation/pages/components/custom_back_button.dart';
+import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
@@ -11,12 +11,11 @@ class ResetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: CustomBackButton(
-          onPress: () {
-            Navigator.pop(context);
-          },
-        ),
+      backgroundColor: Colors.white,
+      appBar: customAppBar(
+        context,
+        title: 'Reset Password',
+        background: Colors.white,
       ),
       body: const Body(),
     );

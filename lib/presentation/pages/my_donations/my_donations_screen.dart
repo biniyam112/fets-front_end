@@ -11,16 +11,9 @@ class MyDonationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: CustomBackButton(
-          onPress: () {},
-        ),
-        title: Text(
-          'My donations',
-          style: Theme.of(context).textTheme.headline5,
-        ),
-        centerTitle: true,
-        actions: [],
+      appBar: customAppBar(
+        context,
+        title: 'My donations',
       ),
       body: const Body(),
     );

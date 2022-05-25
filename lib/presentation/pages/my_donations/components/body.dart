@@ -1,8 +1,10 @@
-import 'package:fets_mobile/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../theme/theme.dart';
+import '../../../../services/services.dart';
+import 'project_filter.dart';
+import 'project_list_tile.dart';
+import 'quick_stat.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -12,141 +14,59 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  int filterIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 1.sh,
       width: 1.sw,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  topShadow,
-                  bottomShadow,
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            children: [
+              const DonorStatCard(),
+              verticalSpacing(10.sp),
+              ProjectsFilter(
+                filters: const [
+                  'All projects',
+                  'Completed',
+                  'Inprogress',
                 ],
+                selectedIndex: filterIndex,
+                onChanged: (index) {
+                  setState(() {
+                    filterIndex = index;
+                  });
+                },
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'Arab AID',
-                                  style: Theme.of(context).textTheme.headline3,
-                                ),
-                                Text(
-                                  'transaction id',
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  'Status',
-                                  style: Theme.of(context).textTheme.headline4,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Donated projects',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6!
-                                          .copyWith(fontSize: 12),
-                                    ),
-                                    horizontalSpacing(4),
-                                    Text(
-                                      '${3}',
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'total donations',
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                                Text(
-                                  '${2234234.45}',
-                                  style: Theme.of(context).textTheme.headline4,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 50.sp,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(primaryColor),
-                        ),
-                        child: Text(
-                          'All transactions',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            verticalSpacing(20.sp),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  topShadow,
-                  bottomShadow,
-                ],
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.transparent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'All Projets',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5!
-                            .copyWith(color: lightTextColor),
-                      ),
-                    ),
+              Column(
+                children: const [
+                  ProjectListTile(
+                    title: 'Food project in kototo',
+                    imagePath: 'assets/images/login.jpg',
+                    budget: 23423947,
+                    completedSubprojects: 8,
+                    completedTasks: 43,
+                    totalSubprojects: 10,
+                    totalTasks: 84,
+                    percentage: .6,
+                  ),
+                  ProjectListTile(
+                    title: 'Food project in kototo',
+                    imagePath: 'assets/images/login.jpg',
+                    budget: 4345,
+                    completedSubprojects: 8,
+                    completedTasks: 43,
+                    totalSubprojects: 10,
+                    totalTasks: 84,
+                    percentage: .6,
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

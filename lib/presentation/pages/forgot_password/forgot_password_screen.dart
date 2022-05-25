@@ -11,12 +11,11 @@ class ForogtPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: CustomBackButton(
-          onPress: () {
-            Navigator.pop(context);
-          },
-        ),
+      backgroundColor: Colors.white,
+      appBar: customAppBar(
+        context,
+        title: 'Forgot password',
+        background: Colors.white,
       ),
       body: const Body(),
     );
