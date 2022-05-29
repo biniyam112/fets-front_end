@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../components/components.dart';
-import '../../pages.dart';
 
 class TopArea extends StatelessWidget {
   const TopArea({
