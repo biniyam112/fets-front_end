@@ -60,11 +60,6 @@ class _BodyState extends State<Body> {
             },
             itemCount: 3,
             itemBuilder: (context, index) {
-              List<Color> splashColors = [
-                const Color(0xffffffff),
-                const Color(0xffFDDBD9),
-                const Color(0xffffffff),
-              ];
               List<String> splashTitle = [
                 'Fund projets',
                 'Stay updated about projects',
@@ -83,8 +78,8 @@ class _BodyState extends State<Body> {
               return Container(
                 height: 1.sh,
                 width: 1.sw,
-                decoration: BoxDecoration(
-                  color: splashColors[index],
+                decoration: const BoxDecoration(
+                  color: Colors.white,
                 ),
                 child: SafeArea(
                   child: Column(
@@ -96,6 +91,7 @@ class _BodyState extends State<Body> {
                         ),
                         child: Text(
                           splashTitle[index],
+                          textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
                               .headline3!

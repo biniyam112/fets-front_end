@@ -12,6 +12,7 @@ class DashboardAppBar extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(top: 7.h),
           child: AppBar(
+            automaticallyImplyLeading: false,
             titleSpacing: 0,
             backgroundColor: backgroundColor,
             elevation: 0,
@@ -21,8 +22,10 @@ class DashboardAppBar extends StatelessWidget {
                 const SearchBar(),
                 Padding(
                   padding: EdgeInsets.only(right: 10.w),
-                  child: const Icon(Icons.notification_add,
-                      color: Color.fromARGB(255, 129, 125, 125)),
+                  child: const Icon(
+                    Icons.notification_add,
+                    color: Color.fromARGB(255, 129, 125, 125),
+                  ),
                 )
               ],
             ),

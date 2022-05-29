@@ -41,6 +41,9 @@ dependencies:
   picture_in_picture: ^0.0.4
   webview_flutter: ^3.0.2
   expandable: ^5.0.1
+  web3dart: 2.3.3
+  http: ^0.13.4
+  hive: ^2.2.1
 
 dev_dependencies:
   flutter_lints: ^1.0.0

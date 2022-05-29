@@ -44,17 +44,15 @@ class FeedTile extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h),
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
             child: Text(
-              '''In publishing and graphic design, Lorem ipsum is  
-    text commonly used to demonstrate the visual of
-    or a typeface without relying on meaningful this
-    may be used as a placeholder before the final is. ''',
+              'In publishing and graphic design, Lorem ipsum is  text commonly used to demonstrate the visual of or a typeface without relying on meaningful this may be used as a placeholder before the final is. ',
               textAlign: TextAlign.justify,
               style: TextStyle(
-                  color: lightTextColor,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w100),
+                color: lightTextColor,
+                fontSize: 13.sm,
+                fontWeight: FontWeight.w100,
+              ),
             ),
           ),
           Padding(

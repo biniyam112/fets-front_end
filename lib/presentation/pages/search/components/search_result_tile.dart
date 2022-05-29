@@ -95,17 +95,20 @@ class SearchResultTile extends StatelessWidget {
                       fontSize: 11.sp))
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 7.h),
-            child: Text(
-              ''' In publishing and graphic design, Lorem ipsum is a placeholder
-demonstrate the visual form of a document or a typeface without. 
-Lorem ipsum may  be used as a placeholder before the final copy. ''',
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                  fontSize: 9.sp,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(top: 7.h),
+              child: Text(
+                'In publishing and graphic design, Lorem ipsum is a placeholder demonstrate the visual form of a document or a typeface without.  Lorem ipsum may  be used as a placeholder before the final copy. ',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 9.sm,
                   color: Colors.grey.shade500,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           )
         ],

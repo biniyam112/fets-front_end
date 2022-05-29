@@ -135,7 +135,9 @@ class _BodyState extends State<Body> {
                           }
                         } else {
                           Navigator.popAndPushNamed(
-                              context, MyDonationsScreen.route);
+                            context,
+                            DashboardScreen.route,
+                          );
                         }
                       },
                       style: ButtonStyle(

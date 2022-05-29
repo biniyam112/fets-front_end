@@ -1,4 +1,5 @@
 import 'package:fets_mobile/presentation/pages/pages.dart';
+import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class HiddenButton extends StatelessWidget {
@@ -15,6 +16,7 @@ class HiddenButton extends StatelessWidget {
       visible: isVisible,
       child: ElevatedButton(
         style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(primaryColor),
           padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
           ),
@@ -29,17 +31,17 @@ class HiddenButton extends StatelessWidget {
           ),
           child: Text(
             'Get Started',
-            style: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headline4!.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
       ),
       maintainSize: true,
       maintainAnimation: true,
       maintainState: true,
-      replacement: SizedBox.shrink(),
+      replacement: const SizedBox.shrink(),
     );
   }
 }

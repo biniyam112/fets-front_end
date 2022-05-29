@@ -28,7 +28,6 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion flutter.compileSdkVersion
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -45,11 +44,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "bininyam.developer.com.fets_mobile"
-<<<<<<< HEAD
-        minSdkVersion 21
-=======
         minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
->>>>>>> 85688c4c8f8ffbbb6145095a2c97d008801c253f
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

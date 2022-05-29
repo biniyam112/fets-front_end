@@ -21,7 +21,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
         backgroundColor: backgroundColor,
         body: IndexedStack(
           index: _selectedIndex,
-          children: const [DashboardBody(), SearchScreen(), FeedsScreen()],
+          children: const [
+            DashboardBody(),
+            SearchScreen(),
+            FeedsScreen(),
+            FeedsScreen(),
+          ],
         ),
         bottomNavigationBar: BottomNavbar(
           currentIndex: _selectedIndex,

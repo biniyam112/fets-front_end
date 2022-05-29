@@ -12,22 +12,29 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        elevation: 0,
-        currentIndex: currentIndex,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: onItemSelected,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey.shade500,
-        backgroundColor: Colors.white,
-        iconSize: 21.h,
-        
-        
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home",),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(icon: Icon(Icons.rss_feed), label: "Feeds"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings")
-        ]);
+      elevation: 0,
+      currentIndex: currentIndex,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      onTap: onItemSelected,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey.shade500,
+      backgroundColor: Colors.white,
+      iconSize: 21.h,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined),
+          label: "Home",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.rss_feed),
+          label: "Feeds",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: "Settings",
+        )
+      ],
+    );
   }
 }
