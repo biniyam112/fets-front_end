@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/components.dart';
+import '../../components/components.dart';
 import 'components/body.dart';
 
 class TermsAndConditions extends StatelessWidget {

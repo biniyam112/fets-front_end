@@ -1,11 +1,15 @@
+import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive/hive.dart';
 
 import '../../../../services/services.dart';
+import '../../../components/components.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -21,10 +25,11 @@ class _BodyState extends State<Body> {
   TextEditingController phoneController = TextEditingController();
   bool termsAgreement = false;
   List<String> errors = [];
-  String fullName = '';
+  String userName = '';
   String phone = '';
   String email = '';
-
+  var userbox = Hive.box('users');
+  User user = User();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -73,7 +78,7 @@ class _BodyState extends State<Body> {
                                 });
                                 return '';
                               }
-                              fullName = value;
+                              userName = value;
                               return null;
                             },
                             validator: (value) {
@@ -87,9 +92,10 @@ class _BodyState extends State<Body> {
                               return null;
                             },
                             onSaved: (value) {
-                              fullName = value!;
+                              userName = value!;
+                              user = user.copywith(userName: userName);
                             },
-                            placeHolder: 'Full name',
+                            placeHolder: 'User name',
                             inputType: TextInputType.name,
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(18),
@@ -252,34 +258,62 @@ class _BodyState extends State<Body> {
                     ),
                     FormFieldErrors(errors: errors),
                     verticalSpacing(24.sp),
-                    SizedBox(
-                      height: 50.sp,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
+                    BlocConsumer<AuthUser, AuthUserState>(
+                      listener: (BuildContext context, state) {
+                        if (state is UserAuthenticated) {
+                          Navigator.pushNamed(context, OtpScreen.route);
+                        }
+                        if (state is UserAuthFailed) {
                           setState(() {
-                            if (!termsAgreement &
-                                !errors.contains(kTermsAgreementError)) {
-                              errors.add(kTermsAgreementError);
-                            }
+                            errors.add(kUserSignUpFailedError);
                           });
-                          if (_formKey.currentState!.validate() &
-                              errors.isEmpty) {
-                            Navigator.pushNamed(context, OtpScreen.route);
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(primaryColor),
-                        ),
-                        child: Text(
-                          'Sign up',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(color: Colors.white),
-                        ),
-                      ),
+                        }
+                      },
+                      builder: (BuildContext context, AuthUserState? state) {
+                        if (state is Idle) {
+                          return SizedBox(
+                            height: 50.sp,
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  errors.remove(kUserSignUpFailedError);
+                                  if (!termsAgreement &
+                                      !errors.contains(kTermsAgreementError)) {
+                                    errors.add(kTermsAgreementError);
+                                  }
+                                });
+                                if (_formKey.currentState!.validate() &
+                                    errors.isEmpty) {
+                                  BlocProvider.of<AuthUser>(context)
+                                      .add(AuthUserEvent(user: user));
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(primaryColor),
+                              ),
+                              child: Text(
+                                'Sign up',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ),
+                          );
+                        }
+                        if (state is AuthenticatingUser) {
+                          return const SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: CircularProgressIndicator(
+                              color: primaryColor,
+                            ),
+                          );
+                        }
+                        return Container();
+                      },
                     ),
                     Row(
                       children: [

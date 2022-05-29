@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../theme/theme.dart';
+import '../../../components/components.dart';
 
 class Body extends StatefulWidget {
   const Body({

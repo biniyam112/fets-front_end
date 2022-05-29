@@ -1,9 +1,5 @@
 import 'dart:async';
-
-import 'package:fets_mobile/features/authentication/bloc/auth_user_event.dart';
-import 'package:fets_mobile/features/authentication/bloc/auth_user_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../authentication.dart';
 
 class AuthUser extends Bloc<AuthUserEvent, AuthUserState> {

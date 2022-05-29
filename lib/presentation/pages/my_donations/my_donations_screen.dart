@@ -1,6 +1,6 @@
-import 'package:fets_mobile/presentation/pages/components/components.dart';
 import 'package:flutter/material.dart';
 
+import '../../components/components.dart';
 import 'components/body.dart';
 
 class MyDonationsScreen extends StatelessWidget {

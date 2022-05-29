@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:html';
-
 import 'package:http/http.dart';
-
+import '../../../../services/constants.dart';
 import '../../authentication.dart';
 
 class AuthUserDP {
@@ -10,7 +8,7 @@ class AuthUserDP {
 
   AuthUserDP({required this.client});
 
-  var url = 'http://localhost:5000/';
+  var url = 'http://$hostIP:5000/';
 
   Future<User> signUp(Map<String, dynamic> json) async {
     try {

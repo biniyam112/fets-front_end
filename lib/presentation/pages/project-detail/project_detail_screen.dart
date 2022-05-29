@@ -1,7 +1,7 @@
-import 'package:fets_mobile/presentation/pages/components/components.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../components/components.dart';
 import 'components/components.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
