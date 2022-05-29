@@ -44,13 +44,12 @@ dependencies:
   picture_in_picture: ^0.0.4
   syncfusion_flutter_gauges: 20.1.52
   web3dart: 2.3.3
-<<<<<<< HEAD
-  webview_flutter: ^3.0.2
-=======
-  http: ^0.13.4
-  hive: ^2.2.1
+  
+
   hive_flutter: ^1.1.0
->>>>>>> a2eb7e76e12b4c5c360c3e606bee60eab80fdaf3
+  webview_flutter: ^3.0.4
+  json_serializable: ^6.2.0
+  json_annotation: ^4.5.0
 
 dev_dependencies:
   build_runner: ^2.1.11

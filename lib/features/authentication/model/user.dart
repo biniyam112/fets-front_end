@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+
 class User {
   final String? id, fullName, password, email, token, address;
   final int? phoneNumber;
