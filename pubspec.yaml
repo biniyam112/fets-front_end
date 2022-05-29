@@ -47,6 +47,8 @@ dependencies:
   syncfusion_flutter_gauges: 20.1.52
   web3dart: 2.3.3
   webview_flutter: ^3.0.2
+  json_serializable: ^6.2.0
+  json_annotation: ^4.5.0
 
 dev_dependencies:
   build_runner: ^2.1.11
