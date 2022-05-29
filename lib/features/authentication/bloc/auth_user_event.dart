@@ -11,7 +11,6 @@ class AuthUserEvent extends AuthEvent {
   AuthUserEvent({required this.user});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [user];
 }
 
