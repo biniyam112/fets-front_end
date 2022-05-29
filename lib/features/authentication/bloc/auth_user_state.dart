@@ -6,7 +6,7 @@ class AuthUserState extends Equatable {
   List<Object?> get props => [props];
 }
 
-class Idle extends AuthUserState {}
+class AuthIdle extends AuthUserState {}
 
 class AuthenticatingUser extends AuthUserState {}
 

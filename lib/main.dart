@@ -33,7 +33,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: ((context) => AuthUser(Idle(), authUserRepo: authUserRepo)))
+          create: ((context) => AuthUser(
+                AuthIdle(),
+                authUserRepo: authUserRepo,
+              )),
+        ),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

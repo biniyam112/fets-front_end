@@ -28,7 +28,7 @@ class _BodyState extends State<Body> {
   String userName = '';
   String phone = '';
   String email = '';
-  var userbox = Hive.box('users');
+  var userbox = Hive.box<User>('users');
   User user = User();
   @override
   Widget build(BuildContext context) {
@@ -270,7 +270,7 @@ class _BodyState extends State<Body> {
                         }
                       },
                       builder: (BuildContext context, AuthUserState? state) {
-                        if (state is Idle) {
+                        if (state is AuthIdle) {
                           return SizedBox(
                             height: 50.sp,
                             width: double.infinity,
