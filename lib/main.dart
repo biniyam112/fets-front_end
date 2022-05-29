@@ -1,3 +1,5 @@
+import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
+import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/services/services.dart';
@@ -13,6 +15,9 @@ main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());
   await Hive.openBox<User>('users');
+
+  Hive.registerAdapter<APIAuthData>(APIAuthDataAdapter());
+  await Hive.openBox<APIAuthData>(apiAuthDataHiveName);
 
   final AuthUserRepo authUserRepo = AuthUserRepo(
     authUserDP: AuthUserDP(
