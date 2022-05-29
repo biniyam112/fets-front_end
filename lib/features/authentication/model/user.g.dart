@@ -23,7 +23,7 @@ class UserAdapter extends TypeAdapter<User> {
       address: fields[5] as String?,
       fullName: fields[1] as String?,
       password: fields[2] as String?,
-      phoneNumber: fields[6] as int?,
+      phoneNumber: fields[6] as String?,
     );
   }
 

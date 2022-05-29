@@ -104,9 +104,6 @@ class _BodyState extends State<Body> {
                             }
                             return null;
                           },
-                          onSaved: (value) {
-                            email = value!;
-                          },
                           placeHolder: 'Email',
                           inputType: TextInputType.emailAddress,
                           prefixIcon: const Padding(
@@ -119,9 +116,6 @@ class _BodyState extends State<Body> {
                         ),
                         verticalSpacing(12.sp),
                         CustomPasswordField(
-                          onSaved: (value) {
-                            password = value!;
-                          },
                           onChanged: (value) {
                             if (value.isNotEmpty &&
                                 errors.contains(kPassNullError)) {

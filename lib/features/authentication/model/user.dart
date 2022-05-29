@@ -18,7 +18,7 @@ class User extends HiveObject {
   @HiveField(6)
   final String? address;
   @HiveField(7)
-  final int? phoneNumber;
+  final String? phoneNumber;
 
   User({
     this.id,
@@ -36,6 +36,7 @@ class User extends HiveObject {
     email,
     fullName,
     userName,
+    password,
     phoneNumber,
     token,
     address,
@@ -44,6 +45,7 @@ class User extends HiveObject {
         id: id ?? this.id,
         email: email ?? this.email,
         userName: userName ?? this.userName,
+        password: password ?? this.password,
         fullName: fullName ?? this.fullName,
         phoneNumber: phoneNumber ?? this.phoneNumber,
         token: token ?? this.token,
@@ -51,14 +53,14 @@ class User extends HiveObject {
       );
 
   Map<String, dynamic> tojson() => {
-        'id': id,
+        // 'id': id,
         'name': fullName,
         'email': email,
         'username': userName,
         'password': password,
         'phone': phoneNumber,
-        'token': token,
-        'address': address,
+        // 'token': token,
+        // 'address': address,
       };
   factory User.fromjson(Map<String, dynamic> json) => User(
         id: json['id'],

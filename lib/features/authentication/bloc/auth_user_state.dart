@@ -5,7 +5,7 @@ import '../authentication.dart';
 
 class AuthUserState extends Equatable {
   @override
-  List<Object?> get props => [props];
+  List<Object?> get props => [];
 }
 
 class AuthIdle extends AuthUserState {}

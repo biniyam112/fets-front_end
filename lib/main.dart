@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: lightTheme,
           routes: route,
-          initialRoute: OnboardingScreen.route,
+          initialRoute: SignUpScreen.route,
         ),
       ),
     );

@@ -15,7 +15,6 @@ class CustomTextField extends StatelessWidget {
     required this.editingController,
     required this.inputType,
     required this.onChanged,
-    required this.onSaved,
     required this.validator,
     this.contentPadding = EdgeInsets.zero,
   }) : super(key: key);
@@ -23,7 +22,6 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon, suffixIcon;
   final TextEditingController editingController;
   final TextInputType inputType;
-  final Function(String? value) onSaved;
   final Function(String value) onChanged;
   final String? Function(String? value) validator;
   final EdgeInsets contentPadding;
@@ -41,7 +39,6 @@ class CustomTextField extends StatelessWidget {
         keyboardType: inputType,
         controller: editingController,
         onChanged: onChanged,
-        onSaved: onSaved,
         validator: validator,
         decoration: InputDecoration(
           errorStyle: const TextStyle(height: 0),
@@ -69,7 +66,6 @@ class CustomPasswordField extends StatelessWidget {
     required this.editingController,
     required this.isVisible,
     required this.changeVisibility,
-    required this.onSaved,
     required this.onChanged,
     required this.validator,
   }) : super(key: key);
@@ -77,7 +73,6 @@ class CustomPasswordField extends StatelessWidget {
   final TextEditingController editingController;
   final bool isVisible;
   final GestureTapCallback changeVisibility;
-  final Function(String? value) onSaved;
   final Function(String value) onChanged;
   final String? Function(String? value) validator;
 
@@ -95,7 +90,6 @@ class CustomPasswordField extends StatelessWidget {
         controller: editingController,
         onChanged: onChanged,
         validator: validator,
-        onSaved: onSaved,
         obscureText: !isVisible,
         style: Theme.of(context).textTheme.headline5!.copyWith(
               fontWeight: FontWeight.w600,

@@ -52,9 +52,6 @@ class _BodyState extends State<Body> {
                       prefixIcon: const Icon(CupertinoIcons.creditcard_fill),
                       editingController: cardEditingController,
                       inputType: TextInputType.number,
-                      onSaved: (value) {
-                        cardNumber = value ?? '';
-                      },
                       onChanged: (value) {
                         if (value.isNotEmpty &&
                             errors.contains(kBankAddressNullError)) {
@@ -94,9 +91,6 @@ class _BodyState extends State<Body> {
                                 prefixIcon: const Icon(CupertinoIcons.calendar),
                                 editingController: expirationEditingController,
                                 inputType: TextInputType.text,
-                                onSaved: (value) {
-                                  expDate = value ?? '';
-                                },
                                 onChanged: (value) {},
                                 validator: (value) {
                                   return null;
@@ -122,9 +116,6 @@ class _BodyState extends State<Body> {
                                     const Icon(CupertinoIcons.creditcard),
                                 editingController: codeEditingController,
                                 inputType: TextInputType.number,
-                                onSaved: (value) {
-                                  cvv = value ?? '';
-                                },
                                 onChanged: (value) {},
                                 validator: (value) {
                                   return null;
@@ -146,9 +137,6 @@ class _BodyState extends State<Body> {
                       prefixIcon: const Icon(CupertinoIcons.money_dollar),
                       editingController: amountEditingController,
                       inputType: TextInputType.number,
-                      onSaved: (value) {
-                        amount = value ?? '';
-                      },
                       onChanged: (value) {},
                       validator: (value) {
                         return null;

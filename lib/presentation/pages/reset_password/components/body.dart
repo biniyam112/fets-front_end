@@ -72,9 +72,6 @@ class _BodyState extends State<Body> {
                     child: Column(
                       children: [
                         CustomPasswordField(
-                          onSaved: (value) {
-                            password = value!;
-                          },
                           onChanged: (value) {
                             if (value.isNotEmpty &&
                                 errors.contains(kPassNullError)) {
@@ -121,9 +118,6 @@ class _BodyState extends State<Body> {
                         ),
                         verticalSpacing(12.sp),
                         CustomPasswordField(
-                          onSaved: (value) {
-                            confirmPassword = value!;
-                          },
                           onChanged: (value) {
                             if (value == password &&
                                 errors.contains(kMatchPassError)) {
