@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../services/services.dart';
+import '../../../components/components.dart';
 
 class Body extends StatefulWidget {
   const Body({

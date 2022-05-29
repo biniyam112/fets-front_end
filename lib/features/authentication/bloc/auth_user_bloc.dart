@@ -1,4 +1,5 @@
 import 'dart:async';
+<<<<<<< HEAD
 import 'dart:convert';
 
 import 'package:fets_mobile/features/authentication/bloc/auth_user_event.dart';
@@ -9,6 +10,9 @@ import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+=======
+import 'package:flutter_bloc/flutter_bloc.dart';
+>>>>>>> origin/main
 import '../authentication.dart';
 
 class AuthUser extends Bloc<AuthEvent, AuthUserState> {

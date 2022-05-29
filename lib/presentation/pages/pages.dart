@@ -1,4 +1,3 @@
-export 'components/components.dart';
 export 'login/login.dart';
 export 'signup/signup.dart';
 export 'otp/otp.dart';

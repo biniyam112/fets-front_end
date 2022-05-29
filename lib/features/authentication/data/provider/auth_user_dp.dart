@@ -1,13 +1,9 @@
 import 'dart:convert';
-import 'dart:html';
-import 'dart:io';
-
-import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
 import 'package:fets_mobile/features/authentication/model/api_data.dart';
 import 'package:fets_mobile/features/authentication/model/signin_model.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:http/http.dart';
-
+import '../../../../services/constants.dart';
 import '../../authentication.dart';
 
 class AuthUserDP {
@@ -15,7 +11,7 @@ class AuthUserDP {
 
   AuthUserDP({required this.client});
 
-  var url = 'http://localhost:5000/';
+  var url = 'http://$hostIP:5000/';
 
   Future<User> signUp(Map<String, dynamic> json) async {
     try {

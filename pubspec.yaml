@@ -36,18 +36,17 @@ dependencies:
   flutter_clean_architecture: ^5.0.2
   flutter_screenutil: ^5.4.0+1
   flutter_svg: ^1.0.3
+  get_it: ^7.2.0
   google_fonts: ^2.3.2
   hive: ^2.2.1
+  hive_flutter: ^1.1.0
   http: ^0.13.4
   intl: ^0.17.0
   persistent_bottom_nav_bar: ^4.0.2
   picture_in_picture: ^0.0.4
   syncfusion_flutter_gauges: 20.1.52
   web3dart: 2.3.3
-  
-
-  hive_flutter: ^1.1.0
-  webview_flutter: ^3.0.4
+  webview_flutter: ^3.0.2
   json_serializable: ^6.2.0
   json_annotation: ^4.5.0
 

@@ -1,4 +1,4 @@
-import 'package:fets_mobile/presentation/pages/components/components.dart';
+import 'package:fets_mobile/presentation/components/components.dart';
 import 'package:fets_mobile/presentation/pages/feed_detail/feed_detail.dart';
 import 'package:fets_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
