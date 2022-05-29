@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fets_mobile/features/authentication/bloc/auth_user_bloc.dart';
+import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
 
 import '../authentication.dart';
 
@@ -14,6 +15,15 @@ class UserAuthenticated extends AuthUserState {
   final User user;
 
   UserAuthenticated({required this.user});
+}
+
+class UserSignedInSuccessfully extends AuthUserState {
+  final APIAuthData apiAuthData;
+
+  UserSignedInSuccessfully({required this.apiAuthData});
+
+  @override
+  List<Object?> get props => [apiAuthData];
 }
 
 class UserAuthFailed extends AuthUserState {
