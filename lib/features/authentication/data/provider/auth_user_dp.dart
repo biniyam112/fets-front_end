@@ -37,6 +37,8 @@ class AuthUserDP {
           body: jsonEncode(
             signinModel.tojson(),
           ));
+      print(signinModel.tojson());
+      print(response.body);
       return APIData.fromJson(jsonDecode(response.body));
     } catch (e) {
       return APIData(

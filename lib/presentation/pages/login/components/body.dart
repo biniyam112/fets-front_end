@@ -28,7 +28,7 @@ class _BodyState extends State<Body> {
   List<String> errors = [];
   String password = '';
   String userName = '';
-  User user = Hive.box<User>('users').get('user')!;
+  User user = User();
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,9 @@ class _BodyState extends State<Body> {
                             return null;
                           },
                           validator: (value) {
-                            user.copywith(password: value);
+                            user = user.copywith(
+                              password: value,
+                            );
                             if (value!.isEmpty &&
                                 !errors.contains(kPassNullError)) {
                               setState(() {
@@ -168,7 +170,7 @@ class _BodyState extends State<Body> {
                           errors.add(kUserLogInFailedError);
                         });
                       }
-                      if (state is UserAuthenticated) {
+                      if (state is UserSignedInSuccessfully) {
                         Navigator.pushNamed(context, DashboardScreen.route);
                       }
                     },
@@ -197,8 +199,8 @@ class _BodyState extends State<Body> {
                               BlocProvider.of<AuthUserBloc>(context).add(
                                 SignInEvent(
                                   signinModel: SigninModel(
-                                    password: user.password!,
                                     username: user.userName!,
+                                    password: user.password!,
                                   ),
                                 ),
                               );
