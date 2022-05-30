@@ -27,8 +27,8 @@ class AuthUserDP {
 
   Future<APIData> signIn(SigninModel signinModel) async {
     try {
-      var response =
-          await client.post(Uri.parse(signInUrl), body: signinModel.tojson());
+      var response = await client.post(Uri.parse(signInUrl),
+          body: jsonEncode(signinModel.tojson()));
 
       return APIData.fromJson(jsonDecode(response.body));
     } catch (e) {
