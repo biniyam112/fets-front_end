@@ -3,7 +3,6 @@ import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive/hive.dart';
@@ -28,7 +27,7 @@ class _BodyState extends State<Body> {
   String userName = '';
   String phone = '';
   String email = '';
-  var userbox = Hive.box('users');
+  var userbox = Hive.box<User>('users');
   User user = User();
   @override
   Widget build(BuildContext context) {
@@ -82,6 +81,11 @@ class _BodyState extends State<Body> {
                               return null;
                             },
                             validator: (value) {
+                              user = user.copywith(
+                                fullName: value,
+                                userName: value,
+                                password: value,
+                              );
                               if (value!.isEmpty &&
                                   !errors.contains(kFullNameNullError)) {
                                 setState(() {
@@ -90,10 +94,6 @@ class _BodyState extends State<Body> {
                                 return '';
                               }
                               return null;
-                            },
-                            onSaved: (value) {
-                              userName = value!;
-                              user = user.copywith(userName: userName);
                             },
                             placeHolder: 'User name',
                             inputType: TextInputType.name,
@@ -122,6 +122,7 @@ class _BodyState extends State<Body> {
                               return null;
                             },
                             validator: (value) {
+                              user = user.copywith(phoneNumber: value);
                               if (value!.isEmpty &&
                                   !errors.contains(kphoneNumberNullError)) {
                                 setState(() {
@@ -130,9 +131,6 @@ class _BodyState extends State<Body> {
                                 return '';
                               }
                               return null;
-                            },
-                            onSaved: (value) {
-                              phone = value!;
                             },
                             placeHolder: 'Phone',
                             inputType: TextInputType.phone,
@@ -167,6 +165,7 @@ class _BodyState extends State<Body> {
                               return null;
                             },
                             validator: (value) {
+                              user = user.copywith(email: value);
                               if (value!.isEmpty &&
                                   !errors.contains(kEmailNullError)) {
                                 setState(() {
@@ -187,9 +186,6 @@ class _BodyState extends State<Body> {
                                 return '';
                               }
                               return null;
-                            },
-                            onSaved: (value) {
-                              email = value!;
                             },
                             placeHolder: 'Email',
                             inputType: TextInputType.emailAddress,
@@ -258,62 +254,37 @@ class _BodyState extends State<Body> {
                     ),
                     FormFieldErrors(errors: errors),
                     verticalSpacing(24.sp),
-                    BlocConsumer<AuthUser, AuthUserState>(
-                      listener: (BuildContext context, state) {
-                        if (state is UserAuthenticated) {
-                          Navigator.pushNamed(context, OtpScreen.route);
-                        }
-                        if (state is UserAuthFailed) {
+                    SizedBox(
+                      height: 50.sp,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
                           setState(() {
-                            errors.add(kUserSignUpFailedError);
+                            errors.remove(kUserSignUpFailedError);
+                            if (!termsAgreement &
+                                !errors.contains(kTermsAgreementError)) {
+                              errors.add(kTermsAgreementError);
+                            }
                           });
-                        }
-                      },
-                      builder: (BuildContext context, AuthUserState? state) {
-                        if (state is Idle) {
-                          return SizedBox(
-                            height: 50.sp,
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  errors.remove(kUserSignUpFailedError);
-                                  if (!termsAgreement &
-                                      !errors.contains(kTermsAgreementError)) {
-                                    errors.add(kTermsAgreementError);
-                                  }
-                                });
-                                if (_formKey.currentState!.validate() &
-                                    errors.isEmpty) {
-                                  BlocProvider.of<AuthUser>(context)
-                                      .add(AuthUserEvent(user: user));
-                                }
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(primaryColor),
-                              ),
-                              child: Text(
-                                'Sign up',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ),
-                          );
-                        }
-                        if (state is AuthenticatingUser) {
-                          return const SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator(
-                              color: primaryColor,
-                            ),
-                          );
-                        }
-                        return Container();
-                      },
+                          if (_formKey.currentState!.validate() &
+                              errors.isEmpty) {
+                            userbox.put('user', user);
+                            print(user.tojson());
+                            Navigator.pushNamed(context, OtpScreen.route);
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(primaryColor),
+                        ),
+                        child: Text(
+                          'Sign up',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
                     ),
                     Row(
                       children: [

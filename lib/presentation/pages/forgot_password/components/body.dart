@@ -100,9 +100,6 @@ class _BodyState extends State<Body> {
                         }
                         return null;
                       },
-                      onSaved: (value) {
-                        email = value!;
-                      },
                       placeHolder: 'Email',
                       inputType: TextInputType.emailAddress,
                       prefixIcon: const Padding(

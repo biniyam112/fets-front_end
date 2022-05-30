@@ -1,7 +1,12 @@
+import 'package:fets_mobile/features/authentication/model/signin_model.dart';
+import 'package:fets_mobile/presentation/pages/dashboard/dashboard_screen.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 
+import '../../../../features/features.dart';
 import '../../../../services/services.dart';
 import '../../../../theme/theme.dart';
 import '../../../components/components.dart';
@@ -24,6 +29,7 @@ class _BodyState extends State<Body> {
   String confirmPassword = '';
   List<String> errors = [];
   final GlobalKey<FormState> _formstate = GlobalKey<FormState>();
+  User user = Hive.box<User>('users').get('user')!;
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +78,6 @@ class _BodyState extends State<Body> {
                     child: Column(
                       children: [
                         CustomPasswordField(
-                          onSaved: (value) {
-                            password = value!;
-                          },
                           onChanged: (value) {
                             if (value.isNotEmpty &&
                                 errors.contains(kPassNullError)) {
@@ -93,6 +96,7 @@ class _BodyState extends State<Body> {
                             return null;
                           },
                           validator: (value) {
+                            user = user.copywith(password: password);
                             if (value!.isEmpty &&
                                 !errors.contains(kPassNullError)) {
                               setState(() {
@@ -121,9 +125,6 @@ class _BodyState extends State<Body> {
                         ),
                         verticalSpacing(12.sp),
                         CustomPasswordField(
-                          onSaved: (value) {
-                            confirmPassword = value!;
-                          },
                           onChanged: (value) {
                             if (value == password &&
                                 errors.contains(kMatchPassError)) {
@@ -161,28 +162,65 @@ class _BodyState extends State<Body> {
                   ),
                   FormFieldErrors(errors: errors),
                   verticalSpacing(40.sp),
-                  SizedBox(
-                    height: 50.sp,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formstate.currentState!.validate() &
-                            errors.isEmpty) {
-                          Navigator.pushNamed(context, MyDonationsScreen.route);
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(primaryColor),
-                      ),
-                      child: Text(
-                        'Submit',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(color: Colors.white),
-                      ),
-                    ),
+                  BlocConsumer<AuthUser, AuthUserState>(
+                    listener: (BuildContext context, state) {
+                      if (state is UserAuthenticated) {
+                        // BlocProvider.of<AuthUser>(context).add(SignInEvent(
+                        //   signinModel: SigninModel(
+                        //     password: user.password!,
+                        //     username: user.userName!,
+                        //   ),
+                        // ));
+                      }
+                      if (state is UserSignedInSuccessfully) {
+                        Navigator.pushNamed(context, DashboardScreen.route);
+                      }
+                      if (state is UserAuthFailed) {
+                        errors.add(state.errorMessage);
+                      }
+                      if (state is UserAuthFailed) {
+                        setState(() {
+                          errors.add(kUserSignUpFailedError);
+                        });
+                      }
+                    },
+                    builder: (BuildContext context, AuthUserState? state) {
+                      if (state is AuthenticatingUser) {
+                        return const Center(
+                          child: SizedBox(
+                            height: 40,
+                            width: 40,
+                            child: CircularProgressIndicator(
+                              color: primaryColor,
+                            ),
+                          ),
+                        );
+                      }
+                      return SizedBox(
+                        height: 50.sp,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formstate.currentState!.validate() &
+                                errors.isEmpty) {
+                              BlocProvider.of<AuthUser>(context)
+                                  .add(AuthUserEvent(user: user));
+                            }
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(primaryColor),
+                          ),
+                          child: Text(
+                            'Submit',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   verticalSpacing(30.sp),
                 ],

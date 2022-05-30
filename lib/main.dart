@@ -38,7 +38,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: ((context) => AuthUser(Idle(), authUserRepo: authUserRepo)))
+          create: ((context) => AuthUser(
+                AuthIdle(),
+                authUserRepo: authUserRepo,
+              )),
+        ),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,
@@ -47,7 +51,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: lightTheme,
           routes: route,
-          initialRoute: OnboardingScreen.route,
+          initialRoute: SignUpScreen.route,
         ),
       ),
     );

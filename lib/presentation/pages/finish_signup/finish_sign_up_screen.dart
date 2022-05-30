@@ -1,12 +1,11 @@
-import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
-
 import '../../components/components.dart';
+import 'components/body.dart';
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+class FinishSignup extends StatelessWidget {
+  const FinishSignup({Key? key}) : super(key: key);
 
-  static const route = 'reset-password';
+  static const route = 'signup-password';
 
   @override
   Widget build(BuildContext context) {
