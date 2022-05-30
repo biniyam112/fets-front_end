@@ -3,6 +3,7 @@ import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive/hive.dart';
@@ -24,9 +25,6 @@ class _BodyState extends State<Body> {
   TextEditingController phoneController = TextEditingController();
   bool termsAgreement = false;
   List<String> errors = [];
-  String userName = '';
-  String phone = '';
-  String email = '';
   var userbox = Hive.box<User>('users');
   User user = User();
   @override
@@ -77,14 +75,11 @@ class _BodyState extends State<Body> {
                                 });
                                 return '';
                               }
-                              userName = value;
                               return null;
                             },
                             validator: (value) {
                               user = user.copywith(
                                 fullName: value,
-                                userName: value,
-                                password: value,
                               );
                               if (value!.isEmpty &&
                                   !errors.contains(kFullNameNullError)) {
@@ -95,7 +90,7 @@ class _BodyState extends State<Body> {
                               }
                               return null;
                             },
-                            placeHolder: 'User name',
+                            placeHolder: 'Full name',
                             inputType: TextInputType.name,
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(18),
@@ -107,6 +102,9 @@ class _BodyState extends State<Body> {
                           ),
                           verticalSpacing(12.sp),
                           CustomTextField(
+                            inputFormatter: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
                             onChanged: (value) {
                               if (value.isNotEmpty &&
                                   errors.contains(kphoneNumberNullError)) {
@@ -115,10 +113,6 @@ class _BodyState extends State<Body> {
                                 });
                                 return '';
                               }
-                              setState(() {
-                                phone = value;
-                              });
-
                               return null;
                             },
                             validator: (value) {
@@ -158,10 +152,6 @@ class _BodyState extends State<Body> {
                                 });
                                 return '';
                               }
-                              setState(() {
-                                email = value;
-                              });
-
                               return null;
                             },
                             validator: (value) {

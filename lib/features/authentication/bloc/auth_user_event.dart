@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:fets_mobile/features/authentication/model/signin_model.dart';
 
 import '../authentication.dart';
 

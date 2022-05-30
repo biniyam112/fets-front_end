@@ -1,10 +1,10 @@
-import 'package:fets_mobile/presentation/pages/finish_signup/finish_signup.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../services/services.dart';
 import '../../../components/components.dart';
+import '../../pages.dart';
 
 class Body extends StatefulWidget {
   const Body({

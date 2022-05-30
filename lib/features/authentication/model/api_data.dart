@@ -10,12 +10,13 @@ class APIData {
   final List<String>? errors;
   final int statusCode;
 
-  APIData(
-      {required this.error,
-      this.errors,
-      this.body,
-      required this.statusCode,
-      required this.success});
+  APIData({
+    required this.error,
+    this.errors,
+    this.body,
+    required this.statusCode,
+    required this.success,
+  });
 
   factory APIData.fromJson(Map<String, dynamic> json) =>
       _$APIDataFromJson(json);

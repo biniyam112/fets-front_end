@@ -16,3 +16,6 @@ export 'search/search.dart';
 export 'project_details/project_details.dart';
 export 'project-detail/project_detail.dart';
 export 'report/report.dart';
+export 'signup_completed/signup_completed.dart';
+export 'report/report.dart';
+export 'signup_password/signup_password.dart';
