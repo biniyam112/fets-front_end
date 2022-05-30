@@ -61,7 +61,6 @@ class _SolidityContractState extends State<SolidityContract> {
   }
 
   Future<void> vote(bool voteAlpha) async {
-    print("Recording vote");
     //obtain private key for write operation
     Credentials key =
         EthPrivateKey.fromHex("0x3D94399d4ACe6AeC8Ea8e51CA7168d79dab798B1");
@@ -81,11 +80,9 @@ class _SolidityContractState extends State<SolidityContract> {
             contract: contract, function: function, parameters: []),
         chainId: 4);
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
-    print("verifying vote");
     //set a 20 seconds delay to allow the transaction to be verified before trying to retrieve the balance
     Future.delayed(const Duration(seconds: 20), () {
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      print("retrieving votes");
       getTotalVotes();
       ScaffoldMessenger.of(context).clearSnackBars();
     });

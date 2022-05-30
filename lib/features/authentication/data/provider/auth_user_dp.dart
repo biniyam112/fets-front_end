@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:fets_mobile/features/authentication/model/api_data.dart';
-import 'package:fets_mobile/features/authentication/model/signin_model.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:http/http.dart';
 import '../../authentication.dart';
@@ -23,7 +21,6 @@ class AuthUserDP {
           .timeout(const Duration(
             seconds: 20,
           ));
-      print(response.body);
 
       return response.body;
     } catch (e) {

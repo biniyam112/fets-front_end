@@ -1,3 +1,4 @@
+import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
@@ -9,6 +10,7 @@ class SignUpCompleted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white,
       body: Body(),
     );
   }

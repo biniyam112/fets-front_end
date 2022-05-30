@@ -259,7 +259,6 @@ class _BodyState extends State<Body> {
                           if (_formKey.currentState!.validate() &
                               errors.isEmpty) {
                             userbox.put('user', user);
-                            print(user.tojson());
                             Navigator.pushNamed(context, OtpScreen.route);
                           }
                         },

@@ -5,7 +5,7 @@ import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -40,6 +40,10 @@ class _BodyState extends State<Body> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              child: Image.asset('assets/images/loading.jpg'),
+            ),
+            verticalSpacing(6.sp),
             Text(
               'Logging in',
               style: Theme.of(context).textTheme.headline3,
@@ -49,7 +53,7 @@ class _BodyState extends State<Body> {
               'Sign up completed,\n Logging in',
               style: Theme.of(context).textTheme.headline4,
             ),
-            verticalSpacing(10.sp),
+            verticalSpacing(20.sp),
             BlocConsumer<AuthUserBloc, AuthUserState>(
               builder: (context, state) {
                 if (state is UserAuthFailed) {
@@ -75,11 +79,13 @@ class _BodyState extends State<Body> {
                         )),
                   );
                 }
-                return SizedBox(
-                  height: 34.sp,
-                  width: 34.sp,
-                  child: const CircularProgressIndicator(
-                    color: primaryColor,
+                return Center(
+                  child: SizedBox(
+                    height: 34.sp,
+                    width: 34.sp,
+                    child: const CircularProgressIndicator(
+                      color: primaryColor,
+                    ),
                   ),
                 );
               },

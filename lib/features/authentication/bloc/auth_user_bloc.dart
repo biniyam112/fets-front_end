@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../authentication.dart';
 
 class AuthUserBloc extends Bloc<AuthEvent, AuthUserState> {
@@ -35,7 +33,6 @@ class AuthUserBloc extends Bloc<AuthEvent, AuthUserState> {
 
     try {
       APIData apiData = await authUserRepo.signIn(event.signinModel);
-      // print(apiData.toJson());
       if (apiData.statusCode != 200 && apiData.error) {
         emit(UserAuthFailed(errorMessage: apiData.errors![0]));
       }
