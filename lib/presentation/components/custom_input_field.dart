@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     required this.onChanged,
     required this.validator,
     this.contentPadding = EdgeInsets.zero,
+    this.inputFormatter,
   }) : super(key: key);
   final String placeHolder;
   final Widget? prefixIcon, suffixIcon;
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String value) onChanged;
   final String? Function(String? value) validator;
   final EdgeInsets contentPadding;
+  final List<TextInputFormatter>? inputFormatter;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class CustomTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        inputFormatters: inputFormatter,
         keyboardType: inputType,
         controller: editingController,
         onChanged: onChanged,
@@ -242,9 +245,7 @@ class CustomOtpField extends StatelessWidget {
           child: TextFormField(
             onChanged: (value) {
               pin4(value);
-              if (value.length == 1) {
-                FocusScope.of(context).nextFocus();
-              } else {
+              if (value.isEmpty) {
                 FocusScope.of(context).previousFocus();
               }
             },

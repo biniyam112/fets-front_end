@@ -1,9 +1,8 @@
-import 'package:fets_mobile/features/authentication/model/signin_model.dart';
-import 'package:fets_mobile/presentation/pages/dashboard/dashboard_screen.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 
 import '../../../../features/features.dart';
@@ -23,6 +22,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   TextEditingController password1Controller = TextEditingController();
   TextEditingController password2Controller = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   bool isVisible1 = false;
   bool isVisible2 = false;
   String password = '';
@@ -77,6 +77,41 @@ class _BodyState extends State<Body> {
                     key: _formstate,
                     child: Column(
                       children: [
+                        CustomTextField(
+                          placeHolder: 'username',
+                          editingController: usernameController,
+                          inputType: TextInputType.name,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(18),
+                            child: SvgPicture.asset(
+                              'assets/icons/user.svg',
+                            ),
+                          ),
+                          onChanged: (value) {
+                            if (value.isNotEmpty &&
+                                errors.contains(kUserNameNullError)) {
+                              setState(() {
+                                errors.remove(kUserNameNullError);
+                              });
+                              return '';
+                            }
+                            return null;
+                          },
+                          validator: (value) {
+                            user = user.copywith(
+                              userName: value,
+                            );
+                            if (value!.isEmpty &&
+                                !errors.contains(kUserNameNullError)) {
+                              setState(() {
+                                errors.add(kUserNameNullError);
+                              });
+                              return '';
+                            }
+                            return null;
+                          },
+                        ),
+                        verticalSpacing(12.sp),
                         CustomPasswordField(
                           onChanged: (value) {
                             if (value.isNotEmpty &&
@@ -162,21 +197,10 @@ class _BodyState extends State<Body> {
                   ),
                   FormFieldErrors(errors: errors),
                   verticalSpacing(40.sp),
-                  BlocConsumer<AuthUser, AuthUserState>(
+                  BlocConsumer<AuthUserBloc, AuthUserState>(
                     listener: (BuildContext context, state) {
                       if (state is UserAuthenticated) {
-                        // BlocProvider.of<AuthUser>(context).add(SignInEvent(
-                        //   signinModel: SigninModel(
-                        //     password: user.password!,
-                        //     username: user.userName!,
-                        //   ),
-                        // ));
-                      }
-                      if (state is UserSignedInSuccessfully) {
-                        Navigator.pushNamed(context, DashboardScreen.route);
-                      }
-                      if (state is UserAuthFailed) {
-                        errors.add(state.errorMessage);
+                        Navigator.pushNamed(context, SignUpCompleted.route);
                       }
                       if (state is UserAuthFailed) {
                         setState(() {
@@ -203,7 +227,8 @@ class _BodyState extends State<Body> {
                           onPressed: () {
                             if (_formstate.currentState!.validate() &
                                 errors.isEmpty) {
-                              BlocProvider.of<AuthUser>(context)
+                              Hive.box<User>('users').put('user', user);
+                              BlocProvider.of<AuthUserBloc>(context)
                                   .add(AuthUserEvent(user: user));
                             }
                           },

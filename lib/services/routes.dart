@@ -1,4 +1,3 @@
-import 'package:fets_mobile/presentation/pages/finish_signup/finish_signup.dart';
 import 'package:flutter/material.dart';
 import '../presentation/pages/pages.dart';
 
@@ -20,4 +19,5 @@ Map<String, Widget Function(BuildContext context)> route = {
   SendDonation.route: (context) => const SendDonation(),
   ProjectDetails.route: (context) => const ProjectDetails(),
   FinishSignup.route: (context) => const FinishSignup(),
+  SignUpCompleted.route: (context) => const SignUpCompleted(),
 };

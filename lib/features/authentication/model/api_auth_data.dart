@@ -23,7 +23,7 @@ class APIAuthData extends HiveObject {
       required this.username});
 
   factory APIAuthData.fromjson(Map<String, dynamic> json) => APIAuthData(
-        id: json['id'],
+        id: json['userId'],
         token: json['token'],
         type: json['type'],
         username: json['username'],

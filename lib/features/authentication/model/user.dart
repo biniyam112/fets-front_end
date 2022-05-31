@@ -53,14 +53,14 @@ class User extends HiveObject {
       );
 
   Map<String, dynamic> tojson() => {
-        // 'id': id,
+        'id': id,
         'name': fullName,
         'email': email,
         'username': userName,
         'password': password,
         'phone': phoneNumber,
-        // 'token': token,
-        // 'address': address,
+        'token': token,
+        'address': address,
       };
   factory User.fromjson(Map<String, dynamic> json) => User(
         id: json['id'],

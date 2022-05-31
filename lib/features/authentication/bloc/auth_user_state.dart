@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
 
-import '../authentication.dart';
-
 class AuthUserState extends Equatable {
   @override
   List<Object?> get props => [];
@@ -13,9 +11,9 @@ class AuthIdle extends AuthUserState {}
 class AuthenticatingUser extends AuthUserState {}
 
 class UserAuthenticated extends AuthUserState {
-  final User user;
+  final String response;
 
-  UserAuthenticated({required this.user});
+  UserAuthenticated({required this.response});
 }
 
 class UserSignedInSuccessfully extends AuthUserState {
