@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/authentication/model/signin_model.dart';
 import 'package:fets_mobile/features/features.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -188,7 +189,12 @@ class _BodyState extends State<Body> {
                           onPressed: () {
                             if (_formKey.currentState!.validate() &
                                 errors.isEmpty) {
-                              Navigator.pushNamed(context, OtpScreen.route);
+                              BlocProvider.of<AuthUser>(context).add(
+                                  SignInEvent(
+                                      signinModel: SigninModel(
+                                          password: password,
+                                          username: email)));
+                              // Navigator.pushNamed(context, OtpScreen.route);
                             }
                           },
                           style: ButtonStyle(
