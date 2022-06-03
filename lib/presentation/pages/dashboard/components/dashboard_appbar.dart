@@ -1,3 +1,4 @@
+import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,10 +31,13 @@ class DashboardAppBar extends StatelessWidget {
                 )
               ],
             ),
-            actions: const [
-              CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage("assets/images/signup.jpg"),
+            actions: [
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, AccountScreen.route),
+                child: const CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage("assets/images/signup.jpg"),
+                ),
               )
             ],
           ),

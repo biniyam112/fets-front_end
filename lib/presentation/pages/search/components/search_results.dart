@@ -19,20 +19,24 @@ class SearchResults extends StatelessWidget {
               Text("Search Results",
                   style:
                       TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600)),
-              Text("43 results", style: TextStyle(color: Colors.grey.shade500))
+              Text(
+                "43 results",
+                style: TextStyle(
+                  color: Colors.grey.shade500,
+                ),
+              ),
             ],
           ),
           Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.only(bottom: 10.h),
-              child: Column(children: const [
-                SearchResultTile(),
-                SearchResultTile(),
-                SearchResultTile(),
-                SearchResultTile(),
-                SearchResultTile(),
-                SearchResultTile(),
-                SearchResultTile(),
+              child: Column(children: [
+                ...List.generate(
+                  3,
+                  (index) {
+                    return SearchResultTile();
+                  },
+                ),
               ]),
             ),
           )

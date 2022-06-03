@@ -1,6 +1,10 @@
 import 'package:fets_mobile/presentation/pages/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../features/fetch_projecs/bloc/fetch_projects_bloc.dart';
+import '../../../../features/fetch_projecs/bloc/fetch_projects_event.dart';
 
 class DashboardBody extends StatelessWidget {
   const DashboardBody({Key? key}) : super(key: key);
@@ -18,7 +22,12 @@ class DashboardBody extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 10.h),
               child: Column(
                 children: [
-                  const DonatedProjectCard(),
+                  GestureDetector(
+                      onTap: (() {
+                        BlocProvider.of<FetchProjectsBloc>(context)
+                            .add(FetchAllProjects());
+                      }),
+                      child: const DonatedProjectCard()),
                   SizedBox(height: 7.h),
                   const FeaturedProjects(),
                   const Education()

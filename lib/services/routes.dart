@@ -20,4 +20,6 @@ Map<String, Widget Function(BuildContext context)> route = {
   ProjectDetails.route: (context) => const ProjectDetails(),
   FinishSignup.route: (context) => const FinishSignup(),
   SignUpCompleted.route: (context) => const SignUpCompleted(),
+  AccountScreen.route: (context) => const AccountScreen(),
+  MyCardScreen.route: (context) => const MyCardScreen(),
 };

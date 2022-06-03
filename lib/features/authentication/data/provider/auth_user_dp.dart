@@ -19,7 +19,7 @@ class AuthUserDP {
             body: jsonEncode(json),
           )
           .timeout(const Duration(
-            seconds: 20,
+            seconds: 10,
           ));
 
       return response.body;
@@ -30,15 +30,17 @@ class AuthUserDP {
 
   Future<APIData> signIn(SigninModel signinModel) async {
     try {
-      var response = await client.post(Uri.parse(signInUrl),
-          headers: {
-            "content-type": "application/json; charset=utf-8",
-          },
-          body: jsonEncode(
-            signinModel.tojson(),
-          ));
-      print(signinModel.tojson());
-      print(response.body);
+      var response = await client
+          .post(Uri.parse(signInUrl),
+              headers: {
+                "content-type": "application/json; charset=utf-8",
+              },
+              body: jsonEncode(
+                signinModel.tojson(),
+              ))
+          .timeout(
+            const Duration(seconds: 10),
+          );
       return APIData.fromJson(jsonDecode(response.body));
     } catch (e) {
       return APIData(

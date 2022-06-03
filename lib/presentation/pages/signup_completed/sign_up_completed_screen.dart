@@ -1,4 +1,3 @@
-import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
