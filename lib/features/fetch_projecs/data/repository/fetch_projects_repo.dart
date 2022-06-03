@@ -1,4 +1,5 @@
 import 'package:fets_mobile/features/fetch_projecs/data/provider/fetch_projects_dp.dart';
+import 'package:fets_mobile/features/models/project.dart';
 import 'package:web3dart/contracts.dart';
 
 class FetchProjectsRepo {
@@ -6,23 +7,32 @@ class FetchProjectsRepo {
 
   FetchProjectsRepo({required this.fetchProjectsDP});
 
-  Future<DeployedContract> getUserContract({required String abiPath}) async {
-    return await fetchProjectsDP.getContract(abiPath);
+  Future<DeployedContract> getProjectContract({required String abiPath}) async {
+    return await fetchProjectsDP.getProjectContract(abiPath);
   }
 
-  Future<List<dynamic>> readContract({
+  Future<List<Project>> readProjectContract({
     required String abiPath,
     required String functionName,
     required List<dynamic> args,
   }) async {
-    return await fetchProjectsDP.readContract(abiPath, functionName, args);
+    var items = await fetchProjectsDP.readProjectContract(
+      abiPath,
+      functionName,
+      args,
+    );
+    print(items);
+    //todo: this might create problem
+    return List.generate(items.length, (item) => Project.fromJson(item))
+        .toList();
   }
 
-  Future<void> writeToContract({
+  Future<void> writeToProjectContract({
     required String abiPath,
     required String functionName,
     required List<dynamic> args,
   }) async {
-    return await fetchProjectsDP.writeToContract(abiPath, functionName, args);
+    return await fetchProjectsDP.writeToProjectContract(
+        abiPath, functionName, args);
   }
 }

@@ -34,7 +34,7 @@ class SearchResults extends StatelessWidget {
                 ...List.generate(
                   3,
                   (index) {
-                    return SearchResultTile();
+                    return const SearchResultTile();
                   },
                 ),
               ]),

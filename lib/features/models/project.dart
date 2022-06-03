@@ -16,6 +16,20 @@ class Project {
     required this.estimatedBudget,
     required this.description,
   });
+
+  factory Project.fromJson(json) => Project(
+        id: json['id'],
+        name: json['name'],
+        estimatedDuration: json['estimatedDuration'],
+        fundedMoney: json['fundedMoney'],
+        status: json['status'],
+        accountNumber: json['accountNumber'],
+        createdAt: json['createdAt'],
+        location: json['location'],
+        companyId: json['companyId'],
+        estimatedBudget: json['estimatedBudget'],
+        description: json['description'],
+      );
 }
 
 class FundedProject extends Project {

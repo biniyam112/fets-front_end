@@ -1,10 +1,8 @@
-import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_bloc.dart';
-import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_event.dart';
-import 'package:fets_mobile/presentation/pages/dashboard/components/components.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'donate_project_progress.dart';
+import 'donate_project_report.dart';
 
 class DonatedProjectCard extends StatelessWidget {
   const DonatedProjectCard({Key? key}) : super(key: key);
