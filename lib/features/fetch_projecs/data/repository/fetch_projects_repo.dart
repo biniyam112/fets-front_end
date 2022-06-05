@@ -21,10 +21,11 @@ class FetchProjectsRepo {
       functionName,
       args,
     );
-    print(items);
     //todo: this might create problem
-    return List.generate(items.length, (item) => Project.fromJson(item))
-        .toList();
+    return List.generate(
+      items.length,
+      (item) => Project.fromJson(item),
+    ).toList();
   }
 
   Future<void> writeToProjectContract({
@@ -33,6 +34,9 @@ class FetchProjectsRepo {
     required List<dynamic> args,
   }) async {
     return await fetchProjectsDP.writeToProjectContract(
-        abiPath, functionName, args);
+      abiPath,
+      functionName,
+      args,
+    );
   }
 }
