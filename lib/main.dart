@@ -38,10 +38,12 @@ main() async {
       ),
     ),
   );
-  runApp(MyApp(
-    authUserRepo: authUserRepo,
-    fetchProjectsRepo: fetchProjectsRepo,
-  ));
+  runApp(
+    MyApp(
+      authUserRepo: authUserRepo,
+      fetchProjectsRepo: fetchProjectsRepo,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

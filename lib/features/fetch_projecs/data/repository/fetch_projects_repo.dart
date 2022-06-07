@@ -22,10 +22,10 @@ class FetchProjectsRepo {
       args,
     );
     //todo: this might create problem
-    return List.generate(
-      items.length,
-      (item) => Project.fromJson(item),
-    ).toList();
+    items = items[0];
+    return List.generate(items.length, (index) {
+      return Project.fromList(items[index]);
+    }).toList();
   }
 
   Future<void> writeToProjectContract({

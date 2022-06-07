@@ -1,4 +1,3 @@
-import 'package:fets_mobile/presentation/pages/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,9 +27,8 @@ class Education extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            
-            children: const [ProjectCard(),ProjectCard(),ProjectCard()],
-          ),
+              // children: const [ProjectCard(),ProjectCard(),ProjectCard()],
+              ),
         )
       ],
     );

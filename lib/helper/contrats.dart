@@ -17,11 +17,11 @@ Future<DeployedContract> getContract({required String abiPath}) async {
     );
     completer.complete(contract);
   });
-  completer.future.then((value) {
-    for (var i = 0; i < value.functions.length; i++) {
-      print(value.functions[i].name);
-    }
-  });
+  // completer.future.then((value) {
+  //   for (var i = 0; i < value.functions.length; i++) {
+  //     print(value.functions[i].name);
+  //   }
+  // });
   return completer.future;
 }
 

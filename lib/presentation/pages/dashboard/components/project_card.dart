@@ -4,17 +4,35 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../project-detail/project_detail.dart';
 
 class ProjectCard extends StatelessWidget {
-  const ProjectCard({Key? key}) : super(key: key);
+  const ProjectCard({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.location,
+    required this.estimatedBudget,
+    required this.fundedBudget,
+    required this.estimatedDuration,
+    required this.createdAt,
+    required this.companyId,
+    required this.accountNumber,
+    required this.status,
+  }) : super(key: key);
+  final String name, description, location, companyId, accountNumber;
+  final BigInt estimatedBudget,
+      fundedBudget,
+      estimatedDuration,
+      createdAt,
+      status;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, ProjectDetailScreen.route);
       },
       child: Stack(children: [
         Container(
-          margin: EdgeInsets.only(top: 24.h,right: 12.w),
+          margin: EdgeInsets.only(top: 24.h, right: 12.w),
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           constraints: BoxConstraints.expand(
             height: 190.h,
@@ -29,36 +47,43 @@ class ProjectCard extends StatelessWidget {
             children: [
               ListTile(
                 contentPadding: EdgeInsets.only(top: 30.h),
-                title: Text("Elecricity supply in Kototo",
-                    style:
-                        TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w700)),
+                title: Text(name,
+                    style: TextStyle(
+                        fontSize: 11.sp, fontWeight: FontWeight.w700)),
                 subtitle: Text(
-                  "Created at Feb 01 2022",
+                  DateTime.fromMicrosecondsSinceEpoch(createdAt.toInt())
+                      .toString(),
                   style: TextStyle(
                       fontSize: 9.sp,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey.shade400),
                 ),
               ),
-              Text.rich(TextSpan(children: [
+              Text.rich(
                 TextSpan(
-                    text: "\$812,655",
-                    style:
-                        TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600)),
-                TextSpan(
-                    text: " of  1,020,000",
-                    style: TextStyle(
+                  children: [
+                    TextSpan(
+                        text: "\$ $fundedBudget",
+                        style: TextStyle(
+                            fontSize: 10.sp, fontWeight: FontWeight.w600)),
+                    TextSpan(
+                      text: " of  $estimatedBudget",
+                      style: TextStyle(
                         fontSize: 10.sp,
                         color: Colors.grey.shade400,
-                        fontWeight: FontWeight.w600))
-              ])),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: 5.h,
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.h),
-                child: const LinearProgressIndicator(
-                  value: 0.3,
+                child: LinearProgressIndicator(
+                  value: (fundedBudget / estimatedBudget).toDouble(),
                 ),
               ),
               SizedBox(height: 15.h),
@@ -74,8 +99,8 @@ class ProjectCard extends StatelessWidget {
                             fontSize: 9.sp, fontWeight: FontWeight.w600),
                       ),
                       SizedBox(
-                    height: 3.h,
-                  ),
+                        height: 3.h,
+                      ),
                       Text(
                         '85',
                         style: TextStyle(
@@ -83,7 +108,6 @@ class ProjectCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -93,8 +117,8 @@ class ProjectCard extends StatelessWidget {
                             fontSize: 9.sp, fontWeight: FontWeight.w600),
                       ),
                       SizedBox(
-                    height: 3.h,
-                  ),
+                        height: 3.h,
+                      ),
                       Text(
                         '\$10K',
                         style: TextStyle(
