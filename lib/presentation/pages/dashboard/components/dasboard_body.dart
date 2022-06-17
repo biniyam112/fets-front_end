@@ -33,6 +33,10 @@ class _DashboardBodyState extends State<DashboardBody> {
               padding: EdgeInsets.only(bottom: 10.h),
               child: Column(
                 children: [
+<<<<<<< HEAD
+=======
+                  
+>>>>>>> 7415eff755568db43e9203b080a07eff62f2c02a
                   const DonatedProjectCard(),
                   SizedBox(height: 7.h),
                   const FeaturedProjects(),
