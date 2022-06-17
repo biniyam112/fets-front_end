@@ -1,7 +1,9 @@
 import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
+import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
+import 'package:fets_mobile/service_locator.dart';
 import 'package:fets_mobile/services/services.dart';
 import 'package:fets_mobile/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,17 +15,16 @@ import 'package:http/http.dart' as http;
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(UserAdapter());
-  await Hive.openBox<User>('users');
+  Hive.registerAdapter<User>(UserAdapter());
 
   Hive.registerAdapter<APIAuthData>(APIAuthDataAdapter());
-  await Hive.openBox<APIAuthData>(apiAuthDataHiveName);
-
+  await serviceLocatorInit();
   final AuthUserRepo authUserRepo = AuthUserRepo(
     authUserDP: AuthUserDP(
       client: http.Client(),
     ),
   );
+
   runApp(MyApp(
     authUserRepo: authUserRepo,
   ));
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
                 authUserRepo: authUserRepo,
               )),
         ),
+        BlocProvider(create: (context) => serviceLocator<FeedBloc>())
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fets_mobile/helper/url_endpoints.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../../authentication.dart';
 
@@ -21,7 +22,7 @@ class AuthUserDP {
           .timeout(const Duration(
             seconds: 20,
           ));
-
+      debugPrint(response.body);
       return response.body;
     } catch (e) {
       throw Exception(e.toString());
