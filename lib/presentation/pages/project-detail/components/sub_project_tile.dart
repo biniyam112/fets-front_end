@@ -18,15 +18,6 @@ class SubProjectTile extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10.w))),
       child: Column(
         children: <Widget>[
-          // SizedBox(
-          //   height: 150,
-          //   child: Container(
-          //     decoration: const BoxDecoration(
-          //       color: Colors.orange,
-          //       shape: BoxShape.rectangle,
-          //     ),
-          //   ),
-          // ),
           ScrollOnExpand(
             scrollOnExpand: true,
             scrollOnCollapse: false,

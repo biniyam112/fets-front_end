@@ -32,8 +32,8 @@ class FetchProjectsDP {
       web3client: web3client,
     );
 
-    print(result);
-    return result;  }
+    return result;
+  }
 
   Future<DeployedContract> getProjectContract(String abiPath) async {
     return await getContract(abiPath: abiPath);
