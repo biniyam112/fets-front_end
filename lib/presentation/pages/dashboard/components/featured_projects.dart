@@ -42,12 +42,31 @@ class FeaturedProjects extends StatelessWidget {
           child: BlocBuilder<FetchProjectsBloc, FetchProjectsState>(
             builder: ((context, state) {
               if (state is FetchingProjects) {
-                return const Center(
-                  child: CircularProgressIndicator(color: primaryColor),
+                return SizedBox(
+                  width: 1.sw,
+                  child: const Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Center(
+                      child: CircularProgressIndicator(color: primaryColor),
+                    ),
+                  ),
                 );
               }
               if (state is ProjectsFetched) {
                 List<Project> projects = state.projects;
+                if (projects.isEmpty) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'No featured projects available',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ),
+                    ],
+                  );
+                }
                 return Row(
                   children: [
                     ...List.generate(
@@ -55,46 +74,49 @@ class FeaturedProjects extends StatelessWidget {
                       ((index) {
                         Project project = projects[index];
                         return ProjectCard(
-                          name: project.name,
-                          description: project.description,
-                          location: project.location,
-                          estimatedBudget: project.estimatedBudget,
-                          fundedBudget: project.fundedMoney,
-                          estimatedDuration: project.estimatedDuration,
-                          createdAt: project.createdAt,
-                          companyId: project.companyId,
-                          accountNumber: project.accountNumber,
-                          status: project.status,
+                          project: project,
                         );
                       }),
                     ),
                   ],
                 );
               }
-              return Column(
-                children: [
-                  Text(
-                    'Projects feching failed',
-                    style: Theme.of(context).textTheme.headline4,
+              if (state is ProjectsFetchingFailed) {
+                return SizedBox(
+                  width: 1.sw,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Projects feching failed\n ${state.errorMessage}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4!
+                            .copyWith(fontWeight: FontWeight.w600),
+                      ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(primaryColor),
+                        ),
+                        onPressed: () {
+                          BlocProvider.of<FetchProjectsBloc>(context)
+                              .add(FetchAllProjects());
+                        },
+                        child: Text(
+                          'Try again',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(primaryColor),
-                    ),
-                    onPressed: () {
-                      BlocProvider.of<FetchProjectsBloc>(context)
-                          .add(FetchAllProjects());
-                    },
-                    child: Text(
-                      'Try again',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                ],
-              );
+                );
+              }
+              return const Placeholder();
             }),
           ),
         )

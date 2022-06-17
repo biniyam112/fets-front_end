@@ -1,34 +1,20 @@
+import 'package:fets_mobile/features/models/project.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
-import '../../project-detail/project_detail.dart';
+import '../../pages.dart';
 
 class ProjectCard extends StatelessWidget {
-  const ProjectCard({
-    Key? key,
-    required this.name,
-    required this.description,
-    required this.location,
-    required this.estimatedBudget,
-    required this.fundedBudget,
-    required this.estimatedDuration,
-    required this.createdAt,
-    required this.companyId,
-    required this.accountNumber,
-    required this.status,
-  }) : super(key: key);
-  final String name, description, location, companyId, accountNumber;
-  final BigInt estimatedBudget,
-      fundedBudget,
-      estimatedDuration,
-      createdAt,
-      status;
+  const ProjectCard({Key? key, required this.project}) : super(key: key);
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProjectDetailScreen.route);
+        GetIt.I.registerSingleton<Project>(project);
+        Navigator.pushNamed(context, ProjectDetails.route);
       },
       child: Stack(children: [
         Container(
@@ -39,19 +25,22 @@ class ProjectCard extends StatelessWidget {
             width: 165.w,
           ),
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(10.w))),
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.w),
+            ),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
                 contentPadding: EdgeInsets.only(top: 30.h),
-                title: Text(name,
+                title: Text(project.name,
                     style: TextStyle(
                         fontSize: 11.sp, fontWeight: FontWeight.w700)),
                 subtitle: Text(
-                  DateTime.fromMicrosecondsSinceEpoch(createdAt.toInt())
+                  DateTime.fromMicrosecondsSinceEpoch(project.createdAt.toInt())
                       .toString(),
                   style: TextStyle(
                       fontSize: 9.sp,
@@ -63,11 +52,11 @@ class ProjectCard extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                        text: "\$ $fundedBudget",
+                        text: "\$ ${project.fundedMoney}",
                         style: TextStyle(
                             fontSize: 10.sp, fontWeight: FontWeight.w600)),
                     TextSpan(
-                      text: " of  $estimatedBudget",
+                      text: " of  ${project.estimatedBudget}",
                       style: TextStyle(
                         fontSize: 10.sp,
                         color: Colors.grey.shade400,
@@ -83,7 +72,8 @@ class ProjectCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.h),
                 child: LinearProgressIndicator(
-                  value: (fundedBudget / estimatedBudget).toDouble(),
+                  value: (project.fundedMoney / project.estimatedBudget)
+                      .toDouble(),
                 ),
               ),
               SizedBox(height: 15.h),

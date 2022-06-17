@@ -14,15 +14,15 @@ class FetchProjectsBloc extends Bloc<FetchProjectsEvent, FetchProjectsState> {
   Future<void> _fetchAllProjects(
       FetchProjectsEvent event, Emitter<FetchProjectsState> emit) async {
     emit(FetchingProjects());
-    try {
-      var projects = await fetchProjectsRepo.readProjectContract(
-        abiPath: 'assets/abis/Project.json',
-        functionName: 'getAllProjects',
-        args: [],
-      );
-      emit(ProjectsFetched(projects: projects));
-    } catch (e) {
-      emit(ProjectsFetchingFailed(errorMessage: e.toString()));
-    }
+    // try {
+    var projects = await fetchProjectsRepo.readProjectContract(
+      abiPath: 'assets/abis/Project.json',
+      functionName: 'getAllProjects',
+      args: [],
+    );
+    emit(ProjectsFetched(projects: projects));
+    // } catch (e) {
+    //   emit(ProjectsFetchingFailed(errorMessage: e.toString()));
+    // }
   }
 }

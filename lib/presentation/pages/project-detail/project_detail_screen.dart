@@ -8,7 +8,6 @@ class ProjectDetailScreen extends StatelessWidget {
   const ProjectDetailScreen({Key? key}) : super(key: key);
 
   static const route = "project-detail";
-  // final String title;
 
   @override
   Widget build(BuildContext context) {
