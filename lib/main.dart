@@ -1,5 +1,9 @@
-import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
+// import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
 import 'package:fets_mobile/features/features.dart';
+import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_bloc.dart';
+import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_state.dart';
+import 'package:fets_mobile/features/fetch_projecs/data/provider/fetch_projects_dp.dart';
+import 'package:fets_mobile/features/fetch_projecs/data/repository/fetch_projects_repo.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
@@ -11,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:web3dart/web3dart.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,14 +30,29 @@ main() async {
     ),
   );
 
+  final FetchProjectsRepo fetchProjectsRepo = FetchProjectsRepo(
+    fetchProjectsDP: FetchProjectsDP(
+      client: http.Client(),
+      web3client: Web3Client(
+        rpcUrl,
+        http.Client(),
+      ),
+    ),
+  );
   runApp(MyApp(
     authUserRepo: authUserRepo,
+    fetchProjectsRepo: fetchProjectsRepo,
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key, required this.authUserRepo}) : super(key: key);
+  const MyApp({
+    Key? key,
+    required this.authUserRepo,
+    required this.fetchProjectsRepo,
+  }) : super(key: key);
   final AuthUserRepo authUserRepo;
+  final FetchProjectsRepo fetchProjectsRepo;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +64,13 @@ class MyApp extends StatelessWidget {
                 authUserRepo: authUserRepo,
               )),
         ),
-        BlocProvider(create: (context) => serviceLocator<FeedBloc>())
+        BlocProvider(create: (context) => serviceLocator<FeedBloc>()),
+        BlocProvider(
+          create: ((context) => FetchProjectsBloc(
+                ProjectsIdleState(),
+                fetchProjectsRepo: fetchProjectsRepo,
+              )),
+        ),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,
@@ -53,7 +79,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: lightTheme,
           routes: route,
-          initialRoute: SignUpScreen.route,
+          initialRoute: DashboardScreen.route,
         ),
       ),
     );

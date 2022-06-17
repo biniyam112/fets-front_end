@@ -13,7 +13,9 @@ class Body extends StatelessWidget {
         FilterTagList(
           isVisible: isVisible,
         ),
-        const Expanded(child: SearchResults())
+        const Expanded(
+          child: SearchResults(),
+        )
       ],
     );
   }

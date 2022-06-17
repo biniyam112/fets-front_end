@@ -19,3 +19,5 @@ export 'report/report.dart';
 export 'signup_completed/signup_completed.dart';
 export 'report/report.dart';
 export 'signup_password/signup_password.dart';
+export 'account/account.dart';
+export 'my_card/my_card.dart';
