@@ -1,3 +1,5 @@
+import 'package:fets_mobile/features/features.dart';
+import 'package:fets_mobile/helper/helper.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FeedTile extends StatelessWidget {
-  const FeedTile({Key? key}) : super(key: key);
+  final APIFeedData apiFeedData;
+  const FeedTile({Key? key, required this.apiFeedData}) : super(key: key);
+
   static const arrowforward =
       IconData(0xe15e, fontFamily: 'MaterialIcons', matchTextDirection: true);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,26 +32,21 @@ class FeedTile extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Help to restore the forest",
+                apiFeedData.title,
                 style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w700),
               ),
             ),
           ),
           SizedBox(
-            height: 150.h,
-            width: 300.w,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.w),
-              child: Image.asset(
-                "assets/images/restore_forest.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(10.w),
+                child: NetworkImageHelper.getNetworkFadeImage(
+                    "$baseUrl/${apiFeedData.image}")),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
             child: Text(
-              'In publishing and graphic design, Lorem ipsum is  text commonly used to demonstrate the visual of or a typeface without relying on meaningful this may be used as a placeholder before the final is. ',
+              apiFeedData.description,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 color: lightTextColor,

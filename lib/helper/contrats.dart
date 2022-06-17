@@ -10,7 +10,7 @@ Future<DeployedContract> getContract({required String abiPath}) async {
     var abiJson = jsonDecode(abiString);
     var abi = jsonEncode(abiJson['abi']);
     EthereumAddress contractAddress =
-        EthereumAddress.fromHex(abiJson['networks']['5777']['address']);
+        EthereumAddress.fromHex(abiJson['networks']['3']['address']);
     DeployedContract contract = DeployedContract(
       ContractAbi.fromJson(abi, 'Project'),
       contractAddress,
@@ -32,11 +32,14 @@ Future<List<dynamic>> readContract({
   required Web3Client web3client,
 }) async {
   DeployedContract contract = await getContract(abiPath: abiPath);
+  // const List<dynamic> list = [];
+
   var queryResult = await web3client.call(
     contract: contract,
     function: contract.function(functionName),
     params: args,
   );
+
   return queryResult;
 }
 

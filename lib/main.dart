@@ -1,4 +1,5 @@
-import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
+// import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
+import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_bloc.dart';
 import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_state.dart';
 import 'package:fets_mobile/features/fetch_projecs/data/provider/fetch_projects_dp.dart';
@@ -6,6 +7,7 @@ import 'package:fets_mobile/features/fetch_projecs/data/repository/fetch_project
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
+import 'package:fets_mobile/service_locator.dart';
 import 'package:fets_mobile/services/services.dart';
 import 'package:fets_mobile/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +22,16 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = const String.fromEnvironment('stripe_public_key');
   await Hive.initFlutter();
-  Hive.registerAdapter(UserAdapter());
-  await Hive.openBox<User>('users');
+  Hive.registerAdapter<User>(UserAdapter());
 
   Hive.registerAdapter<APIAuthData>(APIAuthDataAdapter());
-  await Hive.openBox<APIAuthData>(apiAuthDataHiveName);
-
+  await serviceLocatorInit();
   final AuthUserRepo authUserRepo = AuthUserRepo(
     authUserDP: AuthUserDP(
       client: http.Client(),
     ),
   );
+
   final FetchProjectsRepo fetchProjectsRepo = FetchProjectsRepo(
     fetchProjectsDP: FetchProjectsDP(
       client: http.Client(),
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
                 authUserRepo: authUserRepo,
               )),
         ),
+        BlocProvider(create: (context) => serviceLocator<FeedBloc>()),
         BlocProvider(
           create: ((context) => FetchProjectsBloc(
                 ProjectsIdleState(),

@@ -4,4 +4,6 @@ const String wsUrl = 'wss://ropsten.infura.io/v3/29935ed5b45743c2ac82eee5bbfcdec
 const String baseUrl = 'http://$hostIP:5000';
 const String signInUrl = "$baseUrl/auth/login";
 const String signUpUrl = '$baseUrl/user/signup';
+const String feedUrl = '$baseUrl/feed';
+
 const String apiAuthDataHiveName = "apiAuthData";

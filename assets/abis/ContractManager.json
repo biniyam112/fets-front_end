@@ -10,8 +10,52 @@
   "sourceMap": "95:33:0:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "95:33:0:-:0;;;;;",
   "source": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.9;\n\n// import Project from '../Project'\n\ncontract ContractManager {\n    \n}\n",
-  "sourcePath": "/home/bone/WebProjects/fets_front_end/src/contracts/ContractManager.sol",
+  "sourcePath": "/home/jeremy/Desktop/fets_front_end/src/contracts/ContractManager.sol",
   "ast": {
+    "absolutePath": "project:/src/contracts/ContractManager.sol",
+    "exportedSymbols": {
+      "ContractManager": [
+        2
+      ]
+    },
+    "id": 3,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ContractManager",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "ContractManager",
+        "nameLocation": "104:15:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "95:33:0",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:96:0"
+  },
+  "legacyAST": {
     "absolutePath": "project:/src/contracts/ContractManager.sol",
     "exportedSymbols": {
       "ContractManager": [
@@ -60,8 +104,8 @@
     "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.7",
-  "updatedAt": "2022-05-31T20:50:14.883Z",
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-04-25T06:43:35.287Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

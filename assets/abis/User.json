@@ -7,23 +7,23 @@
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "58:399:7:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "58:399:7:-:0;;;;;",
+  "sourceMap": "58:399:6:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "58:399:6:-:0;;;;;",
   "source": "//SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.9;\n\n\ncontract User {\n\n    // struct UserInfo {\n    //     string name;\n    //     string email;\n    //     string phoneNumber;\n    //     string role;\n    //     string companyId;\n    // }\n\n    // mapping(address => UserInfo) public users;\n\n    // // event \n\n    // function addUser(string memory name, string memory phoneNumber, string memory role, sting memory companyId) external {\n        \n    // }\n}",
-  "sourcePath": "/home/bone/WebProjects/fets_front_end/src/contracts/users/User.sol",
+  "sourcePath": "/home/jeremy/Desktop/fets_front_end/src/contracts/users/User.sol",
   "ast": {
     "absolutePath": "project:/src/contracts/users/User.sol",
     "exportedSymbols": {
       "User": [
-        1911
+        524
       ]
     },
-    "id": 1912,
+    "id": 525,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1910,
+        "id": 523,
         "literals": [
           "solidity",
           "^",
@@ -31,7 +31,7 @@
           ".9"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:7"
+        "src": "32:23:6"
       },
       {
         "abstract": false,
@@ -40,28 +40,72 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1911,
+        "id": 524,
         "linearizedBaseContracts": [
-          1911
+          524
         ],
         "name": "User",
-        "nameLocation": "67:4:7",
+        "nameLocation": "67:4:6",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1912,
-        "src": "58:399:7",
+        "scope": 525,
+        "src": "58:399:6",
         "usedErrors": []
       }
     ],
-    "src": "32:425:7"
+    "src": "32:425:6"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/src/contracts/users/User.sol",
+    "exportedSymbols": {
+      "User": [
+        524
+      ]
+    },
+    "id": 525,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 523,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:6"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "User",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 524,
+        "linearizedBaseContracts": [
+          524
+        ],
+        "name": "User",
+        "nameLocation": "67:4:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 525,
+        "src": "58:399:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:425:6"
   },
   "compiler": {
     "name": "solc",
     "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.7",
-  "updatedAt": "2022-05-31T20:50:15.474Z",
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-04-25T06:43:35.319Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -25,13 +25,15 @@ class FetchProjectsDP {
 
   Future<List<dynamic>> readProjectContract(
       String abiPath, String functionName, List args) async {
-    return await readContract(
+    final result = await readContract(
       abiPath: abiPath,
       functionName: functionName,
       args: args,
       web3client: web3client,
     );
-  }
+
+    print(result);
+    return result;  }
 
   Future<DeployedContract> getProjectContract(String abiPath) async {
     return await getContract(abiPath: abiPath);

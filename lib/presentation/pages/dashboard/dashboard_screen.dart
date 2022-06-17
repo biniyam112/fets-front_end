@@ -1,6 +1,8 @@
+import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../feeds/feeds_screen.dart';
 import 'components/components.dart';
@@ -23,7 +25,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           index: _selectedIndex,
           children: const [
             DashboardBody(),
-            SearchScreen(),
             FeedsScreen(),
             FeedsScreen(),
           ],
@@ -31,6 +32,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         bottomNavigationBar: BottomNavbar(
           currentIndex: _selectedIndex,
           onItemSelected: (int val) {
+            debugPrint("val");
+            // if (val == 1) {
+            //   BlocProvider.of<FeedBloc>(context).add(FetchAllFeeds());
+            // }
             setState(() {
               _selectedIndex = val;
             });

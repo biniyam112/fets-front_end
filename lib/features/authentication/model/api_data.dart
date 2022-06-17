@@ -6,15 +6,17 @@ part 'api_data.g.dart';
 class APIData {
   final bool error;
   final bool success;
-  final Map<String, dynamic>? body;
+  final dynamic body;
   final List<String>? errors;
-  final int statusCode;
 
+  final int? statusCoRde;
+  final int? statusCode;
   APIData({
     required this.error,
     this.errors,
     this.body,
-    required this.statusCode,
+    this.statusCoRde,
+    this.statusCode,
     required this.success,
   });
 
