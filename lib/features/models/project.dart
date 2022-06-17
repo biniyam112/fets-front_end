@@ -1,20 +1,20 @@
 class Project {
-  final int status;
+  final BigInt status;
   final String name, description, location, companyId, accountNumber;
-  final double id, estimatedBudget, fundedMoney, estimatedDuration, createdAt;
+  final BigInt id, estimatedBudget, fundedMoney, estimatedDuration, createdAt;
 
   Project({
     required this.id,
     required this.name,
-    required this.estimatedDuration,
-    required this.fundedMoney,
-    required this.status,
-    required this.accountNumber,
-    required this.createdAt,
-    required this.location,
-    required this.companyId,
-    required this.estimatedBudget,
     required this.description,
+    required this.location,
+    required this.estimatedBudget,
+    required this.fundedMoney,
+    required this.estimatedDuration,
+    required this.createdAt,
+    required this.companyId,
+    required this.accountNumber,
+    required this.status,
   });
 
   factory Project.fromJson(json) => Project(
@@ -30,6 +30,18 @@ class Project {
         estimatedBudget: json['estimatedBudget'],
         description: json['description'],
       );
+  factory Project.fromList(item) => Project(
+      id: item[0],
+      name: item[1],
+      description: item[2],
+      location: item[3],
+      estimatedBudget: item[4],
+      fundedMoney: item[5],
+      estimatedDuration: item[6],
+      createdAt: item[7],
+      companyId: item[8],
+      accountNumber: item[9],
+      status: item[10]);
 }
 
 class FundedProject extends Project {
@@ -39,28 +51,28 @@ class FundedProject extends Project {
   FundedProject({
     required this.completed,
     required this.progress,
-    required double id,
+    required BigInt id,
     required String name,
-    required int status,
-    required String location,
-    required double createdAt,
-    required String companyId,
     required String description,
-    required double fundedMoney,
-    required double estimatedBudget,
-    required double estimatedDuration,
+    required String location,
+    required BigInt estimatedBudget,
+    required BigInt fundedMoney,
+    required BigInt estimatedDuration,
+    required BigInt createdAt,
+    required String companyId,
     required String accountNumber,
+    required BigInt status,
   }) : super(
           id: id,
           name: name,
-          status: status,
-          location: location,
-          fundedMoney: fundedMoney,
-          createdAt: createdAt,
-          accountNumber: accountNumber,
-          estimatedDuration: estimatedDuration,
-          estimatedBudget: estimatedBudget,
-          companyId: companyId,
           description: description,
+          location: location,
+          estimatedBudget: estimatedBudget,
+          fundedMoney: fundedMoney,
+          estimatedDuration: estimatedDuration,
+          createdAt: createdAt,
+          companyId: companyId,
+          accountNumber: accountNumber,
+          status: status,
         );
 }

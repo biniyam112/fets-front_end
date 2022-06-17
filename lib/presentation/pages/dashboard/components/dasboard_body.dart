@@ -6,8 +6,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../features/fetch_projecs/bloc/fetch_projects_bloc.dart';
 import '../../../../features/fetch_projecs/bloc/fetch_projects_event.dart';
 
-class DashboardBody extends StatelessWidget {
+class DashboardBody extends StatefulWidget {
   const DashboardBody({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardBody> createState() => _DashboardBodyState();
+}
+
+class _DashboardBodyState extends State<DashboardBody> {
+  @override
+  void initState() {
+    BlocProvider.of<FetchProjectsBloc>(context).add(FetchAllProjects());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +33,8 @@ class DashboardBody extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 10.h),
               child: Column(
                 children: [
-                  GestureDetector(
-                      onTap: (() {
-                        BlocProvider.of<FetchProjectsBloc>(context)
-                            .add(FetchAllProjects());
-                      }),
-                      child: const DonatedProjectCard()),
+                  
+                  const DonatedProjectCard(),
                   SizedBox(height: 7.h),
                   const FeaturedProjects(),
                   const Education()

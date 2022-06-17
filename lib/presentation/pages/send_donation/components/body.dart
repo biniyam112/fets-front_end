@@ -1,11 +1,13 @@
-import 'package:fets_mobile/presentation/pages/pages.dart';
+import 'package:fets_mobile/helper/payment_controller.dart';
 import 'package:fets_mobile/services/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../../theme/theme.dart';
 import '../../../components/components.dart';
+import 'payment_method.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -24,6 +26,8 @@ class _BodyState extends State<Body> {
   List<String> errors = [];
   final GlobalKey<FormState> _formstate = GlobalKey();
   String cardNumber = '', expDate = '', cvv = '', amount = '';
+  PaymentController paymentController =
+      PaymentController(client: http.Client());
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -207,9 +211,13 @@ class _BodyState extends State<Body> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_formstate.currentState!.validate() & errors.isEmpty) {
-                      Navigator.pushNamed(context, MyDonationsScreen.route);
-                    }
+                    // if (_formstate.currentState!.validate() & errors.isEmpty) {
+                    // Navigator.pushNamed(context, MyDonationsScreen.route);
+                    paymentController.makePayment(
+                      amount: '100',
+                      currency: 'USD',
+                    );
+                    // }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(primaryColor),
@@ -227,84 +235,6 @@ class _BodyState extends State<Body> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class PaymentMethod extends StatelessWidget {
-  const PaymentMethod({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    int selectedIndex = 0;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        verticalSpacing(20.sp),
-        Text(
-          'Choose payment method',
-          style: Theme.of(context).textTheme.headline5,
-        ),
-        verticalSpacing(10.sp),
-        Row(
-          children: [
-            ...List.generate(
-              2,
-              (index) => Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(8),
-                    child: Container(
-                      height: 45.sp,
-                      padding: EdgeInsets.only(
-                        top: 8.sp,
-                        bottom: 8.sp,
-                        left: 16.sp,
-                        right: 10.sp,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: const [topShadow, bottomShadow],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(
-                            Icons.paypal,
-                            color: primaryColor,
-                          ),
-                          horizontalSpacing(4.sp),
-                          Text(
-                            'pay pal',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline6!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                          const Spacer(),
-                          selectedIndex == index
-                              ? Icon(
-                                  CupertinoIcons.check_mark_circled,
-                                  color: primaryColor,
-                                  size: 22.sp,
-                                )
-                              : Container(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }

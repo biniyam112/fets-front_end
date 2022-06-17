@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/models/project.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +10,9 @@ import 'top_area.dart';
 class Body extends StatelessWidget {
   const Body({
     Key? key,
+    required this.project,
   }) : super(key: key);
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class Body extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Children education in Kototo',
+                      project.name,
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     verticalSpacing(2.sp),
@@ -43,7 +46,7 @@ class Body extends StatelessWidget {
                         ),
                         horizontalSpacing(2.sp),
                         Text(
-                          'Ethiopia,Kototo',
+                          'Ethiopia,${project.location}',
                           style:
                               Theme.of(context).textTheme.headline5!.copyWith(
                                     color: lightTextColor,
@@ -55,11 +58,11 @@ class Body extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '\$${343453}',
+                          '\$${project.fundedMoney}',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                         Text(
-                          ' of ${7453453}',
+                          ' of ${project.estimatedBudget}',
                           style: Theme.of(context)
                               .textTheme
                               .headline5!
@@ -73,10 +76,10 @@ class Body extends StatelessWidget {
                       width: 1.sw / 2,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: const LinearProgressIndicator(
+                        child: LinearProgressIndicator(
                           color: primaryColor,
                           backgroundColor: shadowColor,
-                          value: 2323424 / 4234234,
+                          value: project.fundedMoney / project.estimatedBudget,
                         ),
                       ),
                     ),
@@ -95,7 +98,7 @@ class Body extends StatelessWidget {
                         ),
                         verticalSpacing(8.sp),
                         Text(
-                          'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.',
+                          project.description,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 10,
                           style:

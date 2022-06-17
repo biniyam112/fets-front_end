@@ -9,7 +9,9 @@ class FetchingProjects extends FetchProjectsState {}
 class ProjectsFetched extends FetchProjectsState {
   final List<Project> projects;
 
-  ProjectsFetched({required this.projects});
+  ProjectsFetched({
+    required this.projects,
+  });
 }
 
 class ProjectsFetchingFailed extends FetchProjectsState {
