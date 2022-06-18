@@ -32,7 +32,6 @@ class FetchProjectsDP {
       web3client: web3client,
     );
 
-    print(result);
     return result;  }
 
   Future<DeployedContract> getProjectContract(String abiPath) async {

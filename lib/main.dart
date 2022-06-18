@@ -5,7 +5,6 @@ import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_state.dar
 import 'package:fets_mobile/features/fetch_projecs/data/provider/fetch_projects_dp.dart';
 import 'package:fets_mobile/features/fetch_projecs/data/repository/fetch_projects_repo.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
-import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/service_locator.dart';
 import 'package:fets_mobile/services/services.dart';
@@ -17,10 +16,13 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey = const String.fromEnvironment('stripe_public_key');
+  await dotenv.load(fileName: '.env');  
+  Stripe.publishableKey = dotenv.get('stripe_public_key');
   await Hive.initFlutter();
   Hive.registerAdapter<User>(UserAdapter());
 

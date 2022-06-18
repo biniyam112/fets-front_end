@@ -1,9 +1,5 @@
-import 'package:fets_mobile/features/features.dart';
-import 'package:fets_mobile/presentation/pages/search/search.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../feeds/feeds_screen.dart';
 import 'components/components.dart';
 

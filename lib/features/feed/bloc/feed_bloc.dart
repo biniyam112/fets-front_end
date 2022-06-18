@@ -21,7 +21,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
       if (apiData.error == true && apiData.statusCode != 200) {
         emit(FeedFailed(errorMessage: apiData.errors![0].toString()));
       }
-      print(apiData.body[0]);
       List<APIFeedData> feeds = [];
 
       ((apiData.body) as List)
@@ -30,7 +29,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
 
       emit(FeedsFetched(feeds: feeds));
     } catch (e) {
-      print(e.toString());
       emit(FeedFailed(errorMessage: e.toString()));
     }
   }

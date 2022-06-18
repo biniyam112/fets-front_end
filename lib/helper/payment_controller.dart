@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,10 +27,12 @@ class PaymentController {
           paymentIntentClientSecret: paymentIntent!['client_secret'],
           customerEphemeralKeySecret: paymentIntent!['ephemeralKey'],
         ));
+        print(paymentIntent);
         displayPaymentSheet();
       }
-    } catch (e) {
-      throw Exception(e);
+    } catch (e, s) {
+      print('error $e \n\n stack trace $s');
+      throw Exception(e.toString());
     }
   }
 
@@ -37,40 +40,43 @@ class PaymentController {
     try {
       await Stripe.instance.presentPaymentSheet();
       return const SnackBar(
-        content: Text(' Payment Successful'),
-        backgroundColor: Colors.green,
-        margin: EdgeInsets.all(10),
-        duration: Duration(seconds: 2),
-      );
+        content: Text(
+        'Payment Successful',
+        ),
+          backgroundColor: Colors.green,
+          margin:  EdgeInsets.all(10),
+          duration:  Duration(seconds: 2),);
+   
     } catch (e) {
-      throw Exception(e);
+      throw Exception(e.toString());
     }
   }
 
   createPaymentIntent(String amount, String currency) async {
-    String stripeSecretKey = const String.fromEnvironment('stripe_secret_key');
+      String? stripePrivateKey = dotenv.get('stripe_secret_key');
+      print('private key is $stripePrivateKey');
     try {
       Map<String, dynamic> body = {
         'amount': calculateAmount(amount),
         'currency': currency,
         'payment_method_types[]': 'card'
       };
-      var response = await client.post(
-        Uri.parse('https://api.stripe.com/v1/payment_intents'),
-        body: body,
-        headers: {
-          'Authorization': stripeSecretKey,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      );
-      print(response.body);
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization': 'Bearer $stripePrivateKey',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      print('response is ${response.body}');
+
       return jsonDecode(response.body);
     } catch (e) {
-      throw Exception(e);
+      throw Exception(e.toString());
     }
   }
 
-  String calculateAmount(String amount) {
+  calculateAmount(String amount) {
     final a = (int.parse(amount)) * 100;
     return a.toString();
   }
