@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/models/project.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,7 +6,9 @@ import 'donate_project_progress.dart';
 import 'donate_project_report.dart';
 
 class DonatedProjectCard extends StatelessWidget {
-  const DonatedProjectCard({Key? key}) : super(key: key);
+  const DonatedProjectCard({Key? key, required this.projects})
+      : super(key: key);
+  final List<Project> projects;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class DonatedProjectCard extends StatelessWidget {
                 width: 20.w,
                 thickness: 3.w,
               )),
-          const DonateProjectProgress()
+          DonateProjectProgress(projects: projects),
         ],
       ),
     );

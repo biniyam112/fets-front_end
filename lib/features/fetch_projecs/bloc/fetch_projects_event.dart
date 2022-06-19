@@ -6,3 +6,9 @@ class FetchProjectsEvent extends Equatable {
 }
 
 class FetchAllProjects extends FetchProjectsEvent {}
+
+class FetchDonorProjects extends FetchProjectsEvent {
+  final String userName;
+
+  FetchDonorProjects({required this.userName});
+}

@@ -26,3 +26,29 @@ class FetchProjectsBloc extends Bloc<FetchProjectsEvent, FetchProjectsState> {
     }
   }
 }
+
+class FetchDonorProjectsBloc
+    extends Bloc<FetchProjectsEvent, FetchProjectsState> {
+  FetchDonorProjectsBloc({
+    required FetchProjectsState initialState,
+    required this.fetchProjectsRepo,
+  }) : super(initialState) {
+    on<FetchDonorProjects>(_fetchDonorProjects);
+  }
+  final FetchProjectsRepo fetchProjectsRepo;
+
+  Future<void> _fetchDonorProjects(
+      FetchDonorProjects event, Emitter<FetchProjectsState> emit) async {
+    emit(FetchingProjects());
+    try {
+      var projects = await fetchProjectsRepo.readProjectContract(
+        abiPath: 'assets/abis/Project.json',
+        functionName: 'getDonatedProjectsByUsername',
+        args: [event.userName],
+      );
+      emit(ProjectsFetched(projects: projects));
+    } catch (e) {
+      emit(ProjectsFetchingFailed(errorMessage: e.toString()));
+    }
+  }
+}

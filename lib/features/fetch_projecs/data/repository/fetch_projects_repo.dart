@@ -23,6 +23,7 @@ class FetchProjectsRepo {
     );
 
     //todo: this might create problem
+    print(items);
     items = items[0];
     return List.generate(items.length, (index) {
       return Project.fromList(items[index]);

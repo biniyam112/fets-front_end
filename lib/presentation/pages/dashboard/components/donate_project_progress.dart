@@ -1,9 +1,13 @@
+import 'package:fets_mobile/features/models/project.dart';
+import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class DonateProjectProgress extends StatelessWidget {
-  const DonateProjectProgress({Key? key}) : super(key: key);
+  const DonateProjectProgress({Key? key, required this.projects})
+      : super(key: key);
+  final List<Project> projects;
 
   @override
   Widget build(BuildContext context) {
@@ -69,22 +73,34 @@ class DonateProjectProgress extends StatelessWidget {
         Container(
           constraints: BoxConstraints.expand(height: 23.h, width: 100.w),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                MyDonationsScreen.route,
+                arguments: projects,
+              );
+            },
             child: Center(
               child: RichText(
-                  text: TextSpan(children: [
-                WidgetSpan(
-                    alignment: PlaceholderAlignment.middle,
-                    child: Text('See all ',
+                text: TextSpan(
+                  children: [
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Text(
+                        'See all ',
                         style: TextStyle(
-                            fontSize: 10.sp, fontWeight: FontWeight.w700))),
-                WidgetSpan(
-                    alignment: PlaceholderAlignment.middle,
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 8.w,
-                    ))
-              ])),
+                            fontSize: 10.sp, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 8.w,
+                        ))
+                  ],
+                ),
+              ),
             ),
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(

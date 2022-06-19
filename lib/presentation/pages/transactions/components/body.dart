@@ -1,12 +1,16 @@
+import 'package:fets_mobile/features/models/donation.dart';
 import 'package:fets_mobile/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'transaction_tile.dart';
 
 class Body extends StatelessWidget {
   const Body({
     Key? key,
+    required this.donations,
   }) : super(key: key);
+  final List<Donation> donations;
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +23,23 @@ class Body extends StatelessWidget {
           child: Column(
             children: [
               verticalSpacing(10.sp),
+              ...List.generate(donations.length, (index) {
+                Donation donation = donations[index];
+                var datetime = DateTime.fromMillisecondsSinceEpoch(
+                    donation.donatedAt.toInt());
+
+                return TransactionTile(
+                  title: donation.projectId,
+                  subtitle: 'Card Payment',
+                  time: datetime,
+                  amount: donation.amount.toDouble(),
+                );
+              }),
               TransactionTile(
                 title: 'School building in kototo',
                 subtitle: 'card payment',
                 time: DateTime.now(),
                 amount: -200,
-              ),
-              TransactionTile(
-                title: 'School building in uga Refund',
-                subtitle: 'Refund',
-                time: DateTime.now(),
-                amount: 200,
               ),
             ],
           ),

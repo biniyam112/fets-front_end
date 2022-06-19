@@ -8,4 +8,11 @@ class Donation {
     required this.amount,
     required this.donatedAt,
   });
+
+  factory Donation.formList(List item) => Donation(
+        donorUsername: item[0],
+        projectId: item[1],
+        amount: item[2],
+        donatedAt: item[3],
+      );
 }

@@ -45,12 +45,14 @@ class TopArea extends StatelessWidget {
                   'assets/images/project_default_image.png',
                   height: .42.sh,
                   width: 1.sw,
+                  fit: BoxFit.cover,
                 );
               }
               return Image.asset(
                 'assets/images/project_default_image.png',
                 height: .42.sh,
                 width: 1.sw,
+                fit: BoxFit.cover,
               );
             },
           ),

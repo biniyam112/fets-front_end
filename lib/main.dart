@@ -1,6 +1,10 @@
 // import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
 import 'dart:io';
 
+import 'package:fets_mobile/features/donor_projects/bloc/donor_projects_bloc.dart';
+import 'package:fets_mobile/features/donor_projects/bloc/donor_projects_state.dart';
+import 'package:fets_mobile/features/donor_projects/data/provider/donor_projects_dp.dart';
+import 'package:fets_mobile/features/donor_projects/data/repository/donor_projets_repo.dart';
 import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_bloc.dart';
 import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_state.dart';
@@ -18,7 +22,6 @@ import 'package:fets_mobile/features/search_image/bloc/search_url_bloc.dart';
 import 'package:fets_mobile/features/search_image/data/provider/search_image_provider.dart';
 import 'package:fets_mobile/features/search_image/data/repository/search_image_repository.dart';
 import 'package:fets_mobile/helper/helper.dart';
-import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/service_locator.dart';
 import 'package:fets_mobile/services/services.dart';
@@ -68,13 +71,25 @@ main() async {
   );
   FundProjectRepo fundProjectRepo = FundProjectRepo(
     fundProjectDP: FundProjectDP(
-      web3client: Web3Client(rpcUrl, http.Client()),
+      web3client: Web3Client(
+        rpcUrl,
+        http.Client(),
+      ),
       client: http.Client(),
     ),
   );
 
   SearchImageRepo searchImageRepo = SearchImageRepo(
     searchImageDP: SearchImageDP(
+      client: http.Client(),
+    ),
+  );
+  DonorProjectsRepo donorProjectsRepo = DonorProjectsRepo(
+    donorProjectsDP: DonorProjectsDP(
+      web3client: Web3Client(
+        rpcUrl,
+        http.Client(),
+      ),
       client: http.Client(),
     ),
   );
@@ -85,6 +100,7 @@ main() async {
       paymentRepo: paymentRepo,
       fundProjectRepo: fundProjectRepo,
       searchImageRepo: searchImageRepo,
+      donorProjectsRepo: donorProjectsRepo,
     ),
   );
 }
@@ -97,12 +113,14 @@ class MyApp extends StatelessWidget {
     required this.paymentRepo,
     required this.fundProjectRepo,
     required this.searchImageRepo,
+    required this.donorProjectsRepo,
   }) : super(key: key);
   final AuthUserRepo authUserRepo;
   final FetchProjectsRepo fetchProjectsRepo;
   final PaymentRepo paymentRepo;
   final FundProjectRepo fundProjectRepo;
   final SearchImageRepo searchImageRepo;
+  final DonorProjectsRepo donorProjectsRepo;
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +153,20 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (conext) => SearchImageBloc(
-            initialState: ImageSearchInitState(),
+            initialState: ImageSearchingState(),
             searchImageRepo: searchImageRepo,
+          ),
+        ),
+        BlocProvider(
+          create: (context) => DonorProjectBloc(
+            donorProjectsRepo: donorProjectsRepo,
+            initialState: UserDonationsInitState(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => FetchDonorProjectsBloc(
+            initialState: ProjectsIdleState(),
+            fetchProjectsRepo: fetchProjectsRepo,
           ),
         ),
       ],

@@ -1,6 +1,13 @@
+import 'package:fets_mobile/features/donor_projects/bloc/donor_projects_bloc.dart';
+import 'package:fets_mobile/features/donor_projects/bloc/donor_projects_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 
+import '../../../../features/authentication/model/model.dart';
+import '../../../../features/donor_projects/bloc/donor_projects_event.dart';
+import '../../../../features/models/models.dart';
 import '../../../../services/services.dart';
 import '../../../../theme/theme.dart';
 import 'all_transactions_button.dart';
@@ -9,6 +16,22 @@ class DonorStatCard extends StatelessWidget {
   const DonorStatCard({
     Key? key,
   }) : super(key: key);
+
+  double getTotalDonations(List<Donation> donations) {
+    double totalDonation = 0;
+    for (var i = 0; i < donations.length; i++) {
+      totalDonation = totalDonation + donations[i].amount.toDouble();
+    }
+    return totalDonation;
+  }
+
+  double getMaxDonation(List<Donation> donations) {
+    double maxDonation = 0;
+    for (var i = 0; i < donations.length; i++) {
+      maxDonation = maxDonation + donations[i].amount.toDouble();
+    }
+    return maxDonation;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,28 +46,77 @@ class DonorStatCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const LeftSide(
-                  donorName: 'US Aid',
-                  donorId: '48147648g48231t468er6234',
-                  donatedProjects: 10,
-                  completedProjects: 4,
-                  projectsInProgress: 3,
+        child: BlocBuilder<DonorProjectBloc, DonorProjectState>(
+          builder: (context, state) {
+            if (state is UserDonationFetching) {
+              return SizedBox(
+                height: .26.sh,
+                width: .8.sw,
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                  ),
                 ),
-                horizontalSpacing(12.sp),
-                const RightSide(
-                  maxDonation: 22412412840.32,
-                  totalDonations: 2840238.23,
-                ),
-              ],
-            ),
-            const AllTransactionsButton(),
-          ],
+              );
+            }
+            if (state is UserDonationFetchingFailed) {
+              return Column(
+                children: [
+                  Text(
+                    'user donation info not found',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  SizedBox(
+                    height: .26.sh,
+                    width: .8.sw,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<DonorProjectBloc>(context).add(
+                          FetchUserDonations(
+                            userName:
+                                Hive.box<User>('users').get('user')!.userName!,
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Try again',
+                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
+            if (state is UserDonationsFetched) {
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const LeftSide(
+                        donorName: 'US Aid',
+                        donorId: '48147648g48231t468er6234',
+                        donatedProjects: 10,
+                        completedProjects: 4,
+                        projectsInProgress: 3,
+                      ),
+                      horizontalSpacing(12.sp),
+                      RightSide(
+                        maxDonation: getMaxDonation(state.donations),
+                        totalDonations: getTotalDonations(state.donations),
+                      ),
+                    ],
+                  ),
+                  AllTransactionsButton(donations: state.donations),
+                ],
+              );
+            }
+            return const Placeholder();
+          },
         ),
       ),
     );

@@ -226,7 +226,7 @@ class _BodyState extends State<Body> {
                           });
                         }
                         if (value.isNotEmpty &&
-                            double.parse(value) >= 10000 &&
+                            double.parse(value) >= 1000 &&
                             errors.contains(kMinimumDonationAmountError)) {
                           setState(() {
                             errors.remove(kMinimumDonationAmountError);

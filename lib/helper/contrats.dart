@@ -33,14 +33,12 @@ Future<List<dynamic>> readContract({
   required Web3Client web3client,
 }) async {
   DeployedContract contract = await getContract(abiPath: abiPath);
-  // const List<dynamic> list = [];
 
   var queryResult = await web3client.call(
     contract: contract,
     function: contract.function(functionName),
     params: args,
   );
-
   return queryResult;
 }
 

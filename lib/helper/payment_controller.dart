@@ -14,6 +14,7 @@ class PaymentController {
     try {
       paymentIntent = await createPaymentIntent(amount, currency);
       print(paymentIntent);
+      Stripe.instance.presentPaymentSheet();
       if (paymentIntent != null) {
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
@@ -27,7 +28,6 @@ class PaymentController {
             customerEphemeralKeySecret: paymentIntent!['ephemeralKey'],
           ),
         );
-        // Stripe.instance.presentPaymentSheet();
       }
       return paymentIntent;
     } catch (e) {

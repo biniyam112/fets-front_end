@@ -18,7 +18,6 @@ class FetchProjectsDP {
       args: args,
       web3client: web3client,
     );
-
     return result;
   }
 

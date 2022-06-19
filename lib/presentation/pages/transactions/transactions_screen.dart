@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/models/donation.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,8 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var donations =
+        ModalRoute.of(context)!.settings.arguments as List<Donation>;
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -25,7 +28,7 @@ class TransactionsScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: const Body(),
+      body: Body(donations: donations),
     );
   }
 }
