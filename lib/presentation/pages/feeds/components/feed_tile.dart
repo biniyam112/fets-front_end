@@ -17,7 +17,8 @@ class FeedTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, FeedDetailScreen.route);
+        Navigator.pushNamed(context, FeedDetailScreen.route,
+            arguments: apiFeedData);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 7.w),
@@ -26,7 +27,7 @@ class FeedTile extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(10.sp))),
         constraints: BoxConstraints.expand(height: 330.h, width: 400.w),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 9.w),
             child: Align(
@@ -41,7 +42,7 @@ class FeedTile extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.w),
                 child: NetworkImageHelper.getNetworkFadeImage(
-                    "$baseUrl/${apiFeedData.image}")),
+                    "$baseUrl/uploads/${apiFeedData.image.split('\\')[1].trim()}")),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
@@ -104,7 +105,7 @@ class FeedTile extends StatelessWidget {
                   horizontal: 10.w,
                 ),
                 child: Text(
-                  "4 h 23 mins",
+                  "${apiFeedData.createdAt}",
                   style: TextStyle(
                       fontSize: 11.sp,
                       color: lightTextColor,

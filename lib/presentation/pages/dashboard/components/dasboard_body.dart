@@ -54,6 +54,29 @@ class _DashboardBodyState extends State<DashboardBody> {
               );
             },
           ),
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: () async {
+                BlocProvider.of<FetchProjectsBloc>(context)
+                    .add(FetchAllProjects());
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics()),
+                padding: EdgeInsets.only(bottom: 10.h),
+                child: Column(
+                  children: [
+                    const DonatedProjectCard(
+                      projects: [],
+                    ),
+                    SizedBox(height: 7.h),
+                    const FeaturedProjects(),
+                    const Education()
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

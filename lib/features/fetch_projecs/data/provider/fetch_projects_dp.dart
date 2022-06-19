@@ -12,12 +12,15 @@ class FetchProjectsDP {
 
   Future<List<dynamic>> readProjectContract(
       String abiPath, String functionName, List args) async {
+    print("result here");
     final result = await readContract(
       abiPath: abiPath,
       functionName: functionName,
       args: args,
       web3client: web3client,
     );
+
+    print(result);
     return result;
   }
 

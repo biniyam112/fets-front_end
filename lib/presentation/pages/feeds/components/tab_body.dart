@@ -10,29 +10,36 @@ class TabBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 17.w, vertical: 10.h),
-          child: BlocBuilder<FeedBloc, FeedState>(builder: (context, state) {
-            if (state is FeedInprogress || state is FeedInit) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is FeedFailed) {
-              return ConnectionErrorIndicator(
-                title: "Something went wrong",
-                message: state.errorMessage,
-                onTryAgain: () =>
-                    BlocProvider.of<FeedBloc>(context).add(FetchAllFeeds()),
-              );
-            }
+    return RefreshIndicator(
+      onRefresh: (() async {
+        BlocProvider.of<FeedBloc>(context).add(FetchAllFeeds());
+      }),
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics()),
+        child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 17.w, vertical: 10.h),
+            child: BlocBuilder<FeedBloc, FeedState>(builder: (context, state) {
+              if (state is FeedInprogress || state is FeedInit) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is FeedFailed) {
+                return ConnectionErrorIndicator(
+                  title: "Something went wrong",
+                  message: state.errorMessage,
+                  onTryAgain: () =>
+                      BlocProvider.of<FeedBloc>(context).add(FetchAllFeeds()),
+                );
+              }
 
-            return ListView.builder(
-                itemCount: (state as FeedsFetched).feeds.length,
-                primary: false,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return FeedTile(apiFeedData: state.feeds[index]);
-                });
-          })),
+              return ListView.builder(
+                  itemCount: (state as FeedsFetched).feeds.length,
+                  primary: false,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return FeedTile(apiFeedData: state.feeds[index]);
+                  });
+            })),
+      ),
     );
   }
 }

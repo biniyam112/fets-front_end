@@ -1,11 +1,19 @@
+import 'package:fets_mobile/features/task/bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OverallReportTile extends StatelessWidget {
-  const OverallReportTile({Key? key}) : super(key: key);
+  const OverallReportTile({Key? key, required this.projectBudget})
+      : super(key: key);
+
+  final double projectBudget;
 
   @override
   Widget build(BuildContext context) {
+    final actualTaskExpense =
+        BlocProvider.of<TaskBloc>(context).taskActualExpense;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
       child: Column(
@@ -18,14 +26,14 @@ class OverallReportTile extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "estimated expense",
                 style:
                     TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
               ),
               Text(
-                "\$74,031,367.00",
+                "\$$projectBudget",
                 style: TextStyle(fontWeight: FontWeight.w600),
               )
             ],
@@ -35,14 +43,14 @@ class OverallReportTile extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "actual expense",
                 style:
                     TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
               ),
               Text(
-                "\$73,031,367.00",
+                "\$$actualTaskExpense",
                 style: TextStyle(fontWeight: FontWeight.w600),
               )
             ],
@@ -52,14 +60,14 @@ class OverallReportTile extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "difference",
                 style:
                     TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
               ),
               Text(
-                "\$655,367.00",
+                "\$${actualTaskExpense - projectBudget}",
                 style:
                     TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
               )

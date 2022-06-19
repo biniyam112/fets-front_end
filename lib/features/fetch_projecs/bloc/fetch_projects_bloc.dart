@@ -48,6 +48,7 @@ class FetchDonorProjectsBloc
       );
       emit(ProjectsFetched(projects: projects));
     } catch (e) {
+      print(e.toString());
       emit(ProjectsFetchingFailed(errorMessage: e.toString()));
     }
   }

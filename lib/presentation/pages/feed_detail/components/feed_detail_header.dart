@@ -1,9 +1,13 @@
+import 'package:fets_mobile/features/features.dart';
+import 'package:fets_mobile/helper/network_image_helper.dart';
+import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FeedDetailHeader extends StatelessWidget {
-  const FeedDetailHeader({Key? key}) : super(key: key);
-
+  const FeedDetailHeader({Key? key, required this.apiFeedData})
+      : super(key: key);
+  final APIFeedData apiFeedData;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -13,12 +17,9 @@ class FeedDetailHeader extends StatelessWidget {
           height: 220.h,
           width: 350.w,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(15.w),
-            child: Image.asset(
-              "assets/images/restore_forest.jpg",
-              fit: BoxFit.cover,
-            ),
-          ),
+              borderRadius: BorderRadius.circular(10.w),
+              child: NetworkImageHelper.getNetworkFadeImage(
+                  "$baseUrl/uploads/${apiFeedData.image.split('\\')[1].trim()}")),
         ),
         Align(
           alignment: Alignment.bottomLeft,

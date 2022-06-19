@@ -1,6 +1,3 @@
-// import 'package:fets_mobile/features/authentication/model/api_auth_data.dart';
-import 'dart:io';
-
 import 'package:fets_mobile/features/donor_projects/bloc/donor_projects_bloc.dart';
 import 'package:fets_mobile/features/donor_projects/bloc/donor_projects_state.dart';
 import 'package:fets_mobile/features/donor_projects/data/provider/donor_projects_dp.dart';
@@ -22,6 +19,7 @@ import 'package:fets_mobile/features/search_image/bloc/search_url_bloc.dart';
 import 'package:fets_mobile/features/search_image/data/provider/search_image_provider.dart';
 import 'package:fets_mobile/features/search_image/data/repository/search_image_repository.dart';
 import 'package:fets_mobile/helper/helper.dart';
+import 'package:fets_mobile/features/task/bloc/bloc.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
 import 'package:fets_mobile/service_locator.dart';
 import 'package:fets_mobile/services/services.dart';
@@ -133,6 +131,8 @@ class MyApp extends StatelessWidget {
               )),
         ),
         BlocProvider(create: (context) => serviceLocator<FeedBloc>()),
+        BlocProvider(create: (context) => serviceLocator<SubprojectBloc>()),
+        BlocProvider(create: (context) => serviceLocator<TaskBloc>()),
         BlocProvider(
           create: ((context) => FetchProjectsBloc(
                 ProjectsIdleState(),

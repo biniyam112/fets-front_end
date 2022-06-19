@@ -1,10 +1,16 @@
 import 'package:expandable/expandable.dart';
+import 'package:fets_mobile/features/models/models.dart';
+import 'package:fets_mobile/features/task/bloc/bloc.dart';
+import 'package:fets_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TaskReportTile extends StatelessWidget {
-  const TaskReportTile({Key? key}) : super(key: key);
+  const TaskReportTile({Key? key, required this.subprojectData})
+      : super(key: key);
 
+  final SubprojectData subprojectData;
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -22,18 +28,18 @@ class TaskReportTile extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Text("HR placement",
+                header: Text(subprojectData.name,
                     style: TextStyle(
                         fontWeight: FontWeight.w600, fontSize: 13.sp)),
                 collapsed: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "\$ 20,000",
+                    Text(
+                      subprojectData.description,
                       softWrap: true,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Color(0xFF129113)),
+                      style: const TextStyle(color: Color(0xFF129113)),
                     ),
                     SizedBox(
                       height: 12.h,
@@ -48,83 +54,145 @@ class TaskReportTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                "task title 1",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                "apr 07,2021",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                "\$12,132,122",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.w, vertical: 8.h),
+                        child: BlocBuilder<TaskBloc, TaskState>(
+                          builder: ((context, state) {
+                            if (state is TaskInit ||
+                                state is TaskProgressState) {
+                              return SizedBox(
+                                width: 1.sw,
+                                child: const Padding(
+                                  padding: EdgeInsets.all(12),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                        color: primaryColor),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                "task title 1",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                "apr 07,2021",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                "\$12,132,122",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
+                              );
+                            }
+                            if (state is TaskFailure) {
+                              return SizedBox(
+                                width: 1.sw,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      ' Task feching failed\n ${state.errorMessage}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4!
+                                          .copyWith(
+                                              fontWeight: FontWeight.w600),
+                                    ),
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                primaryColor),
+                                      ),
+                                      onPressed: () {
+                                        BlocProvider.of<TaskBloc>(context).add(
+                                            FetchTaskBySubProjectId(
+                                                subProjectId:
+                                                    subprojectData.id));
+                                      },
+                                      child: Text(
+                                        'Try again',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5!
+                                            .copyWith(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                "task title 1",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                "apr 07,2021",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                "\$12,132,122",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
+                              );
+                            }
+
+                            List<TaskData> tasks =
+                                (state as TasksFetched).taskData;
+                            if (tasks.isEmpty) {
+                              return Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'No task available',
+                                      style:
+                                          Theme.of(context).textTheme.headline4,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Task name",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 12.sp),
+                                    ),
+                                    Text(
+                                      "duration",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 12.sp),
+                                    ),
+                                    Text(
+                                      "task budget",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12.sp),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                                ...List.generate(
+                                  state.taskData.length,
+                                  ((index) {
+                                    TaskData task = tasks[index];
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          task.name,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          "${DateTime.fromMillisecondsSinceEpoch(task.estimatedDuration.toInt()).day}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          "\$${task.allocatedBudget}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
+                                ),
+                              ],
+                            );
+                          }),
+                        )),
                     SizedBox(
                       height: 7.h,
                     ),
-                    const Text(
-                      "\$20,000",
-                      style: TextStyle(
+                    Text(
+                      subprojectData.description,
+                      style: const TextStyle(
                           color: Colors.green, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
@@ -136,7 +204,14 @@ class TaskReportTile extends StatelessWidget {
                     ),
                   ],
                 ),
-                builder: (_, collapsed, expanded) {
+                builder: (context, collapsed, expanded) {
+                  var controller =
+                      ExpandableController.of(context, required: true);
+                  if (controller!.expanded) {
+                    BlocProvider.of<TaskBloc>(context).add(
+                        FetchTaskBySubProjectId(
+                            subProjectId: subprojectData.id));
+                  }
                   return Padding(
                     padding: EdgeInsets.zero,
                     child: Expandable(
