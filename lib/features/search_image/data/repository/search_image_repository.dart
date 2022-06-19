@@ -5,7 +5,7 @@ class SearchImageRepo {
 
   SearchImageRepo({required this.searchImageDP});
 
-  Future<List> searchImage({required String query}) async {
+  Future<String> searchImage({required String query}) async {
     return await searchImageDP.searchImage(query: query);
   }
 }

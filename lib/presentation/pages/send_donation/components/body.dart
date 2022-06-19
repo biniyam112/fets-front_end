@@ -453,16 +453,16 @@ class _BodyState extends State<Body> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // if (_formstate.currentState!.validate() &&
-                        // errors.isEmpty) {
-                        BlocProvider.of<PaymentBloc>(context).add(
-                          MakePayment(
-                              amount: (double.parse(amount) +
-                                      double.parse(transferFee))
-                                  .toString(),
-                              currency: "USD"),
-                        );
-                        // }
+                        if (_formstate.currentState!.validate() &&
+                            errors.isEmpty) {
+                          BlocProvider.of<PaymentBloc>(context).add(
+                            MakePayment(
+                                amount: (double.parse(amount) +
+                                        double.parse(transferFee))
+                                    .toString(),
+                                currency: "USD"),
+                          );
+                        }
                       },
                       style: ButtonStyle(
                         backgroundColor:

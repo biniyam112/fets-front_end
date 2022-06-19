@@ -14,10 +14,8 @@ class PaymentController {
     try {
       paymentIntent = await createPaymentIntent(amount, currency);
       print(paymentIntent);
-      var stripeInstance = Stripe.instance;
-      stripeInstance.presentPaymentSheet();
       if (paymentIntent != null) {
-        await stripeInstance.initPaymentSheet(
+        await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
             applePay: true,
             googlePay: true,
@@ -29,6 +27,7 @@ class PaymentController {
             customerEphemeralKeySecret: paymentIntent!['ephemeralKey'],
           ),
         );
+        // Stripe.instance.presentPaymentSheet();
       }
       return paymentIntent;
     } catch (e) {

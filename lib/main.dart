@@ -13,6 +13,10 @@ import 'package:fets_mobile/features/fund_project/data/repository/fund_project_r
 import 'package:fets_mobile/features/payment/bloc/payment_bloc.dart';
 import 'package:fets_mobile/features/payment/data/provider/payment_dp.dart';
 import 'package:fets_mobile/features/payment/data/repository/payment_repo.dart';
+import 'package:fets_mobile/features/search_image/bloc/search_image_state.dart';
+import 'package:fets_mobile/features/search_image/bloc/search_url_bloc.dart';
+import 'package:fets_mobile/features/search_image/data/provider/search_image_provider.dart';
+import 'package:fets_mobile/features/search_image/data/repository/search_image_repository.dart';
 import 'package:fets_mobile/helper/helper.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
@@ -68,12 +72,19 @@ main() async {
       client: http.Client(),
     ),
   );
+
+  SearchImageRepo searchImageRepo = SearchImageRepo(
+    searchImageDP: SearchImageDP(
+      client: http.Client(),
+    ),
+  );
   runApp(
     MyApp(
       authUserRepo: authUserRepo,
       fetchProjectsRepo: fetchProjectsRepo,
       paymentRepo: paymentRepo,
       fundProjectRepo: fundProjectRepo,
+      searchImageRepo: searchImageRepo,
     ),
   );
 }
@@ -85,11 +96,13 @@ class MyApp extends StatelessWidget {
     required this.fetchProjectsRepo,
     required this.paymentRepo,
     required this.fundProjectRepo,
+    required this.searchImageRepo,
   }) : super(key: key);
   final AuthUserRepo authUserRepo;
   final FetchProjectsRepo fetchProjectsRepo;
   final PaymentRepo paymentRepo;
   final FundProjectRepo fundProjectRepo;
+  final SearchImageRepo searchImageRepo;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +132,13 @@ class MyApp extends StatelessWidget {
             initialState: FundProjectInitState(),
             fundProjectRepo: fundProjectRepo,
           ),
-        )
+        ),
+        BlocProvider(
+          create: (conext) => SearchImageBloc(
+            initialState: ImageSearchInitState(),
+            searchImageRepo: searchImageRepo,
+          ),
+        ),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

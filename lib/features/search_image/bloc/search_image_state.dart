@@ -5,6 +5,8 @@ class SearchImageState extends Equatable {
   List<Object?> get props => [];
 }
 
+class ImageSearchInitState extends SearchImageState {}
+
 class ImageSearchingState extends SearchImageState {}
 
 class ImageSearchingFailed extends SearchImageState {}

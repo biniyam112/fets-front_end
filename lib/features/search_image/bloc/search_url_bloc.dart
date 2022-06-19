@@ -13,16 +13,19 @@ class SearchImageBloc extends Bloc<SearchImageEvent, SearchImageState> {
   Future<void> _searchImage(
       SearchImageEvent event, Emitter<SearchImageState> emit) async {
     emit(ImageSearchingState());
-    List<dynamic> imageUrl =
-        await searchImageRepo.searchImage(query: event.query);
-    if (imageUrl.isEmpty) {
-      emit(NoImageFound());
-    } else {
-      emit(
-        ImageFound(
-          imageUrl: imageUrl[0]['url']['regular'],
-        ),
-      );
+    try {
+      String imageUrl = await searchImageRepo.searchImage(query: event.query);
+      if (imageUrl.isEmpty) {
+        emit(NoImageFound());
+      } else {
+        emit(
+          ImageFound(
+            imageUrl: imageUrl,
+          ),
+        );
+      }
+    } catch (e) {
+      emit(ImageSearchingFailed());
     }
   }
 }
