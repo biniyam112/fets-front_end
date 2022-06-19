@@ -4,6 +4,7 @@ import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_bloc.dart
 import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_state.dart';
 import 'package:fets_mobile/features/fetch_projecs/data/provider/fetch_projects_dp.dart';
 import 'package:fets_mobile/features/fetch_projecs/data/repository/fetch_projects_repo.dart';
+import 'package:fets_mobile/features/task/bloc/bloc.dart';
 import 'package:fets_mobile/helper/url_endpoints.dart';
 import 'package:fets_mobile/features/authentication/authentication.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
@@ -69,6 +70,8 @@ class MyApp extends StatelessWidget {
               )),
         ),
         BlocProvider(create: (context) => serviceLocator<FeedBloc>()),
+        BlocProvider(create: (context) => serviceLocator<SubprojectBloc>()),
+        BlocProvider(create: (context) => serviceLocator<TaskBloc>()),
         BlocProvider(
           create: ((context) => FetchProjectsBloc(
                 ProjectsIdleState(),

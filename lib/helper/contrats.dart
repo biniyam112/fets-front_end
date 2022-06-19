@@ -34,11 +34,13 @@ Future<List<dynamic>> readContract({
   DeployedContract contract = await getContract(abiPath: abiPath);
   // const List<dynamic> list = [];
 
+  print(contract);
   var queryResult = await web3client.call(
     contract: contract,
     function: contract.function(functionName),
     params: args,
   );
+  print(queryResult);
 
   return queryResult;
 }

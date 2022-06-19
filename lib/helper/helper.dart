@@ -4,3 +4,4 @@ export 'connection_error_indicator.dart';
 export 'url_endpoints.dart';
 export 'payment_controller.dart';
 export 'contrats.dart';
+export 'task_report_helper.dart';

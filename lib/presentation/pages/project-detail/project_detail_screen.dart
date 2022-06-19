@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/models/project.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,9 @@ class ProjectDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Project project =
+        ModalRoute.of(context)!.settings.arguments as Project;
+    print(project.companyId);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -23,11 +27,13 @@ class ProjectDetailScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: backgroundColor,
         title: Text(
-          'Electricity supply in Kototo',
+          project.name,
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
-      body: const Body(),
+      body: Body(
+        project: project,
+      ),
     );
   }
 }

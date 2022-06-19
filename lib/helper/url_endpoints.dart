@@ -3,7 +3,7 @@
 // const String rpcUrl =
 //     'https://ropsten.infura.io/v3/29935ed5b45743c2ac82eee5bbfcdecf';
 // const String wsUrl = 'ws://192.168.171.88:7545';
-const hostIP = '10.5.244.216';
+const hostIP = '192.168.5.153';
 const String rpcUrl =
     'https://ropsten.infura.io/v3/29935ed5b45743c2ac82eee5bbfcdecf';
 const String wsUrl =

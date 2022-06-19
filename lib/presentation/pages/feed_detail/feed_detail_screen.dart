@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/presentation/components/components.dart';
 import 'package:fets_mobile/presentation/pages/feed_detail/feed_detail.dart';
 import 'package:fets_mobile/theme/colors.dart';
@@ -11,6 +12,8 @@ class FeedDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final APIFeedData apiFeedData =
+        ModalRoute.of(context)!.settings.arguments as APIFeedData;
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: PreferredSize(
@@ -47,7 +50,7 @@ class FeedDetailScreen extends StatelessWidget {
               ]),
         ),
       ),
-      body: const Body(),
+      body: Body(apiFeedData: apiFeedData),
     );
   }
 }

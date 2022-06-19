@@ -1,8 +1,10 @@
+import 'package:fets_mobile/features/models/task_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TaskItemTile extends StatelessWidget {
-  const TaskItemTile({Key? key}) : super(key: key);
+  final TaskData taskData;
+  const TaskItemTile({Key? key, required this.taskData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class TaskItemTile extends StatelessWidget {
               title: Transform.translate(
                   offset: Offset(-16.sp, 0),
                   child: Text(
-                    "Transport construction material",
+                    taskData.name,
                     style: TextStyle(
                         fontSize: 11.sp,
                         color: Colors.grey,
@@ -31,7 +33,7 @@ class TaskItemTile extends StatelessWidget {
               subtitle: Transform.translate(
                   offset: Offset(-16.sp, 0),
                   child: Text(
-                    "Mar 20,2020",
+                    "${taskData.createdAt}",
                     style: TextStyle(fontSize: 10.sp),
                   )),
               leading: const Icon(Icons.check_box_outlined),
@@ -42,7 +44,7 @@ class TaskItemTile extends StatelessWidget {
             child: Transform.translate(
               offset: Offset(0, -10.sp),
               child: Text(
-                "\$ 12,042",
+                "\$ ${taskData.allocatedBudget}",
                 style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,

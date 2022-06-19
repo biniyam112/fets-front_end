@@ -29,19 +29,23 @@ class _DashboardBodyState extends State<DashboardBody> {
         children: [
           const DashboardAppBar(),
           Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 10.h),
-              child: Column(
-                children: [
-<<<<<<< HEAD
-=======
-                  
->>>>>>> 7415eff755568db43e9203b080a07eff62f2c02a
-                  const DonatedProjectCard(),
-                  SizedBox(height: 7.h),
-                  const FeaturedProjects(),
-                  const Education()
-                ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                BlocProvider.of<FetchProjectsBloc>(context)
+                    .add(FetchAllProjects());
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics()),
+                padding: EdgeInsets.only(bottom: 10.h),
+                child: Column(
+                  children: [
+                    const DonatedProjectCard(),
+                    SizedBox(height: 7.h),
+                    const FeaturedProjects(),
+                    const Education()
+                  ],
+                ),
               ),
             ),
           )

@@ -26,12 +26,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: const [
             DashboardBody(),
             FeedsScreen(),
-            FeedsScreen(),
+            // FeedsScreen(),
           ],
         ),
         bottomNavigationBar: BottomNavbar(
           currentIndex: _selectedIndex,
           onItemSelected: (int val) {
+            print("on item selected");
             debugPrint("val");
             // if (val == 1) {
             //   BlocProvider.of<FeedBloc>(context).add(FetchAllFeeds());

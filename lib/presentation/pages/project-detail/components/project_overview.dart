@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProjectOverview extends StatelessWidget {
-  const ProjectOverview({Key? key}) : super(key: key);
+  const ProjectOverview({Key? key, required this.projectDescription})
+      : super(key: key);
+
+  final String projectDescription;
 
   @override
   Widget build(BuildContext context) {
+    print(projectDescription);
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 15.h),
       child: Column(
@@ -15,11 +19,8 @@ class ProjectOverview extends StatelessWidget {
           Text('Project Overview',
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold)),
           SizedBox(height: 10.h),
-          Text('''As children and young people comprise 48 percent of 
-the population, Ethiopia can lift itself out of poverty by 
-ensuring children have access to quality education... 
-               ''',
-              textAlign: TextAlign.justify,
+          Text(projectDescription,
+              // textAlign: TextAlign.start,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium

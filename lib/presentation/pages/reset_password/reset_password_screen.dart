@@ -17,7 +17,7 @@ class ResetPassword extends StatelessWidget {
         title: 'Reset Password',
         background: Colors.white,
       ),
-      body: const Body(),
+      // body: const Body(),
     );
   }
 }

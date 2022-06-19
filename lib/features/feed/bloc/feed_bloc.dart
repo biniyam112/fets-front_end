@@ -21,13 +21,14 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
       if (apiData.error == true && apiData.statusCode != 200) {
         emit(FeedFailed(errorMessage: apiData.errors![0].toString()));
       }
-      print(apiData.body[0]);
+      // print(apiData.body[0]);
       List<APIFeedData> feeds = [];
 
       ((apiData.body) as List)
           .map((e) => {feeds.add(APIFeedData.fromJson(e))})
           .toList();
-
+      // print(feeds[0].image.split("\\")[1]);
+      // print("backslash******************");
       emit(FeedsFetched(feeds: feeds));
     } catch (e) {
       print(e.toString());

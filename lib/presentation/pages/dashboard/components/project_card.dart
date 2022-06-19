@@ -1,5 +1,7 @@
+import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/features/models/project.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,8 +15,11 @@ class ProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GetIt.I.registerSingleton<Project>(project);
-        Navigator.pushNamed(context, ProjectDetails.route);
+        // GetIt.I.registerSingleton<Project>(project);
+        Navigator.pushNamed(context, ProjectDetailScreen.route,
+            arguments: project);
+        BlocProvider.of<SubprojectBloc>(context)
+            .add(FetchSubprojectByProjectId(projectId: project.id));
       },
       child: Stack(children: [
         Container(

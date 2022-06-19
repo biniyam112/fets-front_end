@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NetworkImageHelper {
   static Widget getNetworkFadeImage(String imageUrl) {
+    print(imageUrl);
     return FadeInImage(
         imageErrorBuilder: (context, error, stacktrace) {
+          print(error.toString());
           return Image.asset(
             "assets/images/placeholder_image.png",
             height: 150.h,

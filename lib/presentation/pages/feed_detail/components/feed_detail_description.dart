@@ -1,10 +1,12 @@
+import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FeedDetailDescription extends StatelessWidget {
-  const FeedDetailDescription({Key? key}) : super(key: key);
-
+  const FeedDetailDescription({Key? key, required this.apiFeedData})
+      : super(key: key);
+  final APIFeedData apiFeedData;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -13,13 +15,13 @@ class FeedDetailDescription extends StatelessWidget {
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: Text(
-            "Help to restore forest",
+            apiFeedData.title,
             style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w700),
           ),
           subtitle: Padding(
             padding: EdgeInsets.symmetric(vertical: 5.h),
             child: Text(
-              "Apr 20,2020 - 4 h 23 min ago",
+              "${apiFeedData.createdAt}",
               style: TextStyle(fontSize: 12.sp, color: lightTextColor),
             ),
           ),
