@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:web3dart/web3dart.dart';
@@ -53,13 +54,16 @@ Future<void> writeToContract({
   try {
     DeployedContract contract = await getContract(abiPath: abiPath);
     Credentials credentials = EthPrivateKey.fromHex(privateKey);
-    await web3client.sendTransaction(
-        credentials,
-        Transaction.callContract(
-          contract: contract,
-          function: contract.function(functionName),
-          parameters: args,
-        ));
+    var response = await web3client.sendTransaction(
+      credentials,
+      Transaction.callContract(
+        contract: contract,
+        function: contract.function(functionName),
+        parameters: args,
+      ),
+      chainId: 3,
+    );
+    print('response is $response');
   } catch (e) {
     throw (Exception(e));
   }

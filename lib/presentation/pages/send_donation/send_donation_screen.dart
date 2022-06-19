@@ -1,3 +1,4 @@
+import 'package:fets_mobile/features/models/project.dart';
 import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +12,14 @@ class SendDonation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final project = ModalRoute.of(context)!.settings.arguments as Project;
     return Scaffold(
       appBar: customAppBar(
         context,
         title: 'Send donation',
         background: backgroundColor,
       ),
-      body: const Body(),
+      body: Body(project: project),
     );
   }
 }

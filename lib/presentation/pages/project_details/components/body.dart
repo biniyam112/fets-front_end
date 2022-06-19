@@ -1,5 +1,6 @@
 import 'package:fets_mobile/features/models/project.dart';
 import 'package:fets_mobile/presentation/pages/pages.dart';
+import 'package:fets_mobile/presentation/pages/project_details/components/company_circle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,7 @@ class Body extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              const TopArea(),
+              TopArea(project: project),
               Padding(
                 padding: EdgeInsets.all(18.sp),
                 child: Column(
@@ -120,7 +121,7 @@ class Body extends StatelessWidget {
                         children: [
                           ...List.generate(
                             3,
-                            (index) => const CompanyCircle(
+                            (index) => const CompanyCircleWidget(
                               companyLogo: 'assets/images/signup.jpg',
                               companyName: 'Come fund me',
                             ),
@@ -134,7 +135,11 @@ class Body extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, SendDonation.route);
+                          Navigator.pushNamed(
+                            context,
+                            SendDonation.route,
+                            arguments: project,
+                          );
                         },
                         style: ButtonStyle(
                           backgroundColor:
@@ -155,56 +160,6 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CompanyCircle extends StatelessWidget {
-  const CompanyCircle({
-    Key? key,
-    required this.companyLogo,
-    required this.companyName,
-  }) : super(key: key);
-  final String companyLogo, companyName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16),
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 32.sp,
-            child: Container(
-              margin: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                color: Colors.white24,
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage(
-                    companyLogo,
-                  ),
-                ),
-              ),
-            ),
-            backgroundColor: Colors.indigo[800],
-          ),
-          verticalSpacing(8.sp),
-          SizedBox(
-            width: 62,
-            child: Text(
-              companyName,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.headline6!.copyWith(
-                    height: 1.2,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ),
-        ],
       ),
     );
   }

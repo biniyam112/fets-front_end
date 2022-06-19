@@ -28,16 +28,4 @@ class FetchProjectsRepo {
       return Project.fromList(items[index]);
     }).toList();
   }
-
-  Future<void> writeToProjectContract({
-    required String abiPath,
-    required String functionName,
-    required List<dynamic> args,
-  }) async {
-    return await fetchProjectsDP.writeToProjectContract(
-      abiPath,
-      functionName,
-      args,
-    );
-  }
 }

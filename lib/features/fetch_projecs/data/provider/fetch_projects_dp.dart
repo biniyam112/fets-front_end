@@ -10,19 +10,6 @@ class FetchProjectsDP {
     required this.web3client,
   });
 
-  final String? privateKey = const String.fromEnvironment('ganache_privateKey');
-
-  Future<void> writeToProjectContract(
-      String abiPath, String functionName, List args) async {
-    return await writeToContract(
-      abiPath: abiPath,
-      privateKey: privateKey!,
-      functionName: functionName,
-      args: args,
-      web3client: web3client,
-    );
-  }
-
   Future<List<dynamic>> readProjectContract(
       String abiPath, String functionName, List args) async {
     final result = await readContract(
@@ -32,7 +19,8 @@ class FetchProjectsDP {
       web3client: web3client,
     );
 
-    return result;  }
+    return result;
+  }
 
   Future<DeployedContract> getProjectContract(String abiPath) async {
     return await getContract(abiPath: abiPath);
