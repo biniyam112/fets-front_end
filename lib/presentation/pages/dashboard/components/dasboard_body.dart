@@ -26,6 +26,7 @@ class _DashboardBodyState extends State<DashboardBody> {
         userName: Hive.box<User>('users').get('user')!.userName ?? 'biniyam112',
       ),
     );
+
     super.initState();
   }
 
@@ -40,43 +41,37 @@ class _DashboardBodyState extends State<DashboardBody> {
           BlocBuilder<FetchDonorProjectsBloc, FetchProjectsState>(
             builder: (context, state) {
               return Expanded(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.only(bottom: 10.h),
-                  child: Column(
-                    children: [
-                      DonatedProjectCard(projects: []),
-                      SizedBox(height: 7.h),
-                      const FeaturedProjects(),
-                      const Education()
-                    ],
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    BlocProvider.of<FetchDonorProjectsBloc>(context).add(
+                      FetchDonorProjects(
+                        userName:
+                            Hive.box<User>('users').get('user')!.userName ??
+                                'biniyam112',
+                      ),
+                    );
+                    BlocProvider.of<FetchProjectsBloc>(context)
+                        .add(FetchAllProjects());
+                  },
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics()),
+                    padding: EdgeInsets.only(bottom: 10.h),
+                    child: Column(
+                      children: [
+                        (state is ProjectsFetched)
+                            ? DonatedProjectCard(projects: state.projects)
+                            : const DonatedProjectCard(projects: []),
+                        SizedBox(height: 7.h),
+                        const FeaturedProjects(),
+                        // const Education()
+                      ],
+                    ),
                   ),
                 ),
               );
             },
           ),
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: () async {
-                BlocProvider.of<FetchProjectsBloc>(context)
-                    .add(FetchAllProjects());
-              },
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(
-                    parent: BouncingScrollPhysics()),
-                padding: EdgeInsets.only(bottom: 10.h),
-                child: Column(
-                  children: [
-                    const DonatedProjectCard(
-                      projects: [],
-                    ),
-                    SizedBox(height: 7.h),
-                    const FeaturedProjects(),
-                    const Education()
-                  ],
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

@@ -177,7 +177,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: lightTheme,
           routes: route,
-          initialRoute: DashboardScreen.route,
+          initialRoute: LoginScreen.route,
         ),
       ),
     );

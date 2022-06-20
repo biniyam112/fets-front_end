@@ -343,7 +343,7 @@ class _BodyState extends State<Body> {
                             donorUsername:
                                 Hive.box<User>('users').get('user')!.userName ??
                                     'biniyam112',
-                            projectId: widget.project.id.toString(),
+                            projectId: widget.project.id,
                             donatedAt: BigInt.from(0),
                           ),
                         ),

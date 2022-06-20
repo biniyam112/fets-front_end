@@ -42,14 +42,14 @@ class TopArea extends StatelessWidget {
               }
               if (state is NoImageFound) {
                 return Image.asset(
-                  'assets/images/project_default_image.png',
+                  'assets/images/project_default_image.jpg',
                   height: .42.sh,
                   width: 1.sw,
                   fit: BoxFit.cover,
                 );
               }
               return Image.asset(
-                'assets/images/project_default_image.png',
+                'assets/images/project_default_image.jpg',
                 height: .42.sh,
                 width: 1.sw,
                 fit: BoxFit.cover,

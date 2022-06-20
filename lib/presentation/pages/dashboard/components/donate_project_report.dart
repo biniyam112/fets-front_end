@@ -1,7 +1,30 @@
+import 'package:fets_mobile/features/models/project.dart';
+import 'package:fets_mobile/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class DonateProjectReport extends StatelessWidget {
-  const DonateProjectReport({Key? key}) : super(key: key);
+  const DonateProjectReport({Key? key, required this.projects})
+      : super(key: key);
+  final List<Project> projects;
+
+  int completedProjects() {
+    int completedCount = 0;
+    for (var i = 0; i < projects.length; i++) {
+      if (projects[i].status.toInt() == 2) {
+        completedCount += 1;
+      }
+    }
+    return completedCount;
+  }
+
+  double calculateSpending() {
+    double spending = 0;
+    for (var i = 0; i < projects.length; i++) {
+      spending += projects[i].fundedMoney.toDouble();
+    }
+    return spending;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +56,7 @@ class DonateProjectReport extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              "40%",
+              '${completedProjects().toInt() / projects.length} %',
               style: TextStyle(
                   color: Colors.grey.shade400, fontWeight: FontWeight.w600),
             ),
@@ -43,8 +66,9 @@ class DonateProjectReport extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10.w)),
                 child: LinearProgressIndicator(
-                  // backgroundColor: Colors.grey.shade300,
-                  value: 0.4,
+                  value: projects.isNotEmpty
+                      ? completedProjects().toInt() / projects.length
+                      : 0,
                   minHeight: 4.5.h,
                 ),
               ),
@@ -53,14 +77,18 @@ class DonateProjectReport extends StatelessWidget {
         ),
         SizedBox(height: 10.h),
         Text(
-          'you have funded 13 projects',
-          style: TextStyle(fontSize: 10.sp),
+          'you have funded ${projects.length} projects',
+          style: TextStyle(fontSize: 11.sp),
         ),
-        SizedBox(height: 10.h),
-        Text("spend :\$ 127,854",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp)),
-        Text("People affected : 207,034",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp))
+        SizedBox(height: 4.h),
+        Text(
+          "spend :  \$ ${calculateSpending()}",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 11.sp,
+          ),
+        ),
+        verticalSpacing(2.sp),
       ],
     );
   }

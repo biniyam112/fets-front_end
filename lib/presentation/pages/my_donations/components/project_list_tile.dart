@@ -1,7 +1,9 @@
 import 'package:fets_mobile/features/models/project.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../features/features.dart';
 import '../../../../services/services.dart';
 import '../../../../theme/theme.dart';
 import '../../pages.dart';
@@ -15,10 +17,15 @@ class ProjectListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(
-        context,
-        ProjectDetails.route,
-      ),
+      onTap: () {
+        BlocProvider.of<SubprojectBloc>(context)
+            .add(FetchSubprojectByProjectId(projectId: project.id));
+        Navigator.pushNamed(
+          context,
+          ProjectDetailScreen.route,
+          arguments: project,
+        );
+      },
       child: Container(
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(8),

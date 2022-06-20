@@ -1,6 +1,6 @@
 class Donation {
-  final String donorUsername, projectId;
-  final BigInt amount, donatedAt;
+  final String donorUsername;
+  final BigInt amount, donatedAt, projectId;
 
   Donation({
     required this.donorUsername,

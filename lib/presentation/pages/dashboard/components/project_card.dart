@@ -1,10 +1,7 @@
-import 'package:fets_mobile/features/features.dart';
 import 'package:fets_mobile/features/models/project.dart';
-import 'package:fets_mobile/service_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 
 import '../../pages.dart';
 
@@ -21,11 +18,6 @@ class ProjectCard extends StatelessWidget {
           ProjectDetails.route,
           arguments: project,
         );
-        // GetIt.I.registerSingleton<Project>(project);
-        Navigator.pushNamed(context, ProjectDetailScreen.route,
-            arguments: project);
-        BlocProvider.of<SubprojectBloc>(context)
-            .add(FetchSubprojectByProjectId(projectId: project.id));
       },
       child: Stack(children: [
         Container(
@@ -83,7 +75,8 @@ class ProjectCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.h),
                 child: LinearProgressIndicator(
-                  value: (project.fundedMoney / project.estimatedBudget)
+                  value: (project.fundedMoney.toDouble() /
+                          project.estimatedBudget.toDouble())
                       .toDouble(),
                 ),
               ),
@@ -93,9 +86,10 @@ class ProjectCard extends StatelessWidget {
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Donors',
+                        'Location',
                         style: TextStyle(
                             fontSize: 9.sp, fontWeight: FontWeight.w600),
                       ),
@@ -103,7 +97,7 @@ class ProjectCard extends StatelessWidget {
                         height: 3.h,
                       ),
                       Text(
-                        '85',
+                        project.location,
                         style: TextStyle(
                             fontSize: 14.sp, fontWeight: FontWeight.bold),
                       ),
@@ -111,9 +105,10 @@ class ProjectCard extends StatelessWidget {
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'Average donation',
+                        'Estimated duration',
                         style: TextStyle(
                             fontSize: 9.sp, fontWeight: FontWeight.w600),
                       ),
@@ -121,7 +116,9 @@ class ProjectCard extends StatelessWidget {
                         height: 3.h,
                       ),
                       Text(
-                        '\$10K',
+                        DateFormat.yM().format(
+                            DateTime.fromMillisecondsSinceEpoch(
+                                project.estimatedDuration.toInt())),
                         style: TextStyle(
                             fontSize: 14.sp, fontWeight: FontWeight.bold),
                       ),

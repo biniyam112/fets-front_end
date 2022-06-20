@@ -46,9 +46,9 @@ class FetchDonorProjectsBloc
         functionName: 'getDonatedProjectsByUsername',
         args: [event.userName],
       );
+      print('the projects are $projects');
       emit(ProjectsFetched(projects: projects));
     } catch (e) {
-      print(e.toString());
       emit(ProjectsFetchingFailed(errorMessage: e.toString()));
     }
   }

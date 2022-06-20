@@ -3,7 +3,9 @@ import 'package:fets_mobile/features/models/project.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 
+import '../../../../features/authentication/model/model.dart';
 import '../../../../features/donor_projects/bloc/donor_projects_event.dart';
 import '../../../../services/services.dart';
 import 'project_filter.dart';
@@ -24,7 +26,9 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     BlocProvider.of<DonorProjectBloc>(context).add(
-      FetchUserDonations(userName: 'biniyam112'),
+      FetchUserDonations(
+        userName: Hive.box<User>('users').get('user')!.userName ?? 'biniyam112',
+      ),
     );
     super.initState();
   }
@@ -55,16 +59,27 @@ class _BodyState extends State<Body> {
                   });
                 },
               ),
-              Column(
-                children: [
-                  ...List.generate(widget.projects.length, (index) {
-                    Project project = widget.projects[index];
-                    return ProjectListTile(
-                      project: project,
-                    );
-                  }),
-                ],
-              ),
+              (widget.projects[0].id.toInt() == 0)
+                  ? SizedBox(
+                      height: .2.sh,
+                      width: 1.sw,
+                      child: Center(
+                        child: Text(
+                          'No funded projects available',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ),
+                    )
+                  : Column(
+                      children: [
+                        ...List.generate(widget.projects.length, (index) {
+                          Project project = widget.projects[index];
+                          return ProjectListTile(
+                            project: project,
+                          );
+                        }),
+                      ],
+                    ),
             ],
           ),
         ),

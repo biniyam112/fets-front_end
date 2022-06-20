@@ -30,10 +30,6 @@ class BottomNavbar extends StatelessWidget {
           icon: Icon(Icons.rss_feed),
           label: "Feeds",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: "Settings",
-        )
       ],
     );
   }

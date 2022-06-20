@@ -14,7 +14,7 @@ class PaymentController {
     try {
       paymentIntent = await createPaymentIntent(amount, currency);
       print(paymentIntent);
-      Stripe.instance.presentPaymentSheet();
+      // Stripe.instance.presentPaymentSheet();
       if (paymentIntent != null) {
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(

@@ -14,7 +14,7 @@ class DonatedProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5.h),
-      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 11.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 11.h),
       constraints: BoxConstraints.expand(width: 350.w, height: 180.h),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -22,7 +22,7 @@ class DonatedProjectCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const DonateProjectReport(),
+          DonateProjectReport(projects: projects),
           ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(3.w)),
               child: VerticalDivider(

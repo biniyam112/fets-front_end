@@ -9,9 +9,18 @@ class DonateProjectProgress extends StatelessWidget {
       : super(key: key);
   final List<Project> projects;
 
+  int completedProjects() {
+    int completedCount = 0;
+    for (var i = 0; i < projects.length; i++) {
+      if (projects[i].status.toInt() == 2) {
+        completedCount += 1;
+      }
+    }
+    return completedCount;
+  }
+
   @override
   Widget build(BuildContext context) {
-    double progressValue = 4;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -36,7 +45,7 @@ class DonateProjectProgress extends StatelessWidget {
                 ),
                 pointers: <GaugePointer>[
                   RangePointer(
-                    value: progressValue,
+                    value: completedProjects().toDouble(),
                     cornerStyle: CornerStyle.bothCurve,
                     width: 0.2,
                     sizeUnit: GaugeSizeUnit.factor,
@@ -47,7 +56,8 @@ class DonateProjectProgress extends StatelessWidget {
                       positionFactor: 0.1,
                       angle: 90,
                       widget: Text(
-                        progressValue.toStringAsFixed(0) + ' / 13',
+                        completedProjects().toString() +
+                            ' / ${projects.length}',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: Colors.grey.shade400,
@@ -60,7 +70,8 @@ class DonateProjectProgress extends StatelessWidget {
         SizedBox(
           width: 100.w,
           child: Center(
-            child: Text('4 out of 13 projects completed',
+            child: Text(
+                '${completedProjects()} out of  ${projects.length} projects completed',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

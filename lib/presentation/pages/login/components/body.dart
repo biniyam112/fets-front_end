@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
 
+import '../../../../features/fetch_projecs/bloc/fetch_projects_bloc.dart';
+import '../../../../features/fetch_projecs/bloc/fetch_projects_event.dart';
 import '../../../../services/services.dart';
 import '../../../../theme/theme.dart';
 import '../../../components/components.dart';
@@ -170,6 +173,14 @@ class _BodyState extends State<Body> {
                         });
                       }
                       if (state is UserSignedInSuccessfully) {
+                        Hive.box<User>('users').put('user', user);
+                        BlocProvider.of<FetchDonorProjectsBloc>(context).add(
+                          FetchDonorProjects(
+                            userName:
+                                Hive.box<User>('users').get('user')!.userName ??
+                                    'biniyam112',
+                          ),
+                        );
                         Navigator.pushNamed(context, DashboardScreen.route);
                       }
                     },
