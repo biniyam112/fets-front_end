@@ -96,10 +96,16 @@ class ProjectCard extends StatelessWidget {
                       SizedBox(
                         height: 3.h,
                       ),
-                      Text(
-                        project.location,
-                        style: TextStyle(
-                            fontSize: 14.sp, fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: 50.sp,
+                        child: Text(
+                          project.location,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -120,7 +126,9 @@ class ProjectCard extends StatelessWidget {
                             DateTime.fromMillisecondsSinceEpoch(
                                 project.estimatedDuration.toInt())),
                         style: TextStyle(
-                            fontSize: 14.sp, fontWeight: FontWeight.bold),
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   )
