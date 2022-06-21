@@ -1,7 +1,7 @@
 # Financial expenditure tracking System mobile app(fets_mobile)
 
 
-Betsegaw Gizaw		  atr/1332/10
+Betsegaw Gizaw		  atr/1332/10\n
 Biniyam Demissew	atr/7840/10
 Ebsa Teklu			        atr/0373/10
 Ermiyas Gashu		    atr/2227/10
