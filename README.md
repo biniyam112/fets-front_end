@@ -20,7 +20,7 @@ flutterweb3 - used to connect the app to the smart contract deployed on the bloc
 bloc- a flutter state management package.
 flutter_stripe- all in one flutter payment package 
 
-Installation process
+Installation process        
 1, run "flutter pub get" in the project directory
 
 ![Get packages](https://github.com/biniyam112/fets-front_end/blob/mobile/screenshot/Screenshot%20from%202022-06-21%2015-42-01.png?raw=true)
