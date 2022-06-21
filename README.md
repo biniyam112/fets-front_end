@@ -22,10 +22,14 @@ flutter_stripe- all in one flutter payment package
 
 Installation process
 1, run "flutter pub get" in the project directory
+![Get packages](https://github.com/biniyam112/fets-front_end/blob/mobile/screenshot/Screenshot%20from%202022-06-21%2015-42-01.png?raw=true)
 2, Connect mobile device or start mobile emulator
 3, run "flutter run" in project directory to directly install the app
+![run flutter app](https://github.com/biniyam112/fets-front_end/blob/mobile/screenshot/Screenshot%20from%202022-06-21%2015-42-27.png?raw=true)
 4, or run "flutter build apk --split-per-abi" to create build file
+![build mobile app](https://github.com/biniyam112/fets-front_end/blob/mobile/screenshot/Screenshot%20from%202022-06-21%2015-41-37.png?raw=true)
 5, locate the app in /build/app/outputs/apk/release/ directory and install the app
+![app direcotory](https://github.com/biniyam112/fets-front_end/blob/mobile/screenshot/Screenshot%20from%202022-06-21%2016-25-15.png?raw=true)
 
 References:
 
