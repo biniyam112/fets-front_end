@@ -1,6 +1,5 @@
 import 'package:fets_mobile/features/fetch_projecs/bloc/fetch_projects_state.dart';
 import 'package:fets_mobile/presentation/pages/dashboard/dashboard.dart';
-import 'package:fets_mobile/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
