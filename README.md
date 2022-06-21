@@ -9,7 +9,6 @@ Ebsa Teklu			        atr/0373/10
 
 Ermiyas Gashu		    atr/2227/10
 
-
 Yididiya Kebede		    atr/4056/10
 
 Advisor : Yoseph Abate
