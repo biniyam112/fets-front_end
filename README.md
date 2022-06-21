@@ -38,8 +38,9 @@ Installation process
 
 References:
 
-YouTube, Keshav M, Blockchain Dapp using Flutter | Web3Dart | Ethereum | Decentralized Apps. (16 Jun 2020). Accessed: 27 May 2022[online video]. 
-Available: https://www.youtube.com/watch?v=7qMAmI_Lzv4
+Youtube, Block Revolution, Flutter Dapp Simple Wallet. (27 Jan 2022).
+Accessed: 29 May 2022[online video].
+Available: https://www.youtube.com/watch?v=JMfIBpuAhKA
 
 
 
